@@ -279,7 +279,7 @@ function plotBestTrack(rows) {
       .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
       .addTo(layer);
   });
-  map.fitBounds(L.latLngBounds(pts).pad(0.6), { maxZoom: 5 });
+  map.fitBounds(L.latLngBounds(pts).pad(0.6), { maxZoom: 2 });
 }
 
 function renderForecast(out, arr) {
