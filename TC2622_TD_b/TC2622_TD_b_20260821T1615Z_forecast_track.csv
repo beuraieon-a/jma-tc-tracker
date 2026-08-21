@@ -1,0 +1,6 @@
+﻿tc_id,typhoon_number,name_en,name_jp,part,advanced_hours,valid_time_utc,valid_time_jst,latitude,longitude,category,scale,intensity,pressure_hPa,max_wind_sustained_ms,max_wind_sustained_kt,max_wind_gust_ms,max_wind_gust_kt,direction,speed_kmh,speed_kt,location,probability_circle_radius_km,probability_circle_radius_nm,probability_circle_radius_m,gale_warning_30kt,storm_warning_50kt
+TC2622,b,,,Analysis,0,2026-08-21T15:00:00Z,2026-08-22T00:00:00+09:00,21.0,108.2,TD,-,-,998,15,30,23,45,不定,,,トンキン湾,,,,,
+TC2622,b,,,Forecast for 24 hours ahead,24,2026-08-22T15:00:00Z,2026-08-23T00:00:00+09:00,20.8,108.9,TS,,-,994,18,35,25,50,不定,,,トンキン湾,130,70,129640,,
+TC2622,b,,,Forecast for 45 hours ahead,45,2026-08-23T12:00:00Z,2026-08-23T21:00:00+09:00,20.5,109.1,TS,,-,994,18,35,25,50,不定,,,トンキン湾,200,110,203720,,
+TC2622,b,,,Forecast for 69 hours ahead,69,2026-08-24T12:00:00Z,2026-08-24T21:00:00+09:00,20.8,109.2,TS,,-,994,18,35,25,50,不定,,,トンキン湾,260,140,259280,,
+TC2622,b,,,Forecast for 93 hours ahead,93,2026-08-25T12:00:00Z,2026-08-25T21:00:00+09:00,21.7,109.6,TD,,-,996,0,0,0,0,不定,,,華南,330,180,333360,,

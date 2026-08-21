@@ -1,0 +1,8 @@
+﻿tc_id,typhoon_number,name_en,name_jp,part,advanced_hours,valid_time_utc,valid_time_jst,latitude,longitude,category,scale,intensity,pressure_hPa,max_wind_sustained_ms,max_wind_sustained_kt,max_wind_gust_ms,max_wind_gust_kt,direction,speed_kmh,speed_kt,location,probability_circle_radius_km,probability_circle_radius_nm,probability_circle_radius_m,gale_warning_30kt,storm_warning_50kt
+TC2621,2618,Saudel,ソウデル,Analysis,0,2026-08-21T15:00:00Z,2026-08-22T00:00:00+09:00,16.4,148.0,STS,-,-,975,30,60,45,85,北西,20,12,マリアナ諸島,,,,南:390km;北:280km,南:95km;北:55km
+TC2621,2618,Saudel,ソウデル,Forecast for 12 hours ahead,12,2026-08-22T03:00:00Z,2026-08-22T12:00:00+09:00,18.3,146.6,TY,,強い,960,40,75,55,105,北北西,20,12,マリアナ諸島,65,35,64820,,"{'jp': '全域', 'en': 'All'}:175km"
+TC2621,2618,Saudel,ソウデル,Forecast for 24 hours ahead,24,2026-08-22T15:00:00Z,2026-08-23T00:00:00+09:00,20.0,144.7,TY,,非常に強い,935,45,90,65,130,北西,20,12,マリアナ諸島,95,50,92600,,"{'jp': '全域', 'en': 'All'}:220km"
+TC2621,2618,Saudel,ソウデル,Forecast for 45 hours ahead,45,2026-08-23T12:00:00Z,2026-08-23T21:00:00+09:00,22.4,139.9,TY,,非常に強い,925,50,95,70,135,西北西,25,14,日本の南,155,85,157420,,"{'jp': '全域', 'en': 'All'}:310km"
+TC2621,2618,Saudel,ソウデル,Forecast for 69 hours ahead,69,2026-08-24T12:00:00Z,2026-08-24T21:00:00+09:00,24.6,134.4,TY,,非常に強い,925,50,95,70,135,西北西,25,14,日本の南,220,120,222240,,"{'jp': '全域', 'en': 'All'}:390km"
+TC2621,2618,Saudel,ソウデル,Forecast for 93 hours ahead,93,2026-08-25T12:00:00Z,2026-08-25T21:00:00+09:00,26.1,130.1,TY,,強い,950,40,80,60,115,西北西,20,10,日本の南,280,150,277800,,"{'jp': '全域', 'en': 'All'}:440km"
+TC2621,2618,Saudel,ソウデル,Forecast for 117 hours ahead,117,2026-08-26T12:00:00Z,2026-08-26T21:00:00+09:00,27.0,127.2,TY,,強い,960,40,75,55,105,西北西,15,7,東シナ海,460,250,463000,,"{'jp': '全域', 'en': 'All'}:650km"

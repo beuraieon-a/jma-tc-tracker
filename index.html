@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JMA TC Tracker — Dashboard</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  :root { --bg:#0f1720; --panel:#16212e; --line:#26374a; --fg:#e6edf3;
+          --muted:#9fb0c0; --active:#2ea043; --term:#d1242f; --accent:#4493f8; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.45 system-ui, Segoe UI, Roboto, sans-serif;
+         background:var(--bg); color:var(--fg); }
+  header { padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--line);
+           display:flex; align-items:center; gap:12px; }
+  header h1 { font-size:16px; margin:0; font-weight:600; }
+  header .sub { color:var(--muted); font-size:12px; }
+  header .spacer { flex:1; }
+  button { background:var(--accent); color:#fff; border:0; border-radius:6px;
+           padding:7px 12px; cursor:pointer; font-size:13px; }
+  button.secondary { background:#30363d; }
+  button:disabled { opacity:.5; cursor:not-allowed; }
+  .layout { display:flex; height:calc(100vh - 49px); }
+  aside { width:280px; border-right:1px solid var(--line); overflow:auto; background:var(--panel); }
+  aside .sys { padding:10px 14px; border-bottom:1px solid var(--line); cursor:pointer; }
+  aside .sys:hover { background:#1d2b3a; }
+  aside .sys.sel { background:#233246; }
+  aside .sys .name { font-weight:600; }
+  aside .sys .meta { color:var(--muted); font-size:12px; }
+  .badge { display:inline-block; font-size:11px; padding:1px 7px; border-radius:10px; color:#fff; }
+  .badge.active { background:var(--active); }
+  .badge.terminated { background:var(--term); }
+  main { flex:1; overflow:auto; padding:16px; }
+  .banner { background:#3a0d12; border:1px solid var(--term); color:#ffd7d7;
+            padding:12px 14px; border-radius:8px; margin-bottom:14px;
+            display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .banner b { color:#fff; }
+  #map { height:340px; border-radius:8px; border:1px solid var(--line); margin:10px 0; }
+  h2 { font-size:15px; border-bottom:1px solid var(--line); padding-bottom:6px; margin:22px 0 10px; }
+  select { background:#0d1520; color:var(--fg); border:1px solid var(--line);
+           border-radius:6px; padding:6px 8px; }
+  table { border-collapse:collapse; width:100%; font-size:12px; }
+  th, td { border:1px solid var(--line); padding:4px 6px; text-align:left; white-space:nowrap; }
+  th { background:#1b2634; position:sticky; top:0; }
+  .tablewrap { overflow:auto; max-height:320px; border:1px solid var(--line); border-radius:8px; }
+  pre { background:#0b1119; border:1px solid var(--line); border-radius:8px;
+        padding:12px; overflow:auto; max-height:420px; font-size:12px; }
+  .row { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .kv { color:var(--muted); }
+  .kv b { color:var(--fg); }
+  dialog { background:var(--panel); color:var(--fg); border:1px solid var(--line);
+           border-radius:10px; width:min(520px,92vw); }
+  dialog input { width:100%; background:#0d1520; color:var(--fg);
+                 border:1px solid var(--line); border-radius:6px; padding:7px; margin:4px 0 12px; }
+  .hint { color:var(--muted); font-size:12px; }
+  .empty { color:var(--muted); padding:40px; text-align:center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>JMA TC Tracker</h1>
+  <span class="sub" id="generated"></span>
+  <span class="spacer"></span>
+  <button class="secondary" id="refreshBtn">Refresh</button>
+  <button class="secondary" id="settingsBtn">Settings</button>
+</header>
+
+<div class="layout">
+  <aside id="sysList"></aside>
+  <main id="detail"><div class="empty">Loading…</div></main>
+</div>
+
+<dialog id="settingsDlg">
+  <form method="dialog">
+    <h2 style="margin-top:0">Settings</h2>
+    <p class="hint">Needed only for the “download &amp; remove” action on terminated
+      systems. The token is stored <b>only in this browser</b> (localStorage) and is
+      used to trigger the <code>cleanup.yml</code> workflow.</p>
+    <label>Repo owner</label><input id="cfgOwner" placeholder="your-github-username" />
+    <label>Repo name</label><input id="cfgRepo" placeholder="jma-tc-tracker" />
+    <label>Default branch</label><input id="cfgBranch" placeholder="main" />
+    <label>Fine-grained PAT (Actions: read &amp; write, this repo only)</label>
+    <input id="cfgToken" type="password" placeholder="github_pat_… (optional)" />
+    <div class="row" style="justify-content:flex-end">
+      <button class="secondary" value="cancel">Cancel</button>
+      <button id="cfgSave" value="save">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const DATA = "./data/";
+let INDEX = null, SELECTED = null, map = null, layer = null;
+
+// ---------- config (localStorage) ----------
+function inferConfig() {
+  const host = location.hostname;           // owner.github.io
+  const seg = location.pathname.split("/").filter(Boolean);
+  const owner = host.endsWith(".github.io") ? host.split(".")[0] : "";
+  const repo = seg.length ? seg[0] : "";
+  return { owner, repo, branch: "main", token: "" };
+}
+function getConfig() {
+  const saved = JSON.parse(localStorage.getItem("jmaCfg") || "{}");
+  return Object.assign(inferConfig(), saved);
+}
+function saveConfig(c) { localStorage.setItem("jmaCfg", JSON.stringify(c)); }
+
+// ---------- helpers ----------
+async function fetchText(path) {
+  const r = await fetch(DATA + path, { cache: "no-store" });
+  if (!r.ok) throw new Error(`${path}: ${r.status}`);
+  return r.text();
+}
+async function fetchJSON(path) { return JSON.parse(await fetchText(path)); }
+
+function parseCSV(text) {
+  text = text.replace(/^\uFEFF/, "");
+  const rows = []; let row = [], field = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') q = false;
+      else field += c;
+    } else if (c === '"') q = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+    else if (c !== "\r") field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  const header = rows.shift() || [];
+  return rows.filter(r => r.length > 1).map(r =>
+    Object.fromEntries(header.map((h, i) => [h, r[i] ?? ""])));
+}
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v;
+    else if (k === "html") e.innerHTML = v;
+    else e.setAttribute(k, v);
+  }
+  kids.forEach(k => e.append(k));
+  return e;
+}
+
+// ---------- rendering ----------
+async function loadIndex() {
+  INDEX = await fetchJSON("index.json");
+  document.getElementById("generated").textContent =
+    "updated " + (INDEX.generated_utc || "");
+  renderList();
+  if (INDEX.systems.length) {
+    const keep = INDEX.systems.find(s => s.base === (SELECTED && SELECTED.base));
+    selectSystem(keep || INDEX.systems[0]);
+  } else {
+    document.getElementById("detail").innerHTML =
+      '<div class="empty">No systems are being tracked yet.</div>';
+  }
+}
+
+function renderList() {
+  const list = document.getElementById("sysList");
+  list.innerHTML = "";
+  INDEX.systems.forEach(s => {
+    const node = el("div", { class: "sys" + (SELECTED && SELECTED.base === s.base ? " sel" : "") },
+      el("div", { class: "name" }, (s.tc_name || s.base) +
+        (s.tc_id_official ? ` (${s.tc_id_official})` : "")),
+      el("div", { class: "meta", html:
+        `${s.tc_id_monitoring} &middot; <span class="badge ${s.status}">${s.status}</span>` }));
+    node.onclick = () => selectSystem(s);
+    list.append(node);
+  });
+}
+
+async function selectSystem(s) {
+  SELECTED = s;
+  renderList();
+  const d = document.getElementById("detail");
+  d.innerHTML = "";
+
+  // header
+  d.append(el("div", { class: "row" },
+    el("h2", { style: "border:0;margin:0" }, (s.tc_name || s.base)),
+    el("span", { class: "badge " + s.status }, s.status)));
+  d.append(el("div", { class: "row", style: "margin:6px 0 4px", html:
+    `<span class="kv">Monitoring id <b>${s.tc_id_monitoring}</b></span>
+     <span class="kv">Official <b>${s.tc_id_official || "—"}</b></span>
+     <span class="kv">First analysis <b>${s.first_analysis_utc || "—"}</b></span>
+     <span class="kv">Last issue <b>${s.last_issue_utc || "—"}</b></span>` }));
+
+  if (s.status === "terminated") {
+    const btn = el("button", {}, "⬇ Download all files (ZIP) & remove");
+    btn.onclick = () => downloadAndRemove(s, btn);
+    d.append(el("div", { class: "banner" },
+      el("div", { html: `<b>Monitoring has ended</b> for this system. Its data is still
+        piling up in the repository — download it, then remove it to free space.` }), btn));
+  }
+
+  // map + best track
+  d.append(el("div", { id: "map" }));
+  d.append(el("h2", {}, "Operational best track"));
+  const btWrap = el("div", { class: "tablewrap" }, el("div", { class: "empty" }, "loading…"));
+  d.append(btWrap);
+
+  // forecast viewer
+  d.append(el("h2", {}, "Forecast issuances"));
+  const fSel = el("select"); const fOut = el("div");
+  d.append(el("div", { class: "row" }, fSel)); d.append(fOut);
+
+  // specifications viewer
+  d.append(el("h2", {}, "Specifications issuances"));
+  const sSel = el("select"); const sOut = el("div");
+  d.append(el("div", { class: "row" }, sSel)); d.append(sOut);
+
+  // init map
+  map = L.map("map", { worldCopyJump: true }).setView([20, 140], 3);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 10, attribution: "© OpenStreetMap" }).addTo(map);
+  layer = L.layerGroup().addTo(map);
+
+  // best track
+  let bt = [];
+  if (s.besttrack) {
+    try { bt = parseCSV(await fetchText(s.besttrack)); } catch (e) {}
+  }
+  renderBestTrack(btWrap, bt);
+  plotBestTrack(bt);
+
+  // populate forecast selector (newest first)
+  const ff = (s.forecast_files || []).slice().reverse();
+  fSel.innerHTML = "";
+  ff.forEach(p => fSel.append(el("option", { value: p }, issueLabel(p))));
+  const showFc = async () => { if (fSel.value) renderForecast(fOut, await fetchJSON(fSel.value)); };
+  fSel.onchange = showFc; if (ff.length) await showFc();
+
+  const sf = (s.specifications_files || []).slice().reverse();
+  sSel.innerHTML = "";
+  sf.forEach(p => sSel.append(el("option", { value: p }, issueLabel(p))));
+  const showSp = async () => { if (sSel.value) sOut.innerHTML =
+    `<pre>${escapeHtml(JSON.stringify(await fetchJSON(sSel.value), null, 2))}</pre>`; };
+  sSel.onchange = showSp; if (sf.length) await showSp();
+}
+
+function issueLabel(path) {
+  const m = path.match(/_(\d{8}T\d{4}Z)_/);
+  return m ? m[1] : path.split("/").pop();
+}
+function escapeHtml(s) {
+  return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+}
+
+function renderBestTrack(wrap, rows) {
+  if (!rows.length) { wrap.innerHTML = '<div class="empty">No best-track data yet.</div>'; return; }
+  const cols = ["valid_time_utc", "center_latitude", "center_longitude",
+    "tc_intensity_category", "tc_size_category", "central_pressure",
+    "msw_kt", "gustiness_kt", "movement_direction", "movement_speed_kt"];
+  const t = el("table");
+  t.append(el("tr", {}, ...cols.map(c => el("th", {}, c))));
+  rows.forEach(r => t.append(el("tr", {}, ...cols.map(c => el("td", {}, r[c] ?? "")))));
+  wrap.innerHTML = ""; wrap.append(t);
+}
+
+function plotBestTrack(rows) {
+  layer.clearLayers();
+  const pts = rows.map(r => [parseFloat(r.center_latitude), parseFloat(r.center_longitude)])
+    .filter(p => Number.isFinite(p[0]) && Number.isFinite(p[1]));
+  if (!pts.length) return;
+  L.polyline(pts, { color: "#4493f8", weight: 2 }).addTo(layer);
+  rows.forEach(r => {
+    const lat = parseFloat(r.center_latitude), lon = parseFloat(r.center_longitude);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+    L.circleMarker([lat, lon], { radius: 4, color: "#4493f8", fillColor: "#4493f8", fillOpacity: .9 })
+      .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
+      .addTo(layer);
+  });
+  map.fitBounds(L.latLngBounds(pts).pad(0.3));
+}
+
+function renderForecast(out, arr) {
+  // plot forecast centers on the same map, over the best track
+  const fc = layer;
+  const pts = [];
+  arr.forEach(e => {
+    const c = e.center;
+    if (Array.isArray(c) && c.length === 2 && typeof c[0] === "number") {
+      pts.push(c);
+      L.circleMarker(c, { radius: 4, color: "#f0a020", fillColor: "#f0a020", fillOpacity: .9 })
+        .bindPopup((e.part && e.part.en) || "forecast")
+        .addTo(fc);
+    }
+  });
+  if (pts.length > 1) L.polyline(pts, { color: "#f0a020", weight: 2, dashArray: "4 4" }).addTo(fc);
+  out.innerHTML = `<pre>${escapeHtml(JSON.stringify(arr, null, 2))}</pre>`;
+}
+
+// ---------- download + remove ----------
+async function downloadAndRemove(s, btn) {
+  btn.disabled = true; const label = btn.textContent;
+  try {
+    btn.textContent = "Zipping…";
+    const zip = new JSZip();
+    const files = [s.besttrack, ...(s.forecast_files || []), ...(s.specifications_files || [])]
+      .filter(Boolean);
+    for (const p of files) {
+      const blob = await (await fetch(DATA + p, { cache: "no-store" })).blob();
+      zip.file(p, blob);           // keeps <base>/… structure inside the zip
+    }
+    const content = await zip.generateAsync({ type: "blob" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(content);
+    a.download = s.base + ".zip";
+    document.body.append(a); a.click(); a.remove();
+    URL.revokeObjectURL(a.href);
+
+    await requestRemoval(s.base);
+  } catch (e) {
+    alert("Download failed: " + e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+}
+
+async function requestRemoval(base) {
+  const cfg = getConfig();
+  if (!cfg.token || !cfg.owner || !cfg.repo) {
+    alert("Download complete.\n\nTo also remove the files from the repository, open " +
+      "Settings and add your repo owner/name and a fine-grained PAT — or run the " +
+      "'cleanup-jma-tc' workflow manually with base:\n\n" + base);
+    return;
+  }
+  if (!confirm(`Download complete. Remove '${base}' from the repository now?`)) return;
+  const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}` +
+    `/actions/workflows/cleanup.yml/dispatches`;
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + cfg.token,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    body: JSON.stringify({ ref: cfg.branch || "main", inputs: { base } }),
+  });
+  if (r.status === 204) {
+    alert("Removal requested. It will disappear here after the cleanup workflow " +
+      "runs (~1 min) and the site redeploys.");
+  } else {
+    alert("Removal request failed (HTTP " + r.status + "). Check the token/permissions, " +
+      "or run the cleanup workflow manually with base: " + base);
+  }
+}
+
+// ---------- settings dialog ----------
+const dlg = document.getElementById("settingsDlg");
+document.getElementById("settingsBtn").onclick = () => {
+  const c = getConfig();
+  cfgOwner.value = c.owner; cfgRepo.value = c.repo;
+  cfgBranch.value = c.branch || "main"; cfgToken.value = c.token || "";
+  dlg.showModal();
+};
+document.getElementById("cfgSave").addEventListener("click", () => {
+  saveConfig({ owner: cfgOwner.value.trim(), repo: cfgRepo.value.trim(),
+    branch: (cfgBranch.value.trim() || "main"), token: cfgToken.value.trim() });
+});
+document.getElementById("refreshBtn").onclick = () => loadIndex();
+
+loadIndex().catch(e => {
+  document.getElementById("detail").innerHTML =
+    `<div class="empty">Could not load data/index.json.<br>${e.message}<br><br>
+     If viewing locally, serve the folder over HTTP (e.g. <code>python -m http.server</code>).</div>`;
+});
+</script>
+</body>
+</html>

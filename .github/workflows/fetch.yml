@@ -1,0 +1,41 @@
+name: fetch-jma-tc
+
+# Primary trigger is workflow_dispatch (fired on time by an external scheduler
+# such as cron-job.org). The schedule below is only a lazy fallback, since
+# GitHub's cron queue can be delayed or skipped.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "17 * * * *"   # hourly fallback (UTC)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jma-tc-data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch all active systems
+        run: python fetch_jma_tc.py --all --outdir data
+
+      - name: Commit updated data
+        run: |
+          git config user.name  "tc-bot"
+          git config user.email "tc-bot@users.noreply.github.com"
+          git add -A data
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "data: ${{ github.run_id }} $(date -u +%FT%TZ)"
+            git push
+          fi

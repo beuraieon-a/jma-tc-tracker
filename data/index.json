@@ -1,0 +1,43 @@
+{
+  "generated_utc": "2026-08-21T21:45:50Z",
+  "active": [
+    "TC2621",
+    "TC2622"
+  ],
+  "systems": [
+    {
+      "base": "T2618_SAUDEL",
+      "tc_id_monitoring": "TC2621",
+      "tc_id_official": "T2618",
+      "tc_name": "SAUDEL",
+      "status": "active",
+      "first_analysis_utc": "2026-08-21T21:00:00Z",
+      "last_analysis_utc": "2026-08-21T21:00:00Z",
+      "last_issue_utc": "2026-08-21T21:45:00Z",
+      "forecast_files": [
+        "T2618_SAUDEL/forecast/T2618_SAUDEL_20260821T2145Z_forecast.json"
+      ],
+      "specifications_files": [
+        "T2618_SAUDEL/specifications/T2618_SAUDEL_20260821T2145Z_specifications.json"
+      ],
+      "besttrack": "T2618_SAUDEL/besttrack.csv"
+    },
+    {
+      "base": "TC2622_TD_b",
+      "tc_id_monitoring": "TC2622",
+      "tc_id_official": "",
+      "tc_name": "b",
+      "status": "active",
+      "first_analysis_utc": "2026-08-21T18:00:00Z",
+      "last_analysis_utc": "2026-08-21T18:00:00Z",
+      "last_issue_utc": "2026-08-21T19:25:00Z",
+      "forecast_files": [
+        "TC2622_TD_b/forecast/TC2622_TD_b_20260821T1925Z_forecast.json"
+      ],
+      "specifications_files": [
+        "TC2622_TD_b/specifications/TC2622_TD_b_20260821T1925Z_specifications.json"
+      ],
+      "besttrack": "TC2622_TD_b/besttrack.csv"
+    }
+  ]
+}

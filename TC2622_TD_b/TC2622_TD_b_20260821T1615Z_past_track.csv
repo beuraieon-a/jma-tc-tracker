@@ -1,0 +1,5 @@
+﻿tc_id,typhoon_number,name_en,name_jp,point_index,stage,latitude,longitude,is_analysis_position,valid_time_utc,valid_time_jst,category,pressure_hPa,max_wind_sustained_kt,max_wind_gust_kt,direction,speed_kt,gale_warning_30kt,storm_warning_50kt
+TC2622,b,,,0,preTyphoon,20.8,108.6,False,,,,,,,,,,
+TC2622,b,,,1,preTyphoon,20.8,108.2,False,,,,,,,,,,
+TC2622,b,,,2,preTyphoon,20.7,108.1,False,,,,,,,,,,
+TC2622,b,,,3,preTyphoon,21.0,108.2,True,2026-08-21T15:00:00Z,2026-08-22T00:00:00+09:00,TD,998,30,45,不定,,,

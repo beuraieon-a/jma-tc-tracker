@@ -1,0 +1,12 @@
+# Local Python environment / caches (do not publish)
+.venv/
+__pycache__/
+*.pyc
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Local registry is repo-scoped runtime state; keep it, but ignore editor temp
+*.tmp

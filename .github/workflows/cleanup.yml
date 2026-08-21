@@ -1,0 +1,59 @@
+name: cleanup-jma-tc
+
+# Deletes one terminated system's folder after its data has been downloaded
+# from the dashboard, then rebuilds index.json. Triggered via workflow_dispatch.
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: "System folder to delete (e.g. T2618_SAUDEL)"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jma-tc-data
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Remove system folder
+        env:
+          BASE: ${{ inputs.base }}
+        run: |
+          python - <<'PY'
+          import os, re, shutil, sys
+          base = os.environ["BASE"].strip()
+          if not re.fullmatch(r"[A-Za-z0-9_]+", base):   # guard against traversal
+              sys.exit(f"refusing invalid base: {base!r}")
+          path = os.path.join("data", base)
+          if os.path.isdir(path):
+              shutil.rmtree(path)
+              print("deleted", path)
+          else:
+              print("nothing to delete at", path)
+          PY
+
+      - name: Rebuild index
+        run: python fetch_jma_tc.py --reindex --outdir data
+
+      - name: Commit removal
+        run: |
+          git config user.name  "tc-bot"
+          git config user.email "tc-bot@users.noreply.github.com"
+          git add -A data
+          if git diff --staged --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "cleanup: remove ${{ inputs.base }}"
+            git push
+          fi
