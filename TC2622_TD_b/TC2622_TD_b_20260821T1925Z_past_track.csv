@@ -1,6 +1,0 @@
-﻿tc_id_monitoring,tc_id_official,tc_name,point_index,stage,center_latitude,center_longitude,is_analysis_position,valid_time_utc,tc_intensity_category,central_pressure,msw_kt,gustiness_kt,movement_direction,movement_speed_kt,30kt_wind_longrad_dir,30kt_wind_longrad_length_km,30kt_wind_longrad_length_nm,30kt_wind_shortrad_dir,30kt_wind_shortrad_length_km,30kt_wind_shortrad_length_nm,50kt_wind_longrad_dir,50kt_wind_longrad_length_km,50kt_wind_longrad_length_nm,50kt_wind_shortrad_dir,50kt_wind_shortrad_length_km,50kt_wind_shortrad_length_nm,50kt_wind_longrad_fcstdir,50kt_wind_longrad_fcstlength_km,50kt_wind_longrad_fcstlength_nm,50kt_wind_shortrad_fcstdir,50kt_wind_shortrad_fcstlength_km,50kt_wind_shortrad_fcstlength_nm
-TC2622,,b,0,preTyphoon,20.8,108.6,False,,,,,,,,,,,,,,,,,,,,,,,,,
-TC2622,,b,1,preTyphoon,20.8,108.2,False,,,,,,,,,,,,,,,,,,,,,,,,,
-TC2622,,b,2,preTyphoon,20.7,108.1,False,,,,,,,,,,,,,,,,,,,,,,,,,
-TC2622,,b,3,preTyphoon,21.0,108.2,False,,,,,,,,,,,,,,,,,,,,,,,,,
-TC2622,,b,4,preTyphoon,21.0,108.2,True,2026-08-21T18:00:00Z,tropical depression,996,30,45,NNE,slowly,,,,,,,,,,,,,,,,,,

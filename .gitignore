@@ -10,3 +10,9 @@ desktop.ini
 
 # Local registry is repo-scoped runtime state; keep it, but ignore editor temp
 *.tmp
+
+# Stale pre-app leftovers at the repo root (old per-issuance CSV design).
+# The live archive lives under data/. Kept locally, excluded from the repo.
+/.tc_registry.json
+/T2618_SAUDEL/
+/TC2622_TD_b/
