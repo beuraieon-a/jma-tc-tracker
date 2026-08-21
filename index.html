@@ -36,7 +36,7 @@
             padding:12px 14px; border-radius:8px; margin-bottom:14px;
             display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
   .banner b { color:#fff; }
-  #map { height:340px; border-radius:8px; border:1px solid var(--line); margin:10px 0; }
+  #map { height:460px; border-radius:8px; border:1px solid var(--line); margin:10px 0; }
   h2 { font-size:15px; border-bottom:1px solid var(--line); padding-bottom:6px; margin:22px 0 10px; }
   select { background:#0d1520; color:var(--fg); border:1px solid var(--line);
            border-radius:6px; padding:6px 8px; }
@@ -279,7 +279,7 @@ function plotBestTrack(rows) {
       .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
       .addTo(layer);
   });
-  map.fitBounds(L.latLngBounds(pts).pad(0.3));
+  map.fitBounds(L.latLngBounds(pts).pad(0.6), { maxZoom: 5 });
 }
 
 function renderForecast(out, arr) {
