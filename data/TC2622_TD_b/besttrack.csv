@@ -1,2 +1,3 @@
 ﻿tc_id_monitoring,tc_id_official,tc_name,valid_time_utc,center_latitude,center_longitude,tc_intensity_category,tc_size_category,central_pressure,msw_ms,msw_kt,gustiness_ms,gustiness_kt,movement_direction,movement_speed_kmh,movement_speed_kt,30kt_wind_longrad_dir,30kt_wind_longrad_length_km,30kt_wind_longrad_length_nm,30kt_wind_shortrad_dir,30kt_wind_shortrad_length_km,30kt_wind_shortrad_length_nm,50kt_wind_longrad_dir,50kt_wind_longrad_length_km,50kt_wind_longrad_length_nm,50kt_wind_shortrad_dir,50kt_wind_shortrad_length_km,50kt_wind_shortrad_length_nm
 TC2622,,b,2026-08-21T18:00:00Z,21.0,108.2,tropical depression,,996,15,30,23,45,NNE,slowly,slowly,,,,,,,,,,,,
+TC2622,,b,2026-08-21T21:00:00Z,21.1,108.2,tropical depression,,996,15,30,23,45,almost stationary,,,,,,,,,,,,,,
