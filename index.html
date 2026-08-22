@@ -92,12 +92,6 @@
     <label>Default branch</label><input id="cfgBranch" placeholder="main" />
     <label>Fine-grained PAT (Actions: read &amp; write, this repo only)</label>
     <input id="cfgToken" type="password" placeholder="github_pat_… (optional)" />
-    <label>MapTiles API key (RapidAPI)</label>
-    <input id="cfgMapTilesKey" type="password" placeholder="optional — enables the MapTiles API basemap" />
-    <p class="hint">Needed only if you want to switch the map basemap to “MapTiles API
-      (English)”. Get a free key at <a href="https://rapidapi.com/MapTilesApi/api/maptiles"
-      target="_blank" rel="noopener">rapidapi.com/MapTilesApi/api/maptiles</a>. Also stored
-      only in this browser.</p>
     <div class="row" style="justify-content:flex-end">
       <button class="secondary" value="cancel">Cancel</button>
       <button id="cfgSave" value="save">Save</button>
@@ -118,7 +112,7 @@ function inferConfig() {
   const seg = location.pathname.split("/").filter(Boolean);
   const owner = host.endsWith(".github.io") ? host.split(".")[0] : "";
   const repo = seg.length ? seg[0] : "";
-  return { owner, repo, branch: "main", token: "", mapTilesApiKey: "" };
+  return { owner, repo, branch: "main", token: "" };
 }
 function getConfig() {
   const saved = JSON.parse(localStorage.getItem("jmaCfg") || "{}");
@@ -252,29 +246,8 @@ async function selectSystem(s) {
   // state (notably its cached container size) lying around.
   if (map) { map.remove(); map = null; }
   map = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12 }).setView([20, 140], 3);
-
-  // basemap toggle: current OSM tiles vs. MapTiles API's English-labelled
-  // OSM tiles. The latter needs a RapidAPI key (Settings → MapTiles API
-  // key) — without one its tiles will just fail to load, so we warn once
-  // via the layer-change event rather than leaving it silently blank.
-  const cfg = getConfig();
-  const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
-  const mtaLayer = L.tileLayer(
-    "https://maptiles.p.rapidapi.com/en/map/v1/{z}/{x}/{y}.png?rapidapi-key=" +
-      encodeURIComponent(cfg.mapTilesApiKey || ""),
-    { maxZoom: 12, attribution: "© MapTiles API, © OpenStreetMap contributors" });
-  L.control.layers(
-    { "OpenStreetMap": osmLayer, "MapTiles API (English)": mtaLayer },
-    null, { position: "topright" }
-  ).addTo(map);
-  map.on("baselayerchange", (e) => {
-    if (e.layer === mtaLayer && !cfg.mapTilesApiKey) {
-      alert("MapTiles API needs an API key — add one under Settings → " +
-        "MapTiles API key, then switch basemaps again.");
-    }
-  });
-
   btLayer = L.layerGroup().addTo(map);
   fcLayer = L.layerGroup().addTo(map);
 
@@ -492,13 +465,11 @@ document.getElementById("settingsBtn").onclick = () => {
   const c = getConfig();
   cfgOwner.value = c.owner; cfgRepo.value = c.repo;
   cfgBranch.value = c.branch || "main"; cfgToken.value = c.token || "";
-  cfgMapTilesKey.value = c.mapTilesApiKey || "";
   dlg.showModal();
 };
 document.getElementById("cfgSave").addEventListener("click", () => {
   saveConfig({ owner: cfgOwner.value.trim(), repo: cfgRepo.value.trim(),
-    branch: (cfgBranch.value.trim() || "main"), token: cfgToken.value.trim(),
-    mapTilesApiKey: cfgMapTilesKey.value.trim() });
+    branch: (cfgBranch.value.trim() || "main"), token: cfgToken.value.trim() });
 });
 document.getElementById("refreshBtn").onclick = () => loadIndex();
 
