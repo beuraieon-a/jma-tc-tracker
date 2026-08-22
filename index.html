@@ -218,7 +218,11 @@ async function selectSystem(s) {
   const sSel = el("select"); const sOut = el("div");
   d.append(el("div", { class: "row" }, sSel)); d.append(sOut);
 
-  // init map
+  // init map — always tear down the previous instance first. The #map div
+  // gets destroyed and recreated on every system switch (d.innerHTML above),
+  // and leaving the old Leaflet instance alive can leave stale internal
+  // state (notably its cached container size) lying around.
+  if (map) { map.remove(); map = null; }
   map = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12 }).setView([20, 140], 3);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
@@ -296,15 +300,22 @@ function fitToTrack(pts) {
   const latSpan = bounds.getNorth() - bounds.getSouth();
 
   let padFraction;
-  if (latSpan < 3) padFraction = 0.8;        // just formed / very short track
-  else if (latSpan < 8) padFraction = 0.45;  // typical short-lived system
-  else if (latSpan < 15) padFraction = 0.25; // well-developed track
-  else padFraction = 0.12;                   // long-lived, basin-spanning track
+  if (latSpan < 3) padFraction = 1.1;        // just formed / very short track
+  else if (latSpan < 8) padFraction = 0.6;   // typical short-lived system
+  else if (latSpan < 15) padFraction = 0.35; // well-developed track
+  else padFraction = 0.18;                   // long-lived, basin-spanning track
+
+  // Leaflet caches the container's pixel size the first time it measures
+  // it. Since #map is a freshly-inserted div each time a system is
+  // selected, invalidateSize() forces a fresh read of its real on-screen
+  // size before we fit — otherwise fitBounds can compute zoom against a
+  // stale size and end up cropping part of the track out of view.
+  map.invalidateSize();
 
   map.fitBounds(bounds.pad(padFraction), {
     maxZoom: 9,                       // floor: don't zoom to street level even for a 1-2 point track
-    paddingTopLeft: [20, 40],         // extra breathing room above the track
-    paddingBottomRight: [20, 40],     // and below it
+    paddingTopLeft: [20, 50],         // extra breathing room above the track
+    paddingBottomRight: [20, 50],     // and below it
   });
 }
 
