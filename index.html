@@ -303,7 +303,7 @@ function fitToTrack(pts) {
   if (latSpan < 3) padFraction = 5;        // just formed / very short track
   else if (latSpan < 8) padFraction = 0.6;   // typical short-lived system
   else if (latSpan < 15) padFraction = 0.35; // well-developed track
-  else padFraction = 0.18;                   // long-lived, basin-spanning track
+  else padFraction = 10;                   // long-lived, basin-spanning track
 
   // Leaflet caches the container's pixel size the first time it measures
   // it. Since #map is a freshly-inserted div each time a system is
