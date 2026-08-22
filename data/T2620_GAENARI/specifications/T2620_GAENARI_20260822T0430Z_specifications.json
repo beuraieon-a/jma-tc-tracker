@@ -1,0 +1,199 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-22T13:30:00+09:00",
+      "UTC": "2026-08-22T04:30:00Z"
+    },
+    "typhoonNumber": "2620",
+    "name": {
+      "jp": "ケナリ",
+      "en": "Gaenari"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "南",
+        "range": {
+          "km": 390,
+          "nm": 210
+        }
+      },
+      {
+        "area": "北",
+        "range": {
+          "km": 280,
+          "nm": 150
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        25.5,
+        124.9
+      ],
+      "dm": [
+        [
+          25,
+          30
+        ],
+        [
+          124,
+          55
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "宮古島の北北西約90km",
+    "course": "西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-08-22T12:00:00+09:00",
+      "UTC": "2026-08-22T03:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        24.9,
+        122.4
+      ],
+      "dm": [
+        [
+          24,
+          55
+        ],
+        [
+          122,
+          25
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 120,
+      "nm": 65
+    },
+    "location": "与那国島の北西約80km",
+    "course": "西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-08-23T12:00:00+09:00",
+      "UTC": "2026-08-23T03:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 45,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        25.4,
+        121.8
+      ],
+      "dm": [
+        [
+          25,
+          25
+        ],
+        [
+          121,
+          50
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 200,
+      "nm": 110
+    },
+    "location": "東シナ海",
+    "course": "西北西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "1000",
+    "validtime": {
+      "JST": "2026-08-24T09:00:00+09:00",
+      "UTC": "2026-08-24T00:00:00Z"
+    }
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "base": "T2620_GAENARI",
+  "tc_id_monitoring": "TC2623",
+  "tc_id_official": "T2620",
+  "tc_name": "GAENARI",
+  "status": "active",
+  "first_analysis_utc": "2026-08-22T00:00:00Z",
+  "last_analysis_utc": "2026-08-22T03:00:00Z",
+  "last_issue_utc": "2026-08-22T04:30:00Z"
+}
