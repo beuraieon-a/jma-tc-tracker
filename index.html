@@ -221,7 +221,7 @@ async function selectSystem(s) {
   // init map
   map = L.map("map", { worldCopyJump: true }).setView([20, 140], 3);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { maxZoom: 10, attribution: "© OpenStreetMap" }).addTo(map);
+    { maxZoom: 2, attribution: "© OpenStreetMap" }).addTo(map);
   layer = L.layerGroup().addTo(map);
 
   // best track
