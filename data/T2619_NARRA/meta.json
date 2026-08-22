@@ -1,0 +1,10 @@
+{
+  "base": "T2619_NARRA",
+  "tc_id_monitoring": "TC2622",
+  "tc_id_official": "T2619",
+  "tc_name": "NARRA",
+  "status": "active",
+  "first_analysis_utc": "2026-08-21T18:00:00Z",
+  "last_analysis_utc": "2026-08-22T00:00:00Z",
+  "last_issue_utc": "2026-08-22T01:15:00Z"
+}
