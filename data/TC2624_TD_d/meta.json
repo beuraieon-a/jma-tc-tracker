@@ -1,0 +1,10 @@
+{
+  "base": "TC2624_TD_d",
+  "tc_id_monitoring": "TC2624",
+  "tc_id_official": "",
+  "tc_name": "d",
+  "status": "active",
+  "first_analysis_utc": "2026-08-22T12:00:00Z",
+  "last_analysis_utc": "2026-08-22T12:00:00Z",
+  "last_issue_utc": "2026-08-22T13:25:00Z"
+}
