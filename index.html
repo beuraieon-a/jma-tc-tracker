@@ -31,6 +31,7 @@
   .badge { display:inline-block; font-size:11px; padding:1px 7px; border-radius:10px; color:#fff; }
   .badge.active { background:var(--active); }
   .badge.terminated { background:var(--term); }
+  .sysTitle { border:0; margin:0; padding:0; font-size:20px; }
   main { flex:1; overflow:auto; padding:16px; }
   .banner { background:#3a0d12; border:1px solid var(--term); color:#ffd7d7;
             padding:12px 14px; border-radius:8px; margin-bottom:14px;
@@ -205,7 +206,7 @@ async function selectSystem(s) {
 
   // header
   d.append(el("div", { class: "row" },
-    el("h2", { style: "border:0;margin:0" }, (s.tc_name || s.base)),
+    el("h2", { class: "sysTitle" }, (s.tc_name || s.base)),
     el("span", { class: "badge " + s.status }, s.status)));
   d.append(el("div", { class: "row", style: "margin:6px 0 4px", html:
     `<span class="kv">Monitoring ID <b>${s.tc_id_monitoring}</b></span>
