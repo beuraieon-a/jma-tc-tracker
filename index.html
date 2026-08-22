@@ -219,9 +219,9 @@ async function selectSystem(s) {
   d.append(el("div", { class: "row" }, sSel)); d.append(sOut);
 
   // init map
-  map = L.map("map", { worldCopyJump: true }).setView([20, 140], 3);
+  map = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12 }).setView([20, 140], 3);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { maxZoom: 5, attribution: "© OpenStreetMap" }).addTo(map);
+    { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
   layer = L.layerGroup().addTo(map);
 
   // best track
@@ -279,7 +279,33 @@ function plotBestTrack(rows) {
       .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
       .addTo(layer);
   });
-  map.fitBounds(L.latLngBounds(pts).pad(0.6), { maxZoom: 5 });
+  fitToTrack(pts);
+}
+
+// Zoom the map to the track's extent. Leaflet's fitBounds() already picks
+// the tightest zoom level that fits the given bounds, so this is naturally
+// dynamic — small/short-lived tracks zoom in close, long/wide-ranging
+// tracks zoom out. What was breaking that was maxZoom:5 above. Here we
+// additionally scale the padding fraction to the track's latitudinal span,
+// since a flat percentage pad looks fine on a big track but leaves a tiny
+// track swimming in empty ocean; a tighter pad on small tracks lets them
+// actually zoom in. A pixel-based top/bottom allowance is layered on top
+// so points and popups never sit flush against the map edge.
+function fitToTrack(pts) {
+  const bounds = L.latLngBounds(pts);
+  const latSpan = bounds.getNorth() - bounds.getSouth();
+
+  let padFraction;
+  if (latSpan < 3) padFraction = 0.8;        // just formed / very short track
+  else if (latSpan < 8) padFraction = 0.45;  // typical short-lived system
+  else if (latSpan < 15) padFraction = 0.25; // well-developed track
+  else padFraction = 0.12;                   // long-lived, basin-spanning track
+
+  map.fitBounds(bounds.pad(padFraction), {
+    maxZoom: 9,                       // floor: don't zoom to street level even for a 1-2 point track
+    paddingTopLeft: [20, 40],         // extra breathing room above the track
+    paddingBottomRight: [20, 40],     // and below it
+  });
 }
 
 function renderForecast(out, arr) {
