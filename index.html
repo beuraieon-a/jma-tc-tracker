@@ -221,7 +221,7 @@ async function selectSystem(s) {
   // init map
   map = L.map("map", { worldCopyJump: true }).setView([20, 140], 3);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { maxZoom: 2, attribution: "© OpenStreetMap" }).addTo(map);
+    { maxZoom: 5, attribution: "© OpenStreetMap" }).addTo(map);
   layer = L.layerGroup().addTo(map);
 
   // best track
@@ -279,7 +279,7 @@ function plotBestTrack(rows) {
       .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
       .addTo(layer);
   });
-  map.fitBounds(L.latLngBounds(pts).pad(0.6), { maxZoom: 3 });
+  map.fitBounds(L.latLngBounds(pts).pad(0.6), { maxZoom: 5 });
 }
 
 function renderForecast(out, arr) {
