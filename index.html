@@ -384,11 +384,20 @@ function fitToTrack(pts) {
   const latSpan = bounds.getNorth() - bounds.getSouth();
   const lonSpan = bounds.getEast() - bounds.getWest();
 
+  // bounds.pad(bufferRatio) treats bufferRatio as a fraction of the span
+  // (0.1 = 10% padding) — NOT a raw multiplier. These tiers are percentages,
+  // so they're written as fractions here. (A previous version of this file
+  // passed 5/10/15/20 directly, i.e. 500%-2000% padding: harmless-looking
+  // on best-track-only spans of a degree or two, but once the view also
+  // includes the forecast track — which can span 20°+ of longitude for a
+  // multi-day forecast — that overpad balloons past the size of the planet
+  // and fitBounds has nothing left to do but clamp to minZoom, the
+  // whole-world view.)
   let padFraction;
-  if (latSpan < 3) padFraction = 5;        // just formed / very short track
-  else if (latSpan < 8) padFraction = 10;   // typical short-lived system
-  else if (latSpan < 15) padFraction = 15; // well-developed track
-  else padFraction = 20;                   // long-lived, basin-spanning track
+  if (latSpan < 3) padFraction = 0.05;        // just formed / very short track
+  else if (latSpan < 8) padFraction = 0.10;   // typical short-lived system
+  else if (latSpan < 15) padFraction = 0.15; // well-developed track
+  else padFraction = 0.20;                   // long-lived, basin-spanning track
 
   // Leaflet caches the container's pixel size the first time it measures
   // it. Since #map is a freshly-inserted div each time a system is
