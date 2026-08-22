@@ -55,6 +55,16 @@
                  border:1px solid var(--line); border-radius:6px; padding:7px; margin:4px 0 12px; }
   .hint { color:var(--muted); font-size:12px; }
   .empty { color:var(--muted); padding:40px; text-align:center; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .cols h3 { margin:0 0 8px; font-size:12px; color:var(--muted); font-weight:600;
+             text-transform:uppercase; letter-spacing:.04em; }
+  @media (max-width:700px) { .cols { grid-template-columns:1fr; } }
+  .issuanceMenu { position:absolute; z-index:50; background:var(--panel); border:1px solid var(--line);
+                  border-radius:8px; padding:4px; box-shadow:0 8px 24px rgba(0,0,0,.45);
+                  max-height:280px; overflow:auto; }
+  .issuanceMenuItem { padding:6px 12px; border-radius:6px; cursor:pointer; font-size:13px; white-space:nowrap; }
+  .issuanceMenuItem:hover { background:#1d2b3a; }
+  .issuanceMenuItem.sel { background:#233246; font-weight:600; }
 </style>
 </head>
 <body>
@@ -94,7 +104,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 const DATA = "./data/";
-let INDEX = null, SELECTED = null, map = null, layer = null;
+let INDEX = null, SELECTED = null, map = null, btLayer = null, fcLayer = null;
 
 // ---------- config (localStorage) ----------
 function inferConfig() {
@@ -179,6 +189,12 @@ function renderList() {
 }
 
 async function selectSystem(s) {
+  // if an issuance popup menu is still open from a previous system, close it —
+  // selectSystem below defines a fresh onDocClick closure each call, so a
+  // leftover menu from before would no longer have a listener that can close it
+  const openMenu = document.getElementById("fcIssuanceMenu");
+  if (openMenu) openMenu.remove();
+
   SELECTED = s;
   renderList();
   const d = document.getElementById("detail");
@@ -202,21 +218,27 @@ async function selectSystem(s) {
         piling up in the repository — download it, then remove it to free space.` }), btn));
   }
 
-  // map + best track
+  // map, with its own issuance control (this is the ONLY thing that
+  // changes what's plotted on the map — the dropdowns further down only
+  // change what JSON is shown in their own output pane)
   d.append(el("div", { id: "map" }));
+  const mapFcRow = el("div", { class: "row", style: "margin:8px 0 16px" });
+  d.append(mapFcRow);
+
   d.append(el("h2", {}, "Operational best track"));
   const btWrap = el("div", { class: "tablewrap" }, el("div", { class: "empty" }, "loading…"));
   d.append(btWrap);
 
-  // forecast viewer
-  d.append(el("h2", {}, "Forecast issuances"));
+  // issuances viewer — Forecast and Specifications side by side, each with
+  // its own dropdown that only controls its own JSON output below it
+  d.append(el("h2", {}, "Issuances"));
   const fSel = el("select"); const fOut = el("div");
-  d.append(el("div", { class: "row" }, fSel)); d.append(fOut);
-
-  // specifications viewer
-  d.append(el("h2", {}, "Specifications issuances"));
   const sSel = el("select"); const sOut = el("div");
-  d.append(el("div", { class: "row" }, sSel)); d.append(sOut);
+  d.append(el("div", { class: "cols" },
+    el("div", {}, el("h3", {}, "Forecast"),
+      el("div", { class: "row" }, fSel), fOut),
+    el("div", {}, el("h3", {}, "Specifications"),
+      el("div", { class: "row" }, sSel), sOut)));
 
   // init map — always tear down the previous instance first. The #map div
   // gets destroyed and recreated on every system switch (d.innerHTML above),
@@ -226,7 +248,8 @@ async function selectSystem(s) {
   map = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12 }).setView([20, 140], 3);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
-  layer = L.layerGroup().addTo(map);
+  btLayer = L.layerGroup().addTo(map);
+  fcLayer = L.layerGroup().addTo(map);
 
   // best track
   let bt = [];
@@ -236,12 +259,55 @@ async function selectSystem(s) {
   renderBestTrack(btWrap, bt);
   plotBestTrack(bt);
 
-  // populate forecast selector (newest first)
+  // forecast issuances (newest first)
   const ff = (s.forecast_files || []).slice().reverse();
+
+  // map issuance button — plots the chosen issuance's forecast track on
+  // the map via fcLayer; does not touch fOut/fSel at all
+  let mapFcCurrent = ff[0] || null;
+  const mapFcBtn = el("button", { class: "secondary" },
+    ff.length ? `Forecast on map: ${issueLabel(mapFcCurrent)} ▾` : "No forecast issuances");
+  mapFcBtn.disabled = !ff.length;
+  async function applyMapForecast(path) {
+    mapFcCurrent = path;
+    mapFcBtn.textContent = `Forecast on map: ${issueLabel(path)} ▾`;
+    try { plotForecastOnMap(await fetchJSON(path)); } catch (e) { fcLayer.clearLayers(); }
+  }
+  function closeIssuanceMenu() {
+    const m = document.getElementById("fcIssuanceMenu");
+    if (m) m.remove();
+    document.removeEventListener("click", onDocClick, true);
+  }
+  function onDocClick(e) {
+    const m = document.getElementById("fcIssuanceMenu");
+    if (m && !m.contains(e.target) && e.target !== mapFcBtn) closeIssuanceMenu();
+  }
+  mapFcBtn.onclick = (e) => {
+    e.stopPropagation();
+    if (document.getElementById("fcIssuanceMenu")) { closeIssuanceMenu(); return; }
+    const menu = el("div", { id: "fcIssuanceMenu", class: "issuanceMenu" });
+    ff.forEach(p => {
+      const item = el("div",
+        { class: "issuanceMenuItem" + (p === mapFcCurrent ? " sel" : "") }, issueLabel(p));
+      item.onclick = () => { applyMapForecast(p); closeIssuanceMenu(); };
+      menu.append(item);
+    });
+    document.body.append(menu);
+    const r = mapFcBtn.getBoundingClientRect();
+    menu.style.left = (r.left + window.scrollX) + "px";
+    menu.style.top = (r.bottom + window.scrollY + 4) + "px";
+    menu.style.minWidth = r.width + "px";
+    document.addEventListener("click", onDocClick, true);
+  };
+  mapFcRow.append(mapFcBtn);
+  if (ff.length) await applyMapForecast(mapFcCurrent);
+
+  // Forecast dropdown — only updates fOut, never touches the map
   fSel.innerHTML = "";
   ff.forEach(p => fSel.append(el("option", { value: p }, issueLabel(p))));
-  const showFc = async () => { if (fSel.value) renderForecast(fOut, await fetchJSON(fSel.value)); };
-  fSel.onchange = showFc; if (ff.length) await showFc();
+  const showFcJson = async () => { if (fSel.value) fOut.innerHTML =
+    `<pre>${escapeHtml(JSON.stringify(await fetchJSON(fSel.value), null, 2))}</pre>`; };
+  fSel.onchange = showFcJson; if (ff.length) await showFcJson();
 
   const sf = (s.specifications_files || []).slice().reverse();
   sSel.innerHTML = "";
@@ -271,17 +337,17 @@ function renderBestTrack(wrap, rows) {
 }
 
 function plotBestTrack(rows) {
-  layer.clearLayers();
+  btLayer.clearLayers();
   const pts = rows.map(r => [parseFloat(r.center_latitude), parseFloat(r.center_longitude)])
     .filter(p => Number.isFinite(p[0]) && Number.isFinite(p[1]));
   if (!pts.length) return;
-  L.polyline(pts, { color: "#4493f8", weight: 2 }).addTo(layer);
+  L.polyline(pts, { color: "#4493f8", weight: 2 }).addTo(btLayer);
   rows.forEach(r => {
     const lat = parseFloat(r.center_latitude), lon = parseFloat(r.center_longitude);
     if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
     L.circleMarker([lat, lon], { radius: 4, color: "#4493f8", fillColor: "#4493f8", fillOpacity: .9 })
       .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
-      .addTo(layer);
+      .addTo(btLayer);
   });
   fitToTrack(pts);
 }
@@ -319,21 +385,22 @@ function fitToTrack(pts) {
   });
 }
 
-function renderForecast(out, arr) {
-  // plot forecast centers on the same map, over the best track
-  const fc = layer;
+// Plots one forecast issuance's center points on the map. Always clears
+// fcLayer first — previously this accumulated every issuance ever selected
+// because nothing cleared the old points before adding new ones.
+function plotForecastOnMap(arr) {
+  fcLayer.clearLayers();
   const pts = [];
-  arr.forEach(e => {
+  (arr || []).forEach(e => {
     const c = e.center;
     if (Array.isArray(c) && c.length === 2 && typeof c[0] === "number") {
       pts.push(c);
       L.circleMarker(c, { radius: 4, color: "#f0a020", fillColor: "#f0a020", fillOpacity: .9 })
         .bindPopup((e.part && e.part.en) || "forecast")
-        .addTo(fc);
+        .addTo(fcLayer);
     }
   });
-  if (pts.length > 1) L.polyline(pts, { color: "#f0a020", weight: 2, dashArray: "4 4" }).addTo(fc);
-  out.innerHTML = `<pre>${escapeHtml(JSON.stringify(arr, null, 2))}</pre>`;
+  if (pts.length > 1) L.polyline(pts, { color: "#f0a020", weight: 2, dashArray: "4 4" }).addTo(fcLayer);
 }
 
 // ---------- download + remove ----------
