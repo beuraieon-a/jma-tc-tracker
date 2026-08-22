@@ -375,14 +375,35 @@ function plotBestTrack(rows) {
 // actually zoom in. A pixel-based top/bottom allowance is layered on top
 // so points and popups never sit flush against the map edge.
 function fitToTrack(pts) {
-  const bounds = L.latLngBounds(pts);
-  const latSpan = bounds.getNorth() - bounds.getSouth();
+  let bounds = L.latLngBounds(pts);
+  let latSpan = bounds.getNorth() - bounds.getSouth();
+  let lonSpan = bounds.getEast() - bounds.getWest();
 
+  // pad() scales the padding by the bounds' OWN size in each dimension,
+  // independently. A brand-new or near-stationary system (1-2 points,
+  // ~0° of spread) ends up with ~0 padding no matter what padFraction is
+  // set to, since fraction * 0 = 0 — give the box a minimum floor extent
+  // first so there's always something real for pad() to work with.
+  const MIN_SPAN_DEG = 2;
+  if (latSpan < MIN_SPAN_DEG || lonSpan < MIN_SPAN_DEG) {
+    const c = bounds.getCenter();
+    const halfLat = Math.max(latSpan, MIN_SPAN_DEG) / 2;
+    const halfLon = Math.max(lonSpan, MIN_SPAN_DEG) / 2;
+    bounds = L.latLngBounds([c.lat - halfLat, c.lng - halfLon], [c.lat + halfLat, c.lng + halfLon]);
+    latSpan = halfLat * 2;
+  }
+
+  // padFraction is a RATIO of the bounds' own size, not a percent or a
+  // 1-10 intensity score — pad(0.5) adds 50% on each side (view roughly
+  // doubles), pad(5) adds 500% on each side (view balloons ~11x). Keep
+  // these well under 1 or padding blows up fast on any track with real
+  // spread (SAUDEL's ~3° track at pad(5) was adding ~15° of margin PER SIDE,
+  // which is most of a hemisphere — that's the "whole world" bug).
   let padFraction;
-  if (latSpan < 3) padFraction = 5;        // just formed / very short track
-  else if (latSpan < 8) padFraction = 10;   // typical short-lived system
-  else if (latSpan < 15) padFraction = 15; // well-developed track
-  else padFraction = 20;                   // long-lived, basin-spanning track
+  if (latSpan < 3) padFraction = 0.5;        // just formed / very short track
+  else if (latSpan < 8) padFraction = 0.35;  // typical short-lived system
+  else if (latSpan < 15) padFraction = 0.2;  // well-developed track
+  else padFraction = 0.1;                    // long-lived, basin-spanning track
 
   // Leaflet caches the container's pixel size the first time it measures
   // it. Since #map is a freshly-inserted div each time a system is
