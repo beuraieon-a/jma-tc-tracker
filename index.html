@@ -366,8 +366,8 @@ function fitToTrack(pts) {
   const latSpan = bounds.getNorth() - bounds.getSouth();
 
   let padFraction;
-  if (latSpan < 3) padFraction = 15;        // just formed / very short track
-  else if (latSpan < 8) padFraction = 15;   // typical short-lived system
+  if (latSpan < 3) padFraction = 5;        // just formed / very short track
+  else if (latSpan < 8) padFraction = 10;   // typical short-lived system
   else if (latSpan < 15) padFraction = 15; // well-developed track
   else padFraction = 20;                   // long-lived, basin-spanning track
 
