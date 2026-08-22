@@ -105,10 +105,9 @@
 <script>
 const DATA = "./data/";
 let INDEX = null, SELECTED = null, map = null, btLayer = null, fcLayer = null;
-// Bumped on every selectSystem() call so a stale, still-in-flight call
-// (from rapidly switching systems) can tell it's been superseded and stop
-// touching the shared map/layer globals instead of racing the newer call.
-let renderToken = 0;
+// Points currently on the map from each layer, kept so the view can be
+// fit to best-track + forecast together instead of best-track alone.
+let lastBestTrackPts = [], lastForecastPts = [];
 
 // ---------- config (localStorage) ----------
 function inferConfig() {
@@ -199,11 +198,6 @@ async function selectSystem(s) {
   const openMenu = document.getElementById("fcIssuanceMenu");
   if (openMenu) openMenu.remove();
 
-  // this call's identity — every await below checks this before touching
-  // map/btLayer/fcLayer, so an older, still-resolving call can't clobber a
-  // newer one's state (see renderToken declaration above for why)
-  const myToken = ++renderToken;
-
   SELECTED = s;
   renderList();
   const d = document.getElementById("detail");
@@ -214,10 +208,10 @@ async function selectSystem(s) {
     el("h2", { style: "border:0;margin:0" }, (s.tc_name || s.base)),
     el("span", { class: "badge " + s.status }, s.status)));
   d.append(el("div", { class: "row", style: "margin:6px 0 4px", html:
-    `<span class="kv">Monitoring id <b>${s.tc_id_monitoring}</b></span>
-     <span class="kv">Official <b>${s.tc_id_official || "—"}</b></span>
+    `<span class="kv">Monitoring ID <b>${s.tc_id_monitoring}</b></span>
+     <span class="kv">Official ID <b>${s.tc_id_official || "—"}</b></span>
      <span class="kv">First analysis <b>${s.first_analysis_utc || "—"}</b></span>
-     <span class="kv">Last issue <b>${s.last_issue_utc || "—"}</b></span>` }));
+     <span class="kv">Last issuance <b>${s.last_issue_utc || "—"}</b></span>` }));
 
   if (s.status === "terminated") {
     const btn = el("button", {}, "⬇ Download all files (ZIP) & remove");
@@ -259,13 +253,13 @@ async function selectSystem(s) {
     { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
   btLayer = L.layerGroup().addTo(map);
   fcLayer = L.layerGroup().addTo(map);
+  lastBestTrackPts = []; lastForecastPts = [];
 
   // best track
   let bt = [];
   if (s.besttrack) {
     try { bt = parseCSV(await fetchText(s.besttrack)); } catch (e) {}
   }
-  if (myToken !== renderToken) return; // superseded by a newer click — stop here
   renderBestTrack(btWrap, bt);
   plotBestTrack(bt);
 
@@ -281,10 +275,8 @@ async function selectSystem(s) {
   async function applyMapForecast(path) {
     mapFcCurrent = path;
     mapFcBtn.textContent = `Forecast on map: ${issueLabel(path)} ▾`;
-    let data;
-    try { data = await fetchJSON(path); } catch (e) { if (myToken === renderToken) fcLayer.clearLayers(); return; }
-    if (myToken !== renderToken) return; // superseded — don't draw onto whatever map is now current
-    plotForecastOnMap(data);
+    try { plotForecastOnMap(await fetchJSON(path)); }
+    catch (e) { fcLayer.clearLayers(); lastForecastPts = []; updateMapView(); }
   }
   function closeIssuanceMenu() {
     const m = document.getElementById("fcIssuanceMenu");
@@ -353,7 +345,8 @@ function plotBestTrack(rows) {
   btLayer.clearLayers();
   const pts = rows.map(r => [parseFloat(r.center_latitude), parseFloat(r.center_longitude)])
     .filter(p => Number.isFinite(p[0]) && Number.isFinite(p[1]));
-  if (!pts.length) return;
+  lastBestTrackPts = pts;
+  if (!pts.length) { updateMapView(); return; }
   L.polyline(pts, { color: "#4493f8", weight: 2 }).addTo(btLayer);
   rows.forEach(r => {
     const lat = parseFloat(r.center_latitude), lon = parseFloat(r.center_longitude);
@@ -362,7 +355,19 @@ function plotBestTrack(rows) {
       .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
       .addTo(btLayer);
   });
-  fitToTrack(pts);
+  updateMapView();
+}
+
+// Fits the map to whatever's currently plotted from BOTH layers together —
+// best track and the selected forecast issuance. Previously only the
+// best-track points fed fitToTrack(), so a forecast reaching well beyond
+// the best track (the common case: a short best track, days of forecast
+// ahead of it) would render partly or entirely off-screen, as seen with
+// system 'd' — its one best-track point put the view nowhere near its
+// 24h/45h forecast positions. Called after either layer changes.
+function updateMapView() {
+  const pts = lastBestTrackPts.concat(lastForecastPts);
+  if (pts.length) fitToTrack(pts);
 }
 
 // Zoom the map to the track's extent. Leaflet's fitBounds() already picks
@@ -375,35 +380,24 @@ function plotBestTrack(rows) {
 // actually zoom in. A pixel-based top/bottom allowance is layered on top
 // so points and popups never sit flush against the map edge.
 function fitToTrack(pts) {
-  let bounds = L.latLngBounds(pts);
-  let latSpan = bounds.getNorth() - bounds.getSouth();
-  let lonSpan = bounds.getEast() - bounds.getWest();
+  const bounds = L.latLngBounds(pts);
+  const latSpan = bounds.getNorth() - bounds.getSouth();
+  const lonSpan = bounds.getEast() - bounds.getWest();
 
-  // pad() scales the padding by the bounds' OWN size in each dimension,
-  // independently. A brand-new or near-stationary system (1-2 points,
-  // ~0° of spread) ends up with ~0 padding no matter what padFraction is
-  // set to, since fraction * 0 = 0 — give the box a minimum floor extent
-  // first so there's always something real for pad() to work with.
-  const MIN_SPAN_DEG = 2;
-  if (latSpan < MIN_SPAN_DEG || lonSpan < MIN_SPAN_DEG) {
-    const c = bounds.getCenter();
-    const halfLat = Math.max(latSpan, MIN_SPAN_DEG) / 2;
-    const halfLon = Math.max(lonSpan, MIN_SPAN_DEG) / 2;
-    bounds = L.latLngBounds([c.lat - halfLat, c.lng - halfLon], [c.lat + halfLat, c.lng + halfLon]);
-    latSpan = halfLat * 2;
-  }
-
-  // padFraction is a RATIO of the bounds' own size, not a percent or a
-  // 1-10 intensity score — pad(0.5) adds 50% on each side (view roughly
-  // doubles), pad(5) adds 500% on each side (view balloons ~11x). Keep
-  // these well under 1 or padding blows up fast on any track with real
-  // spread (SAUDEL's ~3° track at pad(5) was adding ~15° of margin PER SIDE,
-  // which is most of a hemisphere — that's the "whole world" bug).
+  // bounds.pad(bufferRatio) treats bufferRatio as a fraction of the span
+  // (0.1 = 10% padding) — NOT a raw multiplier. These tiers are percentages,
+  // so they're written as fractions here. (A previous version of this file
+  // passed 5/10/15/20 directly, i.e. 500%-2000% padding: harmless-looking
+  // on best-track-only spans of a degree or two, but once the view also
+  // includes the forecast track — which can span 20°+ of longitude for a
+  // multi-day forecast — that overpad balloons past the size of the planet
+  // and fitBounds has nothing left to do but clamp to minZoom, the
+  // whole-world view.)
   let padFraction;
-  if (latSpan < 3) padFraction = 0.5;        // just formed / very short track
-  else if (latSpan < 8) padFraction = 0.35;  // typical short-lived system
-  else if (latSpan < 15) padFraction = 0.2;  // well-developed track
-  else padFraction = 0.1;                    // long-lived, basin-spanning track
+  if (latSpan < 3) padFraction = 0.05;        // just formed / very short track
+  else if (latSpan < 8) padFraction = 0.10;   // typical short-lived system
+  else if (latSpan < 15) padFraction = 0.15; // well-developed track
+  else padFraction = 0.20;                   // long-lived, basin-spanning track
 
   // Leaflet caches the container's pixel size the first time it measures
   // it. Since #map is a freshly-inserted div each time a system is
@@ -411,6 +405,25 @@ function fitToTrack(pts) {
   // size before we fit — otherwise fitBounds can compute zoom against a
   // stale size and end up cropping part of the track out of view.
   map.invalidateSize();
+
+  // bounds.pad() scales the EXISTING span by padFraction — it can only ever
+  // widen a box that already has some width. A brand-new system (like a
+  // first-analysis tropical depression) has exactly one best-track point,
+  // so latSpan/lonSpan are 0, padFraction*0 is still 0, and fitBounds is
+  // handed a zero-size box. With nothing to fit, Leaflet just zooms in to
+  // the maxZoom floor below — which is why a single point was rendering
+  // far closer than any padFraction tier intended. An "almost stationary"
+  // system with two or three near-duplicate points hits the same problem
+  // for the same reason. Give degenerate/near-point bounds a fixed minimum
+  // extent first, so there's always real width for the fractional pad (and
+  // the maxZoom floor) to work with.
+  const MIN_SPAN_DEG = 2;
+  if (latSpan < MIN_SPAN_DEG || lonSpan < MIN_SPAN_DEG) {
+    const c = bounds.getCenter();
+    const half = MIN_SPAN_DEG / 2;
+    bounds.extend([c.lat - half, c.lng - half]);
+    bounds.extend([c.lat + half, c.lng + half]);
+  }
 
   map.fitBounds(bounds.pad(padFraction), {
     maxZoom: 9,                       // floor: don't zoom to street level even for a 1-2 point track
@@ -435,6 +448,8 @@ function plotForecastOnMap(arr) {
     }
   });
   if (pts.length > 1) L.polyline(pts, { color: "#f0a020", weight: 2, dashArray: "4 4" }).addTo(fcLayer);
+  lastForecastPts = pts;
+  updateMapView();
 }
 
 // ---------- download + remove ----------
