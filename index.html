@@ -1259,7 +1259,7 @@ L.polyline(
 )
       .bindPopup(
   `Analysis at ${formatPopupUtc(r.valid_time_utc)}:<br>` +
-  `${r.tc_intensity_category || "Unknown"}<br>` +
+  `${intensitySentenceCase(r.tc_intensity_category)}<br>` +
   `${r.central_pressure || "—"} hPa, MSW ${r.msw_kt || "—"} kts`
 )
       .addTo(btLayer);
@@ -1359,6 +1359,15 @@ function plotForecastOnMap(forecast, specifications) {
   });
 
   (forecast || []).forEach(e => {
+
+    // The forecast JSON may also contain the current analysis.
+    // Only entries with advancedHours > 0 are actual forecast points.
+    const advancedHours = Number(e?.advancedHours);
+
+    if (!Number.isFinite(advancedHours) || advancedHours <= 0) {
+      return;
+    }
+
     const c = e.center;
 
     if (
@@ -1401,41 +1410,40 @@ function plotForecastOnMap(forecast, specifications) {
       intensityColor(intensityCategory);
 
     L.circleMarker(
-  c,
-  {
-    radius: 3,
-    color: markerColor,
-    fillColor: "#ffffff",
-    fillOpacity: 1,
-    weight: 1.5,
-    pane: "pointerPane"
-  }
-)
+      c,
+      {
+        radius: 3,
+        color: markerColor,
+        fillColor: "#ffffff",
+        fillOpacity: 1,
+        weight: 1.5,
+        pane: "pointerPane"
+      }
+    )
       .bindPopup(
-  `${(e.part && e.part.en) || "Forecast"} (${formatPopupUtc(validTime)}):<br>` +
-  `${intensitySentenceCase(intensityCategory)}<br>` +
-  `${spec?.central_pressure ?? "—"} hPa, MSW ${spec?.msw_kt ?? "—"} kts`
-)
+        `${(e.part && e.part.en) || "Forecast"} (${formatPopupUtc(validTime)}):<br>` +
+        `${intensitySentenceCase(intensityCategory)}<br>` +
+        `${spec?.pressure ?? "—"} hPa, MSW ${spec?.maximumWind?.sustained?.kt ?? "—"} kts`
+      )
       .addTo(fcLayer);
   });
 
   if (pts.length > 1) {
     L.polyline(
-  pts,
-  {
-    color: "#000000",
-    weight: 2,
-    dashArray: "4 4",
-    pane: "trackPane"
-  }
-).addTo(fcLayer);
+      pts,
+      {
+        color: "#000000",
+        weight: 2,
+        dashArray: "4 4",
+        pane: "trackPane"
+      }
+    ).addTo(fcLayer);
   }
 
   lastForecastPts = pts;
 
   updateMapView();
 }
-
 
 // ---------- download + remove ----------
 
