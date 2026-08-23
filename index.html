@@ -289,14 +289,32 @@ async function selectSystem(s) {
   // third-party basemap should never be able to do that, so it's isolated
   // here and just falls back to OSM-only if it fails.
   let mtLayer = null;
-  try {
-    mtLayer = L.maptiler.maptilerLayer({
-      apiKey: cfg.mapTilerKey || "",
-      language: maptilersdk.Language.VISITOR_ENGLISH,
-    });
-  } catch (e) {
-    console.error("MapTiler basemap unavailable, falling back to OSM only:", e);
+
+try {
+  // The UMD plugin exposes maptilerLayer in two possible ways.
+  // Prefer the standalone global, with L.maptiler as a fallback.
+  const maptilerLayerFactory =
+    window.leafletmaptilersdk?.maptilerLayer ||
+    window.L?.maptiler?.maptilerLayer;
+
+  if (typeof maptilerLayerFactory !== "function") {
+    throw new Error(
+      "MapTiler Leaflet plugin did not load correctly. " +
+      "window.leafletmaptilersdk.maptilerLayer and L.maptiler.maptilerLayer are both unavailable."
+    );
   }
+
+  mtLayer = maptilerLayerFactory({
+    apiKey: cfg.mapTilerKey || "",
+    language: window.maptilersdk?.Language?.VISITOR_ENGLISH
+  });
+
+} catch (e) {
+  console.error(
+    "MapTiler basemap unavailable, falling back to OSM only:",
+    e
+  );
+}
   const baseLayers = { "OpenStreetMap": osmLayer };
   if (mtLayer) baseLayers["MapTiler"] = mtLayer;
   L.control.layers(baseLayers, null, { position: "topright" }).addTo(map);
