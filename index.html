@@ -778,6 +778,15 @@ async function selectSystem(s) {
     }
   ).setView([20, 140], 3);
 
+  // ------------------------------------------------------------
+// Map panes — control drawing order
+// ------------------------------------------------------------
+
+map.createPane("trackPane");
+map.getPane("trackPane").style.zIndex = 350;
+
+map.createPane("pointerPane");
+map.getPane("pointerPane").style.zIndex = 650;
 
   // ------------------------------------------------------------
   // MapTiler — SOLE BASEMAP
@@ -1185,13 +1194,14 @@ function plotBestTrack(rows) {
   }
 
   // Best-track line: solid black.
-  L.polyline(
-    pts,
-    {
-      color: "#000000",
-      weight: 2
-    }
-  ).addTo(btLayer);
+L.polyline(
+  pts,
+  {
+    color: "#000000",
+    weight: 2,
+    pane: "trackPane"
+  }
+).addTo(btLayer);
 
   // Best-track markers: smaller, filled circles.
   rows.forEach(r => {
@@ -1210,15 +1220,16 @@ function plotBestTrack(rows) {
     );
 
     L.circleMarker(
-      [lat, lon],
-      {
-        radius: 3,
-        color: markerColor,
-        fillColor: markerColor,
-        fillOpacity: 0.9,
-        weight: 1.5
-      }
-    )
+  [lat, lon],
+  {
+    radius: 3,
+    color: markerColor,
+    fillColor: markerColor,
+    fillOpacity: 1,
+    weight: 1.5,
+    pane: "pointerPane"
+  }
+)
       .bindPopup(
         `${r.valid_time_utc}<br>` +
         `${r.tc_intensity_category || "Unknown"}<br>` +
@@ -1363,15 +1374,17 @@ function plotForecastOnMap(forecast, specifications) {
       intensityColor(intensityCategory);
 
     L.circleMarker(
-      c,
-      {
-        radius: 3,
-        color: markerColor,
-        fillColor: "#ffffff",
-        fillOpacity: 0,
-        weight: 1.5
-      }
-    )
+  c,
+  {
+    radius: 3,
+    color: markerColor,
+    fillColor: markerColor,
+    fillColor: "#ffffff",
+    fillOpacity: 1,
+    weight: 1.5,
+    pane: "pointerPane"
+  }
+)
       .bindPopup(
         `${(e.part && e.part.en) || "forecast"}<br>` +
         `${intensityCategory || "Unknown"}`
@@ -1381,13 +1394,14 @@ function plotForecastOnMap(forecast, specifications) {
 
   if (pts.length > 1) {
     L.polyline(
-      pts,
-      {
-        color: "#000000",
-        weight: 2,
-        dashArray: "4 4"
-      }
-    ).addTo(fcLayer);
+  pts,
+  {
+    color: "#000000",
+    weight: 2,
+    dashArray: "4 4",
+    pane: "trackPane"
+  }
+).addTo(fcLayer);
   }
 
   lastForecastPts = pts;
