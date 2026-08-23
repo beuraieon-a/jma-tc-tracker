@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-23T13:15:30Z",
+  "generated_utc": "2026-08-23T13:20:32Z",
   "active": [
     "TC2621",
     "TC2622",
@@ -143,8 +143,8 @@
       "tc_name": "d",
       "status": "active",
       "first_analysis_utc": "2026-08-22T12:00:00Z",
-      "last_analysis_utc": "2026-08-23T09:00:00Z",
-      "last_issue_utc": "2026-08-23T10:25:00Z",
+      "last_analysis_utc": "2026-08-23T12:00:00Z",
+      "last_issue_utc": "2026-08-23T13:20:00Z",
       "forecast_files": [
         "TC2624_TD_d/forecast/TC2624_TD_d_20260822T1325Z_forecast.json",
         "TC2624_TD_d/forecast/TC2624_TD_d_20260822T1620Z_forecast.json",
@@ -153,7 +153,8 @@
         "TC2624_TD_d/forecast/TC2624_TD_d_20260823T0125Z_forecast.json",
         "TC2624_TD_d/forecast/TC2624_TD_d_20260823T0425Z_forecast.json",
         "TC2624_TD_d/forecast/TC2624_TD_d_20260823T0725Z_forecast.json",
-        "TC2624_TD_d/forecast/TC2624_TD_d_20260823T1025Z_forecast.json"
+        "TC2624_TD_d/forecast/TC2624_TD_d_20260823T1025Z_forecast.json",
+        "TC2624_TD_d/forecast/TC2624_TD_d_20260823T1320Z_forecast.json"
       ],
       "specifications_files": [
         "TC2624_TD_d/specifications/TC2624_TD_d_20260822T1325Z_specifications.json",
@@ -163,7 +164,8 @@
         "TC2624_TD_d/specifications/TC2624_TD_d_20260823T0125Z_specifications.json",
         "TC2624_TD_d/specifications/TC2624_TD_d_20260823T0425Z_specifications.json",
         "TC2624_TD_d/specifications/TC2624_TD_d_20260823T0725Z_specifications.json",
-        "TC2624_TD_d/specifications/TC2624_TD_d_20260823T1025Z_specifications.json"
+        "TC2624_TD_d/specifications/TC2624_TD_d_20260823T1025Z_specifications.json",
+        "TC2624_TD_d/specifications/TC2624_TD_d_20260823T1320Z_specifications.json"
       ],
       "besttrack": "TC2624_TD_d/besttrack.csv"
     }
