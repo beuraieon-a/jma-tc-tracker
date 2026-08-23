@@ -344,6 +344,26 @@ function intensityBadge(category) {
 }
 
 
+// ---------- intensity colors for map tracks ----------
+
+function intensityColor(category) {
+  const key = String(category || "").trim().toLowerCase();
+
+  const colors = {
+    "tropical depression": "#2e7d32",
+    "tropical storm": "#f1c40f",
+    "severe tropical storm": "#f39c12",
+    "typhoon": "#e53935",
+    "very strong typhoon": "#750227",
+    "violent typhoon": "#3B005C",
+    "extratropical": "#87CEEB"
+  };
+
+  return colors[key] || "#666666";
+}
+
+  
+
 // ---------- intensity lookup ----------
 
 // Reads the best-track CSV for one system and obtains the intensity
@@ -839,21 +859,34 @@ async function selectSystem(s) {
   mapFcBtn.disabled = !ff.length;
 
   async function applyMapForecast(path) {
-    mapFcCurrent = path;
+  mapFcCurrent = path;
 
-    mapFcBtn.textContent =
-      `Forecast on map: ${issueLabel(path)} ▾`;
+  mapFcBtn.textContent =
+    `Forecast on map: ${issueLabel(path)} ▾`;
 
-    try {
-      plotForecastOnMap(
-        await fetchJSON(path)
+  try {
+    const forecast = await fetchJSON(path);
+
+    const specificationPath =
+      (s.specifications_files || []).find(
+        p => issueLabel(p) === issueLabel(path)
       );
-    } catch (e) {
-      fcLayer.clearLayers();
-      lastForecastPts = [];
-      updateMapView();
-    }
+
+    const specifications =
+      specificationPath
+        ? await fetchJSON(specificationPath)
+        : [];
+
+    plotForecastOnMap(forecast, specifications);
+
+  } catch (e) {
+    console.error("Could not load forecast/specifications:", e);
+
+    fcLayer.clearLayers();
+    lastForecastPts = [];
+    updateMapView();
   }
+}
 
   function closeIssuanceMenu() {
     const m = document.getElementById("fcIssuanceMenu");
@@ -1098,6 +1131,36 @@ function renderBestTrack(wrap, rows) {
   wrap.append(t);
 }
 
+function normalizeIntensityCategory(categoryEn, intensityJp) {
+  const cat = String(categoryEn || "").trim().toUpperCase();
+  const intensity = String(intensityJp || "").trim();
+
+  const base = {
+    "TD": "tropical depression",
+    "TS": "tropical storm",
+    "STS": "severe tropical storm",
+    "LOW": "extratropical"
+  };
+
+  if (base[cat]) {
+    return base[cat];
+  }
+
+  if (cat === "TY") {
+    return {
+      "強い": "typhoon",
+      "非常に強い": "very strong typhoon",
+      "猛烈な": "violent typhoon"
+    }[intensity] || "typhoon";
+  }
+
+  return cat.toLowerCase();
+}
+
+
+
+  
+
 
 // ---------- best-track map ----------
 
@@ -1121,14 +1184,16 @@ function plotBestTrack(rows) {
     return;
   }
 
+  // Best-track line: solid black.
   L.polyline(
     pts,
     {
-      color: "#4493f8",
+      color: "#000000",
       weight: 2
     }
   ).addTo(btLayer);
 
+  // Best-track markers: smaller, filled circles.
   rows.forEach(r => {
     const lat = parseFloat(r.center_latitude);
     const lon = parseFloat(r.center_longitude);
@@ -1140,19 +1205,24 @@ function plotBestTrack(rows) {
       return;
     }
 
+    const markerColor = intensityColor(
+      r.tc_intensity_category
+    );
+
     L.circleMarker(
       [lat, lon],
       {
-        radius: 4,
-        color: "#4493f8",
-        fillColor: "#4493f8",
-        fillOpacity: .9
+        radius: 3,
+        color: markerColor,
+        fillColor: markerColor,
+        fillOpacity: 0.9,
+        weight: 1.5
       }
     )
       .bindPopup(
         `${r.valid_time_utc}<br>` +
-        `${r.tc_intensity_category}<br>` +
-        `${r.central_pressure} hPa`
+        `${r.tc_intensity_category || "Unknown"}<br>` +
+        `${r.central_pressure || "—"} hPa`
       )
       .addTo(btLayer);
   });
@@ -1233,43 +1303,87 @@ function fitToTrack(pts) {
 
 // ---------- forecast map ----------
 
-function plotForecastOnMap(arr) {
+function plotForecastOnMap(forecast, specifications) {
   fcLayer.clearLayers();
 
   const pts = [];
 
-  (arr || []).forEach(e => {
+  // Build a lookup of specification entries by valid UTC time.
+  const specByTime = new Map();
+
+  (specifications || []).forEach(spec => {
+    const validTime =
+      spec?.validtime?.UTC;
+
+    if (validTime) {
+      specByTime.set(validTime, spec);
+    }
+  });
+
+  (forecast || []).forEach(e => {
     const c = e.center;
 
     if (
-      Array.isArray(c) &&
-      c.length === 2 &&
-      typeof c[0] === "number"
+      !Array.isArray(c) ||
+      c.length !== 2 ||
+      !Number.isFinite(c[0]) ||
+      !Number.isFinite(c[1])
     ) {
-      pts.push(c);
-
-      L.circleMarker(
-        c,
-        {
-          radius: 4,
-          color: "#f0a020",
-          fillColor: "#f0a020",
-          fillOpacity: .9
-        }
-      )
-        .bindPopup(
-          (e.part && e.part.en) ||
-          "forecast"
-        )
-        .addTo(fcLayer);
+      return;
     }
+
+    pts.push(c);
+
+    // Find the corresponding specification using valid time.
+    const validTime =
+      e.validtime?.UTC ||
+      e.validTime?.UTC ||
+      "";
+
+    const spec =
+      specByTime.get(validTime);
+
+    let intensityCategory = "";
+
+    if (spec) {
+      const categoryEn =
+        spec.category?.en || "";
+
+      const intensityJp =
+        spec.intensity || "";
+
+      intensityCategory =
+        normalizeIntensityCategory(
+          categoryEn,
+          intensityJp
+        );
+    }
+
+    const markerColor =
+      intensityColor(intensityCategory);
+
+    L.circleMarker(
+      c,
+      {
+        radius: 3,
+        color: markerColor,
+        fillColor: "#ffffff",
+        fillOpacity: 0,
+        weight: 1.5
+      }
+    )
+      .bindPopup(
+        `${(e.part && e.part.en) || "forecast"}<br>` +
+        `${intensityCategory || "Unknown"}`
+      )
+      .addTo(fcLayer);
   });
 
   if (pts.length > 1) {
     L.polyline(
       pts,
       {
-        color: "#f0a020",
+        color: "#000000",
         weight: 2,
         dashArray: "4 4"
       }
