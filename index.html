@@ -92,10 +92,9 @@
     <label>Fine-grained PAT (Actions: read &amp; write, this repo only)</label>
     <input id="cfgToken" type="password" placeholder="github_pat_… (optional)" />
     <label>MapTiler API key</label>
-    <input id="cfgMapTilerKey" type="password" placeholder="optional — enables the MapTiler basemap" />
-    <p class="hint">Needed only to use the “MapTiler” option in the map's basemap
-      switcher (top-right of the map). Free at maptiler.com. Also stored only in
-      this browser.</p>
+    <input id="cfgMapTilerKey" type="password" placeholder="required for the MapTiler basemap" />
+    <p class="hint">Required for the MapTiler basemap. The key is stored only
+      in this browser. A free MapTiler API key is available from maptiler.com.</p>
     <div class="row" style="justify-content:flex-end">
       <button class="secondary" value="cancel">Cancel</button>
       <button id="cfgSave" value="save">Save</button>
@@ -260,35 +259,11 @@ async function selectSystem(s) {
   if (map) { map.remove(); map = null; }
   map = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12 }).setView([20, 140], 3);
 
-  // basemap toggle: plain OSM raster tiles vs. MapTiler's vector "Streets"
-  // basemap. MapTiler needs a free API key (Settings → MapTiler API key) —
-  // without one its tiles just won't load, so we warn once via the
-  // layer-change event rather than leaving it silently blank.
-  //
-  // maptilersdk.Language.VISITOR_ENGLISH renders each place's local name
-  // together with its English name — the closest official MapTiler
-  // equivalent to the "Alternative names" toggle on OpenMapTiles' own demo
-  // site. That demo uses a bespoke style built specifically for that page,
-  // not something MapTiler ships as a preset, so treat this as the nearest
-  // available match rather than a guaranteed pixel-identical reproduction —
-  // worth checking once it's live, and easy to change via
-  // mtLayer.setLanguage(maptilersdk.Language.LOCAL) (or .ENGLISH, etc.) if
-  // it doesn't read the way you expect.
-  const cfg = getConfig();
-  const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
 
-  // The vector layer depends on two extra CDN scripts (maptiler-sdk,
-  // leaflet-maptilersdk) having loaded successfully. If either didn't —
-  // slow network, ad blocker, CDN hiccup — L.maptiler/maptilersdk won't
-  // exist and constructing the layer throws. Left unguarded, that
-  // exception aborts this whole (synchronous) function right here, which
-  // is exactly what took best-track/forecast loading down with it: none of
-  // the code below this point — including the fetch that populates the
-  // table and dropdowns — ever got a chance to run. A missing/broken
-  // third-party basemap should never be able to do that, so it's isolated
-  // here and just falls back to OSM-only if it fails.
-  let mtLayer = null;
+  // Basemap
+  const cfg = getConfig();
+
+let mtLayer = null;
 
 try {
   // The UMD plugin exposes maptilerLayer in two possible ways.
@@ -300,7 +275,8 @@ try {
   if (typeof maptilerLayerFactory !== "function") {
     throw new Error(
       "MapTiler Leaflet plugin did not load correctly. " +
-      "window.leafletmaptilersdk.maptilerLayer and L.maptiler.maptilerLayer are both unavailable."
+      "window.leafletmaptilersdk.maptilerLayer and " +
+      "L.maptiler.maptilerLayer are both unavailable."
     );
   }
 
@@ -309,22 +285,14 @@ try {
     language: window.maptilersdk?.Language?.VISITOR_ENGLISH
   });
 
-} catch (e) {
-  console.error(
-    "MapTiler basemap unavailable, falling back to OSM only:",
-    e
-  );
-}
-  const baseLayers = { "OpenStreetMap": osmLayer };
-  if (mtLayer) baseLayers["MapTiler"] = mtLayer;
-  L.control.layers(baseLayers, null, { position: "topright" }).addTo(map);
-  map.on("baselayerchange", (e) => {
-    if (e.layer === mtLayer && !cfg.mapTilerKey) {
-      alert("MapTiler needs an API key — add one under Settings → " +
-        "MapTiler API key, then switch basemaps again.");
-    }
-  });
+  mtLayer.addTo(map);
 
+} catch (e) {
+  console.error("MapTiler basemap unavailable:", e);
+}
+
+
+  
   btLayer = L.layerGroup().addTo(map);
   fcLayer = L.layerGroup().addTo(map);
   lastBestTrackPts = []; lastForecastPts = [];
