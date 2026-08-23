@@ -31,6 +31,14 @@
   .badge { display:inline-block; font-size:11px; padding:1px 7px; border-radius:10px; color:#fff; }
   .badge.active { background:var(--active); }
   .badge.terminated { background:var(--term); }
+  .badge.intensity {color:#fff;}
+  .badge.intensity-tropical-depression {background:#2e7d32;}
+  .badge.intensity-tropical-storm {background:#f1c40f; color:#111;}
+  .badge.intensity-severe-tropical-storm {background:#f39c12; color:#111;}
+  .badge.intensity-typhoon {background:#e53935;}
+  .badge.intensity-very-strong-typhoon {background:#750227;}
+  .badge.intensity-violent-typhoon {background:#3B005C;}
+  .badge.intensity-extratropical {background:#87CEEB; color:#111;}
   main { flex:1; overflow:auto; padding:16px; }
   .banner { background:#3a0d12; border:1px solid var(--term); color:#ffd7d7;
     padding:12px 14px; border-radius:8px; margin-bottom:14px;
@@ -160,6 +168,52 @@ function parseCSV(text) {
   return rows.filter(r => r.length > 1).map(r =>
     Object.fromEntries(header.map((h, i) => [h, r[i] ?? ""])));
 }
+
+function intensityBadge(category) {
+  const key = String(category || "").trim().toLowerCase();
+
+  const categories = {
+    "tropical depression": {
+      className: "intensity-tropical-depression",
+      text: "Tropical Depression"
+    },
+    "tropical storm": {
+      className: "intensity-tropical-storm",
+      text: "Tropical Storm"
+    },
+    "severe tropical storm": {
+      className: "intensity-severe-tropical-storm",
+      text: "Severe Tropical Storm"
+    },
+    "typhoon": {
+      className: "intensity-typhoon",
+      text: "Typhoon"
+    },
+    "very strong typhoon": {
+      className: "intensity-very-strong-typhoon",
+      text: "Very Strong Typhoon"
+    },
+    "violent typhoon": {
+      className: "intensity-violent-typhoon",
+      text: "Violent Typhoon"
+    },
+    "extratropical": {
+      className: "intensity-extratropical",
+      text: "Extratropical"
+    }
+  };
+
+  const info = categories[key];
+
+  if (!info) return null;
+
+  return el(
+    "span",
+    { class: `badge intensity ${info.className}` },
+    info.text
+  );
+}
+  
 function el(tag, attrs = {}, ...kids) {
   const e = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
@@ -213,9 +267,28 @@ async function selectSystem(s) {
   d.innerHTML = "";
 
   // header
-  d.append(el("div", { class: "row" },
-    el("h2", { style: "border:0;margin:0" }, (s.tc_name || s.base)),
-    el("span", { class: "badge " + s.status }, s.status)));
+  const statusText = String(s.status || "").trim();
+  const statusBadge = el(
+    "span",
+    { class: "badge " + statusText },
+    statusText.charAt(0).toUpperCase() + statusText.slice(1)
+  );
+  const intensityBadgeElement = intensityBadge(s.tc_intensity_category);
+  const headerBadges = [statusBadge];
+  
+  if (intensityBadgeElement) {
+    headerBadges.push(intensityBadgeElement);
+  }
+  
+  d.append(
+    el(
+      "div",
+      { class: "row" },
+      el("h2", { style: "border:0;margin:0" }, (s.tc_name || s.base)),
+      ...headerBadges
+    )
+  );
+  
   d.append(el("div", { class: "row", style: "margin:6px 0 4px", html:
     `<span class="kv">Monitoring id <b>${s.tc_id_monitoring}</b></span>
      <span class="kv">Official <b>${s.tc_id_official || "—"}</b></span>
