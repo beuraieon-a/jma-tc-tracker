@@ -886,7 +886,7 @@ map.getPane("pointerPane").style.zIndex = 650;
         ? await fetchJSON(specificationPath)
         : [];
 
-    plotForecastOnMap(forecast, specifications);
+    plotForecastOnMap(forecast, specifications, lastBestTrackPts[lastBestTrackPts.length - 1]);
 
   } catch (e) {
     console.error("Could not load forecast/specifications:", e);
@@ -1341,10 +1341,14 @@ function fitToTrack(pts) {
 
 // ---------- forecast map ----------
 
-function plotForecastOnMap(forecast, specifications) {
+function plotForecastOnMap(
+  forecast,
+  specifications,
+  latestAnalysisPt
+) {
   fcLayer.clearLayers();
 
-  const pts = [];
+  const forecastPts = [];
 
   // Build a lookup of specification entries by valid UTC time.
   const specByTime = new Map();
@@ -1364,7 +1368,10 @@ function plotForecastOnMap(forecast, specifications) {
     // Only entries with advancedHours > 0 are actual forecast points.
     const advancedHours = Number(e?.advancedHours);
 
-    if (!Number.isFinite(advancedHours) || advancedHours <= 0) {
+    if (
+      !Number.isFinite(advancedHours) ||
+      advancedHours <= 0
+    ) {
       return;
     }
 
@@ -1379,9 +1386,8 @@ function plotForecastOnMap(forecast, specifications) {
       return;
     }
 
-    pts.push(c);
+    forecastPts.push(c);
 
-    // Find the corresponding specification using valid time.
     const validTime =
       e.validtime?.UTC ||
       e.validTime?.UTC ||
@@ -1393,16 +1399,10 @@ function plotForecastOnMap(forecast, specifications) {
     let intensityCategory = "";
 
     if (spec) {
-      const categoryEn =
-        spec.category?.en || "";
-
-      const intensityJp =
-        spec.intensity || "";
-
       intensityCategory =
         normalizeIntensityCategory(
-          categoryEn,
-          intensityJp
+          spec.category?.en || "",
+          spec.intensity || ""
         );
     }
 
@@ -1428,9 +1428,29 @@ function plotForecastOnMap(forecast, specifications) {
       .addTo(fcLayer);
   });
 
-  if (pts.length > 1) {
+  // ------------------------------------------------------------
+  // Forecast line
+  //
+  // Start the dashed forecast line at the latest analysis,
+  // but do NOT create a forecast marker there.
+  // ------------------------------------------------------------
+
+  const linePts = [];
+
+  if (
+    Array.isArray(latestAnalysisPt) &&
+    latestAnalysisPt.length === 2 &&
+    Number.isFinite(latestAnalysisPt[0]) &&
+    Number.isFinite(latestAnalysisPt[1])
+  ) {
+    linePts.push(latestAnalysisPt);
+  }
+
+  linePts.push(...forecastPts);
+
+  if (linePts.length > 1) {
     L.polyline(
-      pts,
+      linePts,
       {
         color: "#000000",
         weight: 2,
@@ -1440,7 +1460,9 @@ function plotForecastOnMap(forecast, specifications) {
     ).addTo(fcLayer);
   }
 
-  lastForecastPts = pts;
+  // Only actual forecast points affect the forecast-point list.
+  // The latest analysis is already included in lastBestTrackPts.
+  lastForecastPts = forecastPts;
 
   updateMapView();
 }
