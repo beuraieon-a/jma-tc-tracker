@@ -49,6 +49,24 @@
   .banner b { color:#fff; }
   #map { height:460px; border-radius:8px; border:1px solid var(--line); margin:10px 0; }
   h2 { font-size:15px; border-bottom:1px solid var(--line); padding-bottom:6px; margin:22px 0 10px; }
+  /* Tropical cyclone detail header */
+.tc-header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:0;
+  padding:0;
+}
+
+.tc-header .tc-name {
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:24px;
+  line-height:1;
+  font-weight:700;
+}
   select { background:#0d1520; color:var(--fg); border:1px solid var(--line);
     border-radius:6px; padding:6px 8px; }
   table { border-collapse:collapse; width:100%; font-size:12px; }
@@ -590,19 +608,19 @@ async function selectSystem(s) {
   }
 
   d.append(
+  el(
+    "div",
+    { class: "tc-header" },
+
     el(
-      "div",
-      { class: "row" },
+      "h2",
+      { class: "tc-name" },
+      (s.tc_name || s.base)
+    ),
 
-      el(
-        "h2",
-        { style: "border:0;margin:0" },
-        (s.tc_name || s.base)
-      ),
-
-      ...headerBadges
-    )
-  );
+    ...headerBadges
+  )
+);
 
   d.append(
     el(
