@@ -111,9 +111,9 @@
      control at all: language is baked server-side into each tile image, with
      no URL parameter to change it. The vector layer renders labels client-side
      from data tiles, so its language can be switched at runtime. -->
-<script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.9.0/maptiler-sdk.umd.min.js"></script>
-<link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.9.0/maptiler-sdk.css" rel="stylesheet" />
-<script src="https://cdn.maptiler.com/leaflet-maptilersdk/v4.1.1/leaflet-maptilersdk.js"></script>
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.min.js"></script>
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
+<script src="https://cdn.maptiler.com/leaflet-maptilersdk/latest/leaflet-maptilersdk.js"></script>
 <script>
 const DATA = "./data/";
 let INDEX = null, SELECTED = null, map = null, btLayer = null, fcLayer = null;
@@ -277,14 +277,29 @@ async function selectSystem(s) {
   const cfg = getConfig();
   const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { maxZoom: 12, attribution: "© OpenStreetMap" }).addTo(map);
-  const mtLayer = L.maptiler.maptilerLayer({
-    apiKey: cfg.mapTilerKey || "",
-    language: maptilersdk.Language.VISITOR_ENGLISH,
-  });
-  L.control.layers(
-    { "OpenStreetMap": osmLayer, "MapTiler": mtLayer },
-    null, { position: "topright" }
-  ).addTo(map);
+
+  // The vector layer depends on two extra CDN scripts (maptiler-sdk,
+  // leaflet-maptilersdk) having loaded successfully. If either didn't —
+  // slow network, ad blocker, CDN hiccup — L.maptiler/maptilersdk won't
+  // exist and constructing the layer throws. Left unguarded, that
+  // exception aborts this whole (synchronous) function right here, which
+  // is exactly what took best-track/forecast loading down with it: none of
+  // the code below this point — including the fetch that populates the
+  // table and dropdowns — ever got a chance to run. A missing/broken
+  // third-party basemap should never be able to do that, so it's isolated
+  // here and just falls back to OSM-only if it fails.
+  let mtLayer = null;
+  try {
+    mtLayer = L.maptiler.maptilerLayer({
+      apiKey: cfg.mapTilerKey || "",
+      language: maptilersdk.Language.VISITOR_ENGLISH,
+    });
+  } catch (e) {
+    console.error("MapTiler basemap unavailable, falling back to OSM only:", e);
+  }
+  const baseLayers = { "OpenStreetMap": osmLayer };
+  if (mtLayer) baseLayers["MapTiler"] = mtLayer;
+  L.control.layers(baseLayers, null, { position: "topright" }).addTo(map);
   map.on("baselayerchange", (e) => {
     if (e.layer === mtLayer && !cfg.mapTilerKey) {
       alert("MapTiler needs an API key — add one under Settings → " +
