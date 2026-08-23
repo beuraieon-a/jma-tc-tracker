@@ -31,14 +31,17 @@
   .badge { display:inline-block; font-size:11px; padding:1px 7px; border-radius:10px; color:#fff; }
   .badge.active { background:var(--active); }
   .badge.terminated { background:var(--term); }
-  .badge.intensity {color:#fff;}
-  .badge.intensity-tropical-depression {background:#2e7d32;}
-  .badge.intensity-tropical-storm {background:#f1c40f; color:#111;}
-  .badge.intensity-severe-tropical-storm {background:#f39c12; color:#111;}
-  .badge.intensity-typhoon {background:#e53935;}
-  .badge.intensity-very-strong-typhoon {background:#750227;}
-  .badge.intensity-violent-typhoon {background:#3B005C;}
-  .badge.intensity-extratropical {background:#87CEEB; color:#111;}
+
+  /* Intensity badges */
+  .badge.intensity { color:#fff; }
+  .badge.intensity-tropical-depression { background:#2e7d32; }
+  .badge.intensity-tropical-storm { background:#f1c40f; color:#111; }
+  .badge.intensity-severe-tropical-storm { background:#f39c12; color:#111; }
+  .badge.intensity-typhoon { background:#e53935; }
+  .badge.intensity-very-strong-typhoon { background:#750227; }
+  .badge.intensity-violent-typhoon { background:#3B005C; }
+  .badge.intensity-extratropical { background:#87CEEB; color:#111; }
+
   main { flex:1; overflow:auto; padding:16px; }
   .banner { background:#3a0d12; border:1px solid var(--term); color:#ffd7d7;
     padding:12px 14px; border-radius:8px; margin-bottom:14px;
@@ -83,6 +86,7 @@
   <button class="secondary" id="refreshBtn">Refresh</button>
   <button class="secondary" id="settingsBtn">Settings</button>
 </header>
+
 <div class="layout">
   <aside id="sysList"></aside>
   <main id="detail"><div class="empty">Loading…</div></main>
@@ -91,18 +95,30 @@
 <dialog id="settingsDlg">
   <form method="dialog">
     <h2 style="margin-top:0">Settings</h2>
+
     <p class="hint">Needed only for the “download &amp; remove” action on terminated
       systems. The token is stored <b>only in this browser</b> (localStorage) and is
       used to trigger the <code>cleanup.yml</code> workflow.</p>
-    <label>Repo owner</label><input id="cfgOwner" placeholder="your-github-username" />
-    <label>Repo name</label><input id="cfgRepo" placeholder="jma-tc-tracker" />
-    <label>Default branch</label><input id="cfgBranch" placeholder="main" />
+
+    <label>Repo owner</label>
+    <input id="cfgOwner" placeholder="your-github-username" />
+
+    <label>Repo name</label>
+    <input id="cfgRepo" placeholder="jma-tc-tracker" />
+
+    <label>Default branch</label>
+    <input id="cfgBranch" placeholder="main" />
+
     <label>Fine-grained PAT (Actions: read &amp; write, this repo only)</label>
     <input id="cfgToken" type="password" placeholder="github_pat_… (optional)" />
+
     <label>MapTiler API key</label>
-    <input id="cfgMapTilerKey" type="password" placeholder="required for the MapTiler basemap" />
+    <input id="cfgMapTilerKey" type="password"
+      placeholder="required for the MapTiler basemap" />
+
     <p class="hint">Required for the MapTiler basemap. The key is stored only
       in this browser. A free MapTiler API key is available from maptiler.com.</p>
+
     <div class="row" style="justify-content:flex-end">
       <button class="secondary" value="cancel">Cancel</button>
       <button id="cfgSave" value="save">Save</button>
@@ -111,62 +127,151 @@
 </dialog>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<!-- MapTiler SDK + its Leaflet plugin — needed for the vector "MapTiler" basemap.
-     A plain raster tile URL (the old approach) can't do per-request language
-     control at all: language is baked server-side into each tile image, with
-     no URL parameter to change it. The vector layer renders labels client-side
-     from data tiles, so its language can be switched at runtime. -->
+
+<!-- MapTiler SDK + its Leaflet plugin -->
 <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.9.0/maptiler-sdk.umd.min.js"></script>
-<link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.9.0/maptiler-sdk.css" rel="stylesheet" />
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.9.0/maptiler-sdk.css"
+  rel="stylesheet" />
 <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v4.1.1/leaflet-maptilersdk.umd.min.js"></script>
+
 <script>
 const DATA = "./data/";
-let INDEX = null, SELECTED = null, map = null, btLayer = null, fcLayer = null;
+
+let INDEX = null;
+let SELECTED = null;
+let map = null;
+let btLayer = null;
+let fcLayer = null;
+
 // Points currently on the map from each layer, kept so the view can be
 // fit to best-track + forecast together instead of best-track alone.
-let lastBestTrackPts = [], lastForecastPts = [];
+let lastBestTrackPts = [];
+let lastForecastPts = [];
+
+// Cache of the latest intensity category for each system.
+// Key = system base; value = lowercase tc_intensity_category.
+const intensityCache = new Map();
+
 
 // ---------- config (localStorage) ----------
+
 function inferConfig() {
-  const host = location.hostname;           // owner.github.io
+  const host = location.hostname;
   const seg = location.pathname.split("/").filter(Boolean);
   const owner = host.endsWith(".github.io") ? host.split(".")[0] : "";
   const repo = seg.length ? seg[0] : "";
-  return { owner, repo, branch: "main", token: "", mapTilerKey: "" };
+
+  return {
+    owner,
+    repo,
+    branch: "main",
+    token: "",
+    mapTilerKey: ""
+  };
 }
+
 function getConfig() {
   const saved = JSON.parse(localStorage.getItem("jmaCfg") || "{}");
   return Object.assign(inferConfig(), saved);
 }
-function saveConfig(c) { localStorage.setItem("jmaCfg", JSON.stringify(c)); }
+
+function saveConfig(c) {
+  localStorage.setItem("jmaCfg", JSON.stringify(c));
+}
+
 
 // ---------- helpers ----------
+
 async function fetchText(path) {
   const r = await fetch(DATA + path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`${path}: ${r.status}`);
+
+  if (!r.ok) {
+    throw new Error(`${path}: ${r.status}`);
+  }
+
   return r.text();
 }
-async function fetchJSON(path) { return JSON.parse(await fetchText(path)); }
+
+async function fetchJSON(path) {
+  return JSON.parse(await fetchText(path));
+}
+
 function parseCSV(text) {
   text = text.replace(/^\uFEFF/, "");
-  const rows = []; let row = [], field = "", q = false;
+
+  const rows = [];
+  let row = [];
+  let field = "";
+  let q = false;
+
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
+
     if (q) {
-      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
-      else if (c === '"') q = false;
-      else field += c;
-    } else if (c === '"') q = true;
-    else if (c === ",") { row.push(field); field = ""; }
-    else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
-    else if (c !== "\r") field += c;
+      if (c === '"' && text[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else if (c === '"') {
+        q = false;
+      } else {
+        field += c;
+      }
+    } else if (c === '"') {
+      q = true;
+    } else if (c === ",") {
+      row.push(field);
+      field = "";
+    } else if (c === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (c !== "\r") {
+      field += c;
+    }
   }
-  if (field.length || row.length) { row.push(field); rows.push(row); }
+
+  if (field.length || row.length) {
+    row.push(field);
+    rows.push(row);
+  }
+
   const header = rows.shift() || [];
-  return rows.filter(r => r.length > 1).map(r =>
-    Object.fromEntries(header.map((h, i) => [h, r[i] ?? ""])));
+
+  return rows
+    .filter(r => r.length > 1)
+    .map(r =>
+      Object.fromEntries(
+        header.map((h, i) => [h, r[i] ?? ""])
+      )
+    );
+}
+
+
+// ---------- status / intensity badges ----------
+
+function formatStatus(status) {
+  const text = String(status || "").trim();
+
+  if (!text) return "";
+
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function statusBadge(status) {
+  const text = formatStatus(status);
+
+  if (!text) return null;
+
+  return el(
+    "span",
+    { class: "badge " + String(status).trim().toLowerCase() },
+    text
+  );
 }
 
 function intensityBadge(category) {
@@ -177,26 +282,32 @@ function intensityBadge(category) {
       className: "intensity-tropical-depression",
       text: "Tropical Depression"
     },
+
     "tropical storm": {
       className: "intensity-tropical-storm",
       text: "Tropical Storm"
     },
+
     "severe tropical storm": {
       className: "intensity-severe-tropical-storm",
       text: "Severe Tropical Storm"
     },
+
     "typhoon": {
       className: "intensity-typhoon",
       text: "Typhoon"
     },
+
     "very strong typhoon": {
       className: "intensity-very-strong-typhoon",
       text: "Very Strong Typhoon"
     },
+
     "violent typhoon": {
       className: "intensity-violent-typhoon",
       text: "Violent Typhoon"
     },
+
     "extratropical": {
       className: "intensity-extratropical",
       text: "Extratropical"
@@ -213,26 +324,113 @@ function intensityBadge(category) {
     info.text
   );
 }
-  
+
+
+// ---------- intensity lookup ----------
+
+// Reads the best-track CSV for one system and obtains the intensity
+// category from its latest valid observation.
+async function getCurrentIntensity(s) {
+  if (!s || !s.base || !s.besttrack) return "";
+
+  // Return cached value when available.
+  if (intensityCache.has(s.base)) {
+    return intensityCache.get(s.base);
+  }
+
+  try {
+    const rows = parseCSV(await fetchText(s.besttrack));
+
+    if (!rows.length) {
+      intensityCache.set(s.base, "");
+      return "";
+    }
+
+    // Keep only rows that actually contain an intensity category.
+    const validRows = rows.filter(r =>
+      String(r.tc_intensity_category || "").trim() !== ""
+    );
+
+    if (!validRows.length) {
+      intensityCache.set(s.base, "");
+      return "";
+    }
+
+    // Find the chronologically latest observation.
+    validRows.sort((a, b) => {
+      const ta = Date.parse(a.valid_time_utc || "");
+      const tb = Date.parse(b.valid_time_utc || "");
+
+      if (Number.isFinite(ta) && Number.isFinite(tb)) {
+        return ta - tb;
+      }
+
+      if (Number.isFinite(ta)) return -1;
+      if (Number.isFinite(tb)) return 1;
+
+      return 0;
+    });
+
+    const category = String(
+      validRows[validRows.length - 1].tc_intensity_category || ""
+    ).trim().toLowerCase();
+
+    intensityCache.set(s.base, category);
+
+    return category;
+
+  } catch (e) {
+    console.warn(
+      `Could not determine intensity category for ${s.base}:`,
+      e
+    );
+
+    intensityCache.set(s.base, "");
+    return "";
+  }
+}
+
+
+// ---------- DOM helper ----------
+
 function el(tag, attrs = {}, ...kids) {
   const e = document.createElement(tag);
+
   for (const [k, v] of Object.entries(attrs)) {
-    if (k === "class") e.className = v;
-    else if (k === "html") e.innerHTML = v;
-    else e.setAttribute(k, v);
+    if (k === "class") {
+      e.className = v;
+    } else if (k === "html") {
+      e.innerHTML = v;
+    } else {
+      e.setAttribute(k, v);
+    }
   }
-  kids.forEach(k => e.append(k));
+
+  kids.forEach(k => {
+    if (k !== null && k !== undefined) {
+      e.append(k);
+    }
+  });
+
   return e;
 }
 
+
 // ---------- rendering ----------
+
 async function loadIndex() {
   INDEX = await fetchJSON("index.json");
+
   document.getElementById("generated").textContent =
     "updated " + (INDEX.generated_utc || "");
+
   renderList();
+
   if (INDEX.systems.length) {
-    const keep = INDEX.systems.find(s => s.base === (SELECTED && SELECTED.base));
+    const keep = INDEX.systems.find(
+      s => s.base === (SELECTED && SELECTED.base)
+    );
+
     selectSystem(keep || INDEX.systems[0]);
   } else {
     document.getElementById("detail").innerHTML =
@@ -240,408 +438,1042 @@ async function loadIndex() {
   }
 }
 
+
+// ---------- sidebar ----------
+
 function renderList() {
   const list = document.getElementById("sysList");
   list.innerHTML = "";
+
   INDEX.systems.forEach(s => {
-    const node = el("div", { class: "sys" + (SELECTED && SELECTED.base === s.base ? " sel" : "") },
-      el("div", { class: "name" }, (s.tc_name || s.base) +
-        (s.tc_id_official ? ` (${s.tc_id_official})` : "")),
-      el("div", { class: "meta", html:
-        `${s.tc_id_monitoring} &middot; <span class="badge ${s.status}">${s.status}</span>` }));
+    const node = el(
+      "div",
+      {
+        class:
+          "sys" +
+          (SELECTED && SELECTED.base === s.base ? " sel" : "")
+      },
+
+      el(
+        "div",
+        { class: "name" },
+        (s.tc_name || s.base) +
+          (s.tc_id_official ? ` (${s.tc_id_official})` : "")
+      )
+    );
+
+    const meta = el(
+      "div",
+      { class: "meta" },
+      `${s.tc_id_monitoring} · `
+    );
+
+    const sb = statusBadge(s.status);
+
+    if (sb) {
+      meta.append(sb);
+    }
+
+    // Intensity badge is populated asynchronously from the
+    // corresponding best-track CSV.
+    const cachedIntensity = intensityCache.get(s.base);
+
+    if (cachedIntensity) {
+      const ib = intensityBadge(cachedIntensity);
+
+      if (ib) {
+        meta.append(document.createTextNode(" "));
+        meta.append(ib);
+      }
+    } else if (s.besttrack) {
+      // Load the intensity asynchronously without blocking the sidebar.
+      getCurrentIntensity(s).then(category => {
+        if (!category) return;
+
+        // Do not redraw the entire sidebar if the user has already
+        // selected another system; simply refresh it.
+        renderList();
+      });
+    }
+
+    node.append(meta);
+
     node.onclick = () => selectSystem(s);
+
     list.append(node);
   });
 }
 
+
+// ---------- system selection ----------
+
 async function selectSystem(s) {
-  // if an issuance popup menu is still open from a previous system, close it —
-  // selectSystem below defines a fresh onDocClick closure each call, so a
-  // leftover menu from before would no longer have a listener that can close it
+  // If an issuance popup menu is still open from a previous system, close it.
   const openMenu = document.getElementById("fcIssuanceMenu");
-  if (openMenu) openMenu.remove();
+
+  if (openMenu) {
+    openMenu.remove();
+  }
 
   SELECTED = s;
+
   renderList();
+
   const d = document.getElementById("detail");
   d.innerHTML = "";
 
-  // header
-  const statusText = String(s.status || "").trim();
-  const statusBadge = el(
-    "span",
-    { class: "badge " + statusText },
-    statusText.charAt(0).toUpperCase() + statusText.slice(1)
-  );
-  const intensityBadgeElement = intensityBadge(s.tc_intensity_category);
-  const headerBadges = [statusBadge];
-  
+  // ------------------------------------------------------------
+  // Load best-track data FIRST.
+  //
+  // This is important because tc_intensity_category is supplied
+  // by the best-track CSV rather than necessarily being present
+  // in index.json.
+  // ------------------------------------------------------------
+
+  let bt = [];
+
+  if (s.besttrack) {
+    try {
+      bt = parseCSV(await fetchText(s.besttrack));
+    } catch (e) {
+      console.warn(`Could not load best track for ${s.base}:`, e);
+    }
+  }
+
+  // Determine the current/latest intensity category directly from
+  // the best-track data.
+  let currentIntensity = "";
+
+  if (bt.length) {
+    const validRows = bt.filter(r =>
+      String(r.tc_intensity_category || "").trim() !== ""
+    );
+
+    if (validRows.length) {
+      validRows.sort((a, b) => {
+        const ta = Date.parse(a.valid_time_utc || "");
+        const tb = Date.parse(b.valid_time_utc || "");
+
+        if (Number.isFinite(ta) && Number.isFinite(tb)) {
+          return ta - tb;
+        }
+
+        if (Number.isFinite(ta)) return -1;
+        if (Number.isFinite(tb)) return 1;
+
+        return 0;
+      });
+
+      currentIntensity = String(
+        validRows[validRows.length - 1].tc_intensity_category || ""
+      ).trim().toLowerCase();
+
+      intensityCache.set(s.base, currentIntensity);
+    }
+  }
+
+  // ------------------------------------------------------------
+  // Header
+  // ------------------------------------------------------------
+
+  const statusBadgeElement = statusBadge(s.status);
+  const intensityBadgeElement = intensityBadge(currentIntensity);
+
+  const headerBadges = [];
+
+  if (statusBadgeElement) {
+    headerBadges.push(statusBadgeElement);
+  }
+
   if (intensityBadgeElement) {
     headerBadges.push(intensityBadgeElement);
   }
-  
+
   d.append(
     el(
       "div",
       { class: "row" },
-      el("h2", { style: "border:0;margin:0" }, (s.tc_name || s.base)),
+
+      el(
+        "h2",
+        { style: "border:0;margin:0" },
+        (s.tc_name || s.base)
+      ),
+
       ...headerBadges
     )
   );
-  
-  d.append(el("div", { class: "row", style: "margin:6px 0 4px", html:
-    `<span class="kv">Monitoring id <b>${s.tc_id_monitoring}</b></span>
-     <span class="kv">Official <b>${s.tc_id_official || "—"}</b></span>
-     <span class="kv">First analysis <b>${s.first_analysis_utc || "—"}</b></span>
-     <span class="kv">Last issue <b>${s.last_issue_utc || "—"}</b></span>` }));
+
+  d.append(
+    el(
+      "div",
+      {
+        class: "row",
+        style: "margin:6px 0 4px",
+        html:
+          `<span class="kv">Monitoring id <b>${s.tc_id_monitoring}</b></span>
+           <span class="kv">Official <b>${s.tc_id_official || "—"}</b></span>
+           <span class="kv">First analysis <b>${s.first_analysis_utc || "—"}</b></span>
+           <span class="kv">Last issue <b>${s.last_issue_utc || "—"}</b></span>`
+      }
+    )
+  );
 
   if (s.status === "terminated") {
-    const btn = el("button", {}, "⬇ Download all files (ZIP) & remove");
+    const btn = el(
+      "button",
+      {},
+      "⬇ Download all files (ZIP) & remove"
+    );
+
     btn.onclick = () => downloadAndRemove(s, btn);
-    d.append(el("div", { class: "banner" },
-      el("div", { html: `<b>Monitoring has ended</b> for this system. Its data is still
-        piling up in the repository — download it, then remove it to free space.` }), btn));
-  }
 
-  // map, with its own issuance control (this is the ONLY thing that
-  // changes what's plotted on the map — the dropdowns further down only
-  // change what JSON is shown in their own output pane)
-  d.append(el("div", { id: "map" }));
-  const mapFcRow = el("div", { class: "row", style: "margin:8px 0 16px" });
-  d.append(mapFcRow);
+    d.append(
+      el(
+        "div",
+        { class: "banner" },
 
-  d.append(el("h2", {}, "Operational best track"));
-  const btWrap = el("div", { class: "tablewrap" }, el("div", { class: "empty" }, "loading…"));
-  d.append(btWrap);
+        el(
+          "div",
+          {
+            html:
+              `<b>Monitoring has ended</b> for this system. Its data is still
+              piling up in the repository — download it, then remove it to free space.`
+          }
+        ),
 
-  // issuances viewer — Forecast and Specifications side by side, each with
-  // its own dropdown that only controls its own JSON output below it
-  d.append(el("h2", {}, "Issuances"));
-  const fSel = el("select"); const fOut = el("div");
-  const sSel = el("select"); const sOut = el("div");
-  d.append(el("div", { class: "cols" },
-    el("div", {}, el("h3", {}, "Forecast"),
-      el("div", { class: "row" }, fSel), fOut),
-    el("div", {}, el("h3", {}, "Specifications"),
-      el("div", { class: "row" }, sSel), sOut)));
-
-  // init map — always tear down the previous instance first. The #map div
-  // gets destroyed and recreated on every system switch (d.innerHTML above),
-  // and leaving the old Leaflet instance alive can leave stale internal
-  // state (notably its cached container size) lying around.
-  if (map) { map.remove(); map = null; }
-  map = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12 }).setView([20, 140], 3);
-
-
-  // Basemap
-  const cfg = getConfig();
-
-let mtLayer = null;
-
-try {
-  // The UMD plugin exposes maptilerLayer in two possible ways.
-  // Prefer the standalone global, with L.maptiler as a fallback.
-  const maptilerLayerFactory =
-    window.leafletmaptilersdk?.maptilerLayer ||
-    window.L?.maptiler?.maptilerLayer;
-
-  if (typeof maptilerLayerFactory !== "function") {
-    throw new Error(
-      "MapTiler Leaflet plugin did not load correctly. " +
-      "window.leafletmaptilersdk.maptilerLayer and " +
-      "L.maptiler.maptilerLayer are both unavailable."
+        btn
+      )
     );
   }
 
-  mtLayer = maptilerLayerFactory({
-    apiKey: cfg.mapTilerKey || "",
-    language: window.maptilersdk?.Language?.VISITOR_ENGLISH
-  });
+  // ------------------------------------------------------------
+  // Map
+  // ------------------------------------------------------------
 
-  mtLayer.addTo(map);
+  d.append(el("div", { id: "map" }));
 
-} catch (e) {
-  console.error("MapTiler basemap unavailable:", e);
-}
+  const mapFcRow = el(
+    "div",
+    {
+      class: "row",
+      style: "margin:8px 0 16px"
+    }
+  );
+
+  d.append(mapFcRow);
+
+  d.append(el("h2", {}, "Operational best track"));
+
+  const btWrap = el(
+    "div",
+    { class: "tablewrap" },
+    el("div", { class: "empty" }, "loading…")
+  );
+
+  d.append(btWrap);
+
+  // ------------------------------------------------------------
+  // Issuances viewer
+  // ------------------------------------------------------------
+
+  d.append(el("h2", {}, "Issuances"));
+
+  const fSel = el("select");
+  const fOut = el("div");
+
+  const sSel = el("select");
+  const sOut = el("div");
+
+  d.append(
+    el(
+      "div",
+      { class: "cols" },
+
+      el(
+        "div",
+        {},
+
+        el("h3", {}, "Forecast"),
+
+        el(
+          "div",
+          { class: "row" },
+          fSel
+        ),
+
+        fOut
+      ),
+
+      el(
+        "div",
+        {},
+
+        el("h3", {}, "Specifications"),
+
+        el(
+          "div",
+          { class: "row" },
+          sSel
+        ),
+
+        sOut
+      )
+    )
+  );
+
+  // ------------------------------------------------------------
+  // Initialize map
+  // ------------------------------------------------------------
+
+  if (map) {
+    map.remove();
+    map = null;
+  }
+
+  map = L.map(
+    "map",
+    {
+      worldCopyJump: true,
+      minZoom: 2,
+      maxZoom: 12
+    }
+  ).setView([20, 140], 3);
 
 
-  
+  // ------------------------------------------------------------
+  // MapTiler — SOLE BASEMAP
+  // ------------------------------------------------------------
+
+  const cfg = getConfig();
+
+  let mtLayer = null;
+
+  try {
+    const maptilerLayerFactory =
+      window.leafletmaptilersdk?.maptilerLayer ||
+      window.L?.maptiler?.maptilerLayer;
+
+    if (typeof maptilerLayerFactory !== "function") {
+      throw new Error(
+        "MapTiler Leaflet plugin did not load correctly. " +
+        "window.leafletmaptilersdk.maptilerLayer and " +
+        "L.maptiler.maptilerLayer are both unavailable."
+      );
+    }
+
+    if (!cfg.mapTilerKey) {
+      throw new Error(
+        "No MapTiler API key has been configured. " +
+        "Open Settings and enter your MapTiler API key."
+      );
+    }
+
+    mtLayer = maptilerLayerFactory({
+      apiKey: cfg.mapTilerKey,
+      language: window.maptilersdk?.Language?.VISITOR_ENGLISH
+    });
+
+    mtLayer.addTo(map);
+
+  } catch (e) {
+    console.error("MapTiler basemap unavailable:", e);
+
+    // Intentionally NO OpenStreetMap fallback.
+    //
+    // MapTiler is the sole basemap. If it fails, the map remains
+    // without a basemap rather than silently switching to OSM.
+  }
+
+
   btLayer = L.layerGroup().addTo(map);
   fcLayer = L.layerGroup().addTo(map);
-  lastBestTrackPts = []; lastForecastPts = [];
 
-  // best track
-  let bt = [];
-  if (s.besttrack) {
-    try { bt = parseCSV(await fetchText(s.besttrack)); } catch (e) {}
-  }
+  lastBestTrackPts = [];
+  lastForecastPts = [];
+
+
+  // ------------------------------------------------------------
+  // Best track
+  // ------------------------------------------------------------
+
   renderBestTrack(btWrap, bt);
   plotBestTrack(bt);
 
-  // forecast issuances (newest first)
+
+  // ------------------------------------------------------------
+  // Forecast issuances (newest first)
+  // ------------------------------------------------------------
+
   const ff = (s.forecast_files || []).slice().reverse();
 
-  // map issuance button — plots the chosen issuance's forecast track on
-  // the map via fcLayer; does not touch fOut/fSel at all
+  // Map issuance button — plots the chosen issuance's forecast track.
   let mapFcCurrent = ff[0] || null;
-  const mapFcBtn = el("button", { class: "secondary" },
-    ff.length ? `Forecast on map: ${issueLabel(mapFcCurrent)} ▾` : "No forecast issuances");
+
+  const mapFcBtn = el(
+    "button",
+    { class: "secondary" },
+    ff.length
+      ? `Forecast on map: ${issueLabel(mapFcCurrent)} ▾`
+      : "No forecast issuances"
+  );
+
   mapFcBtn.disabled = !ff.length;
+
   async function applyMapForecast(path) {
     mapFcCurrent = path;
-    mapFcBtn.textContent = `Forecast on map: ${issueLabel(path)} ▾`;
-    try { plotForecastOnMap(await fetchJSON(path)); }
-    catch (e) { fcLayer.clearLayers(); lastForecastPts = []; updateMapView(); }
+
+    mapFcBtn.textContent =
+      `Forecast on map: ${issueLabel(path)} ▾`;
+
+    try {
+      plotForecastOnMap(
+        await fetchJSON(path)
+      );
+    } catch (e) {
+      fcLayer.clearLayers();
+      lastForecastPts = [];
+      updateMapView();
+    }
   }
+
   function closeIssuanceMenu() {
     const m = document.getElementById("fcIssuanceMenu");
-    if (m) m.remove();
-    document.removeEventListener("click", onDocClick, true);
+
+    if (m) {
+      m.remove();
+    }
+
+    document.removeEventListener(
+      "click",
+      onDocClick,
+      true
+    );
   }
+
   function onDocClick(e) {
     const m = document.getElementById("fcIssuanceMenu");
-    if (m && !m.contains(e.target) && e.target !== mapFcBtn) closeIssuanceMenu();
+
+    if (
+      m &&
+      !m.contains(e.target) &&
+      e.target !== mapFcBtn
+    ) {
+      closeIssuanceMenu();
+    }
   }
+
   mapFcBtn.onclick = (e) => {
     e.stopPropagation();
-    if (document.getElementById("fcIssuanceMenu")) { closeIssuanceMenu(); return; }
-    const menu = el("div", { id: "fcIssuanceMenu", class: "issuanceMenu" });
+
+    if (document.getElementById("fcIssuanceMenu")) {
+      closeIssuanceMenu();
+      return;
+    }
+
+    const menu = el(
+      "div",
+      {
+        id: "fcIssuanceMenu",
+        class: "issuanceMenu"
+      }
+    );
+
     ff.forEach(p => {
-      const item = el("div",
-        { class: "issuanceMenuItem" + (p === mapFcCurrent ? " sel" : "") }, issueLabel(p));
-      item.onclick = () => { applyMapForecast(p); closeIssuanceMenu(); };
+      const item = el(
+        "div",
+        {
+          class:
+            "issuanceMenuItem" +
+            (p === mapFcCurrent ? " sel" : "")
+        },
+        issueLabel(p)
+      );
+
+      item.onclick = () => {
+        applyMapForecast(p);
+        closeIssuanceMenu();
+      };
+
       menu.append(item);
     });
+
     document.body.append(menu);
+
     const r = mapFcBtn.getBoundingClientRect();
-    menu.style.left = (r.left + window.scrollX) + "px";
-    menu.style.top = (r.bottom + window.scrollY + 4) + "px";
-    menu.style.minWidth = r.width + "px";
-    document.addEventListener("click", onDocClick, true);
+
+    menu.style.left =
+      (r.left + window.scrollX) + "px";
+
+    menu.style.top =
+      (r.bottom + window.scrollY + 4) + "px";
+
+    menu.style.minWidth =
+      r.width + "px";
+
+    document.addEventListener(
+      "click",
+      onDocClick,
+      true
+    );
   };
+
   mapFcRow.append(mapFcBtn);
-  if (ff.length) await applyMapForecast(mapFcCurrent);
 
-  // Forecast dropdown — only updates fOut, never touches the map
+  if (ff.length) {
+    await applyMapForecast(mapFcCurrent);
+  }
+
+
+  // ------------------------------------------------------------
+  // Forecast dropdown
+  // ------------------------------------------------------------
+
   fSel.innerHTML = "";
-  ff.forEach(p => fSel.append(el("option", { value: p }, issueLabel(p))));
-  const showFcJson = async () => { if (fSel.value) fOut.innerHTML =
-    `<pre>${escapeHtml(JSON.stringify(await fetchJSON(fSel.value), null, 2))}</pre>`; };
-  fSel.onchange = showFcJson; if (ff.length) await showFcJson();
 
-  const sf = (s.specifications_files || []).slice().reverse();
+  ff.forEach(p =>
+    fSel.append(
+      el(
+        "option",
+        { value: p },
+        issueLabel(p)
+      )
+    )
+  );
+
+  const showFcJson = async () => {
+    if (fSel.value) {
+      fOut.innerHTML =
+        `<pre>${escapeHtml(
+          JSON.stringify(
+            await fetchJSON(fSel.value),
+            null,
+            2
+          )
+        )}</pre>`;
+    }
+  };
+
+  fSel.onchange = showFcJson;
+
+  if (ff.length) {
+    await showFcJson();
+  }
+
+
+  // ------------------------------------------------------------
+  // Specifications dropdown
+  // ------------------------------------------------------------
+
+  const sf =
+    (s.specifications_files || [])
+      .slice()
+      .reverse();
+
   sSel.innerHTML = "";
-  sf.forEach(p => sSel.append(el("option", { value: p }, issueLabel(p))));
-  const showSp = async () => { if (sSel.value) sOut.innerHTML =
-    `<pre>${escapeHtml(JSON.stringify(await fetchJSON(sSel.value), null, 2))}</pre>`; };
-  sSel.onchange = showSp; if (sf.length) await showSp();
+
+  sf.forEach(p =>
+    sSel.append(
+      el(
+        "option",
+        { value: p },
+        issueLabel(p)
+      )
+    )
+  );
+
+  const showSp = async () => {
+    if (sSel.value) {
+      sOut.innerHTML =
+        `<pre>${escapeHtml(
+          JSON.stringify(
+            await fetchJSON(sSel.value),
+            null,
+            2
+          )
+        )}</pre>`;
+    }
+  };
+
+  sSel.onchange = showSp;
+
+  if (sf.length) {
+    await showSp();
+  }
+
+  // Refresh the sidebar after the current system's intensity
+  // has been obtained and cached.
+  renderList();
 }
+
+
+// ---------- issuance helpers ----------
 
 function issueLabel(path) {
   const m = path.match(/_(\d{8}T\d{4}Z)_/);
-  return m ? m[1] : path.split("/").pop();
-}
-function escapeHtml(s) {
-  return s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+  return m
+    ? m[1]
+    : path.split("/").pop();
 }
 
-function renderBestTrack(wrap, rows) {
-  if (!rows.length) { wrap.innerHTML = '<div class="empty">No best-track data yet.</div>'; return; }
-  const cols = ["valid_time_utc", "center_latitude", "center_longitude",
-    "tc_intensity_category", "tc_size_category", "central_pressure",
-    "msw_kt", "gustiness_kt", "movement_direction", "movement_speed_kt"];
-  const t = el("table");
-  t.append(el("tr", {}, ...cols.map(c => el("th", {}, c))));
-  rows.forEach(r => t.append(el("tr", {}, ...cols.map(c => el("td", {}, r[c] ?? "")))));
-  wrap.innerHTML = ""; wrap.append(t);
+function escapeHtml(s) {
+  return s.replace(
+    /[&<>]/g,
+    c => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;"
+    }[c])
+  );
 }
+
+
+// ---------- best-track table ----------
+
+function renderBestTrack(wrap, rows) {
+  if (!rows.length) {
+    wrap.innerHTML =
+      '<div class="empty">No best-track data yet.</div>';
+
+    return;
+  }
+
+  const cols = [
+    "valid_time_utc",
+    "center_latitude",
+    "center_longitude",
+    "tc_intensity_category",
+    "tc_size_category",
+    "central_pressure",
+    "msw_kt",
+    "gustiness_kt",
+    "movement_direction",
+    "movement_speed_kt"
+  ];
+
+  const t = el("table");
+
+  t.append(
+    el(
+      "tr",
+      {},
+      ...cols.map(c =>
+        el("th", {}, c)
+      )
+    )
+  );
+
+  rows.forEach(r =>
+    t.append(
+      el(
+        "tr",
+        {},
+        ...cols.map(c =>
+          el("td", {}, r[c] ?? "")
+        )
+      )
+    )
+  );
+
+  wrap.innerHTML = "";
+  wrap.append(t);
+}
+
+
+// ---------- best-track map ----------
 
 function plotBestTrack(rows) {
   btLayer.clearLayers();
-  const pts = rows.map(r => [parseFloat(r.center_latitude), parseFloat(r.center_longitude)])
-    .filter(p => Number.isFinite(p[0]) && Number.isFinite(p[1]));
+
+  const pts = rows
+    .map(r => [
+      parseFloat(r.center_latitude),
+      parseFloat(r.center_longitude)
+    ])
+    .filter(p =>
+      Number.isFinite(p[0]) &&
+      Number.isFinite(p[1])
+    );
+
   lastBestTrackPts = pts;
-  if (!pts.length) { updateMapView(); return; }
-  L.polyline(pts, { color: "#4493f8", weight: 2 }).addTo(btLayer);
+
+  if (!pts.length) {
+    updateMapView();
+    return;
+  }
+
+  L.polyline(
+    pts,
+    {
+      color: "#4493f8",
+      weight: 2
+    }
+  ).addTo(btLayer);
+
   rows.forEach(r => {
-    const lat = parseFloat(r.center_latitude), lon = parseFloat(r.center_longitude);
-    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
-    L.circleMarker([lat, lon], { radius: 4, color: "#4493f8", fillColor: "#4493f8", fillOpacity: .9 })
-      .bindPopup(`${r.valid_time_utc}<br>${r.tc_intensity_category}<br>${r.central_pressure} hPa`)
+    const lat = parseFloat(r.center_latitude);
+    const lon = parseFloat(r.center_longitude);
+
+    if (
+      !Number.isFinite(lat) ||
+      !Number.isFinite(lon)
+    ) {
+      return;
+    }
+
+    L.circleMarker(
+      [lat, lon],
+      {
+        radius: 4,
+        color: "#4493f8",
+        fillColor: "#4493f8",
+        fillOpacity: .9
+      }
+    )
+      .bindPopup(
+        `${r.valid_time_utc}<br>` +
+        `${r.tc_intensity_category}<br>` +
+        `${r.central_pressure} hPa`
+      )
       .addTo(btLayer);
   });
+
   updateMapView();
 }
 
-// Fits the map to whatever's currently plotted from BOTH layers together —
-// best track and the selected forecast issuance. Previously only the
-// best-track points fed fitToTrack(), so a forecast reaching well beyond
-// the best track (the common case: a short best track, days of forecast
-// ahead of it) would render partly or entirely off-screen, as seen with
-// system 'd' — its one best-track point put the view nowhere near its
-// 24h/45h forecast positions. Called after either layer changes.
+
+// ---------- map view ----------
+
+// Fits the map to whatever's currently plotted from BOTH layers together.
 function updateMapView() {
-  const pts = lastBestTrackPts.concat(lastForecastPts);
-  if (pts.length) fitToTrack(pts);
+  const pts =
+    lastBestTrackPts.concat(lastForecastPts);
+
+  if (pts.length) {
+    fitToTrack(pts);
+  }
 }
 
-// Zoom the map to the track's extent. Leaflet's fitBounds() already picks
-// the tightest zoom level that fits the given bounds, so this is naturally
-// dynamic — small/short-lived tracks zoom in close, long/wide-ranging
-// tracks zoom out. What was breaking that was maxZoom:5 above. Here we
-// additionally scale the padding fraction to the track's latitudinal span,
-// since a flat percentage pad looks fine on a big track but leaves a tiny
-// track swimming in empty ocean; a tighter pad on small tracks lets them
-// actually zoom in. A pixel-based top/bottom allowance is layered on top
-// so points and popups never sit flush against the map edge.
+
+// Zoom the map to the track's extent.
 function fitToTrack(pts) {
   const bounds = L.latLngBounds(pts);
-  const latSpan = bounds.getNorth() - bounds.getSouth();
-  const lonSpan = bounds.getEast() - bounds.getWest();
 
-  // bounds.pad(bufferRatio) treats bufferRatio as a fraction of the span
-  // (0.1 = 10% padding) — NOT a raw multiplier. These tiers are percentages,
-  // so they're written as fractions here. (A previous version of this file
-  // passed 5/10/15/20 directly, i.e. 500%-2000% padding: harmless-looking
-  // on best-track-only spans of a degree or two, but once the view also
-  // includes the forecast track — which can span 20°+ of longitude for a
-  // multi-day forecast — that overpad balloons past the size of the planet
-  // and fitBounds has nothing left to do but clamp to minZoom, the
-  // whole-world view.)
+  const latSpan =
+    bounds.getNorth() -
+    bounds.getSouth();
+
+  const lonSpan =
+    bounds.getEast() -
+    bounds.getWest();
+
   let padFraction;
-  if (latSpan < 3) padFraction = 0.05;        // just formed / very short track
-  else if (latSpan < 8) padFraction = 0.10;   // typical short-lived system
-  else if (latSpan < 15) padFraction = 0.15; // well-developed track
-  else padFraction = 0.20;                   // long-lived, basin-spanning track
 
-  // Leaflet caches the container's pixel size the first time it measures
-  // it. Since #map is a freshly-inserted div each time a system is
-  // selected, invalidateSize() forces a fresh read of its real on-screen
-  // size before we fit — otherwise fitBounds can compute zoom against a
-  // stale size and end up cropping part of the track out of view.
-  map.invalidateSize();
-
-  // bounds.pad() scales the EXISTING span by padFraction — it can only ever
-  // widen a box that already has some width. A brand-new system (like a
-  // first-analysis tropical depression) has exactly one best-track point,
-  // so latSpan/lonSpan are 0, padFraction*0 is still 0, and fitBounds is
-  // handed a zero-size box. With nothing to fit, Leaflet just zooms in to
-  // the maxZoom floor below — which is why a single point was rendering
-  // far closer than any padFraction tier intended. An "almost stationary"
-  // system with two or three near-duplicate points hits the same problem
-  // for the same reason. Give degenerate/near-point bounds a fixed minimum
-  // extent first, so there's always real width for the fractional pad (and
-  // the maxZoom floor) to work with.
-  const MIN_SPAN_DEG = 2;
-  if (latSpan < MIN_SPAN_DEG || lonSpan < MIN_SPAN_DEG) {
-    const c = bounds.getCenter();
-    const half = MIN_SPAN_DEG / 2;
-    bounds.extend([c.lat - half, c.lng - half]);
-    bounds.extend([c.lat + half, c.lng + half]);
+  if (latSpan < 3) {
+    padFraction = 0.05;
+  } else if (latSpan < 8) {
+    padFraction = 0.10;
+  } else if (latSpan < 15) {
+    padFraction = 0.15;
+  } else {
+    padFraction = 0.20;
   }
 
-  map.fitBounds(bounds.pad(padFraction), {
-    maxZoom: 9,                       // floor: don't zoom to street level even for a 1-2 point track
-    paddingTopLeft: [20, 50],         // extra breathing room above the track
-    paddingBottomRight: [20, 50],     // and below it
-  });
+  map.invalidateSize();
+
+  const MIN_SPAN_DEG = 2;
+
+  if (
+    latSpan < MIN_SPAN_DEG ||
+    lonSpan < MIN_SPAN_DEG
+  ) {
+    const c = bounds.getCenter();
+    const half = MIN_SPAN_DEG / 2;
+
+    bounds.extend([
+      c.lat - half,
+      c.lng - half
+    ]);
+
+    bounds.extend([
+      c.lat + half,
+      c.lng + half
+    ]);
+  }
+
+  map.fitBounds(
+    bounds.pad(padFraction),
+    {
+      maxZoom: 9,
+      paddingTopLeft: [20, 50],
+      paddingBottomRight: [20, 50]
+    }
+  );
 }
 
-// Plots one forecast issuance's center points on the map. Always clears
-// fcLayer first — previously this accumulated every issuance ever selected
-// because nothing cleared the old points before adding new ones.
+
+// ---------- forecast map ----------
+
 function plotForecastOnMap(arr) {
   fcLayer.clearLayers();
+
   const pts = [];
+
   (arr || []).forEach(e => {
     const c = e.center;
-    if (Array.isArray(c) && c.length === 2 && typeof c[0] === "number") {
+
+    if (
+      Array.isArray(c) &&
+      c.length === 2 &&
+      typeof c[0] === "number"
+    ) {
       pts.push(c);
-      L.circleMarker(c, { radius: 4, color: "#f0a020", fillColor: "#f0a020", fillOpacity: .9 })
-        .bindPopup((e.part && e.part.en) || "forecast")
+
+      L.circleMarker(
+        c,
+        {
+          radius: 4,
+          color: "#f0a020",
+          fillColor: "#f0a020",
+          fillOpacity: .9
+        }
+      )
+        .bindPopup(
+          (e.part && e.part.en) ||
+          "forecast"
+        )
         .addTo(fcLayer);
     }
   });
-  if (pts.length > 1) L.polyline(pts, { color: "#f0a020", weight: 2, dashArray: "4 4" }).addTo(fcLayer);
+
+  if (pts.length > 1) {
+    L.polyline(
+      pts,
+      {
+        color: "#f0a020",
+        weight: 2,
+        dashArray: "4 4"
+      }
+    ).addTo(fcLayer);
+  }
+
   lastForecastPts = pts;
+
   updateMapView();
 }
 
+
 // ---------- download + remove ----------
+
 async function downloadAndRemove(s, btn) {
-  btn.disabled = true; const label = btn.textContent;
+  btn.disabled = true;
+
+  const label = btn.textContent;
+
   try {
     btn.textContent = "Zipping…";
+
     const zip = new JSZip();
-    const files = [s.besttrack, ...(s.forecast_files || []), ...(s.specifications_files || [])]
-      .filter(Boolean);
+
+    const files = [
+      s.besttrack,
+      ...(s.forecast_files || []),
+      ...(s.specifications_files || [])
+    ].filter(Boolean);
+
     for (const p of files) {
-      const blob = await (await fetch(DATA + p, { cache: "no-store" })).blob();
-      zip.file(p, blob); // keeps <base>/… structure inside the zip
+      const blob =
+        await (
+          await fetch(
+            DATA + p,
+            { cache: "no-store" }
+          )
+        ).blob();
+
+      zip.file(p, blob);
     }
-    const content = await zip.generateAsync({ type: "blob" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(content);
-    a.download = s.base + ".zip";
-    document.body.append(a); a.click(); a.remove();
+
+    const content =
+      await zip.generateAsync({
+        type: "blob"
+      });
+
+    const a =
+      document.createElement("a");
+
+    a.href =
+      URL.createObjectURL(content);
+
+    a.download =
+      s.base + ".zip";
+
+    document.body.append(a);
+    a.click();
+    a.remove();
+
     URL.revokeObjectURL(a.href);
+
     await requestRemoval(s.base);
+
   } catch (e) {
-    alert("Download failed: " + e.message);
+    alert(
+      "Download failed: " +
+      e.message
+    );
+
   } finally {
-    btn.disabled = false; btn.textContent = label;
+    btn.disabled = false;
+    btn.textContent = label;
   }
 }
+
 
 async function requestRemoval(base) {
   const cfg = getConfig();
-  if (!cfg.token || !cfg.owner || !cfg.repo) {
-    alert("Download complete.\n\nTo also remove the files from the repository, open " +
-      "Settings and add your repo owner/name and a fine-grained PAT — or run the " +
-      "'cleanup-jma-tc' workflow manually with base:\n\n" + base);
+
+  if (
+    !cfg.token ||
+    !cfg.owner ||
+    !cfg.repo
+  ) {
+    alert(
+      "Download complete.\n\n" +
+      "To also remove the files from the repository, open " +
+      "Settings and add your repo owner/name and a fine-grained PAT — " +
+      "or run the 'cleanup-jma-tc' workflow manually with base:\n\n" +
+      base
+    );
+
     return;
   }
-  if (!confirm(`Download complete. Remove '${base}' from the repository now?`)) return;
-  const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}` +
+
+  if (
+    !confirm(
+      `Download complete. Remove '${base}' from the repository now?`
+    )
+  ) {
+    return;
+  }
+
+  const url =
+    `https://api.github.com/repos/${cfg.owner}/${cfg.repo}` +
     `/actions/workflows/cleanup.yml/dispatches`;
-  const r = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Authorization": "Bearer " + cfg.token,
-      "Accept": "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-    },
-    body: JSON.stringify({ ref: cfg.branch || "main", inputs: { base } }),
-  });
+
+  const r = await fetch(
+    url,
+    {
+      method: "POST",
+
+      headers: {
+        "Authorization":
+          "Bearer " + cfg.token,
+
+        "Accept":
+          "application/vnd.github+json",
+
+        "X-GitHub-Api-Version":
+          "2022-11-28"
+      },
+
+      body: JSON.stringify({
+        ref: cfg.branch || "main",
+        inputs: { base }
+      })
+    }
+  );
+
   if (r.status === 204) {
-    alert("Removal requested. It will disappear here after the cleanup workflow " +
-      "runs (~1 min) and the site redeploys.");
+    alert(
+      "Removal requested. It will disappear here after the cleanup workflow " +
+      "runs (~1 min) and the site redeploys."
+    );
+
   } else {
-    alert("Removal request failed (HTTP " + r.status + "). Check the token/permissions, " +
-      "or run the cleanup workflow manually with base: " + base);
+    alert(
+      "Removal request failed (HTTP " +
+      r.status +
+      "). Check the token/permissions, " +
+      "or run the cleanup workflow manually with base: " +
+      base
+    );
   }
 }
 
+
 // ---------- settings dialog ----------
-const dlg = document.getElementById("settingsDlg");
+
+const dlg =
+  document.getElementById("settingsDlg");
+
 document.getElementById("settingsBtn").onclick = () => {
   const c = getConfig();
-  cfgOwner.value = c.owner; cfgRepo.value = c.repo;
-  cfgBranch.value = c.branch || "main"; cfgToken.value = c.token || "";
-  cfgMapTilerKey.value = c.mapTilerKey || "";
+
+  cfgOwner.value =
+    c.owner;
+
+  cfgRepo.value =
+    c.repo;
+
+  cfgBranch.value =
+    c.branch || "main";
+
+  cfgToken.value =
+    c.token || "";
+
+  cfgMapTilerKey.value =
+    c.mapTilerKey || "";
+
   dlg.showModal();
 };
-document.getElementById("cfgSave").addEventListener("click", () => {
-  saveConfig({ owner: cfgOwner.value.trim(), repo: cfgRepo.value.trim(),
-    branch: (cfgBranch.value.trim() || "main"), token: cfgToken.value.trim(),
-    mapTilerKey: cfgMapTilerKey.value.trim() });
-});
-document.getElementById("refreshBtn").onclick = () => loadIndex();
+
+
+document.getElementById("cfgSave")
+  .addEventListener(
+    "click",
+    () => {
+      saveConfig({
+        owner:
+          cfgOwner.value.trim(),
+
+        repo:
+          cfgRepo.value.trim(),
+
+        branch:
+          (
+            cfgBranch.value.trim() ||
+            "main"
+          ),
+
+        token:
+          cfgToken.value.trim(),
+
+        mapTilerKey:
+          cfgMapTilerKey.value.trim()
+      });
+    }
+  );
+
+
+document.getElementById("refreshBtn").onclick = () => {
+  // Clear cached intensity categories so that a newly updated
+  // best-track CSV is reflected immediately after Refresh.
+  intensityCache.clear();
+
+  loadIndex();
+};
+
+
+// ---------- initial load ----------
 
 loadIndex().catch(e => {
   document.getElementById("detail").innerHTML =
-    `<div class="empty">Could not load data/index.json.<br>${e.message}<br><br>
-    If viewing locally, serve the folder over HTTP (e.g. <code>python -m http.server</code>).</div>`;
+    `<div class="empty">
+      Could not load data/index.json.<br>
+      ${e.message}<br><br>
+      If viewing locally, serve the folder over HTTP
+      (e.g. <code>python -m http.server</code>).
+    </div>`;
 });
 </script>
 </body>
