@@ -1185,7 +1185,15 @@ function normalizeIntensityCategory(categoryEn, intensityJp) {
   return cat.toLowerCase();
 }
 
+function intensitySentenceCase(category) {
+  const text = String(category || "").trim();
 
+  if (!text) {
+    return "Unknown";
+  }
+
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
 
   
 
@@ -1397,7 +1405,6 @@ function plotForecastOnMap(forecast, specifications) {
   {
     radius: 3,
     color: markerColor,
-    fillColor: markerColor,
     fillColor: "#ffffff",
     fillOpacity: 1,
     weight: 1.5,
