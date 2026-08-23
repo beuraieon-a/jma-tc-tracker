@@ -1077,6 +1077,25 @@ function issueLabel(path) {
     : path.split("/").pop();
 }
 
+function formatPopupUtc(utc) {
+  const d = new Date(utc);
+
+  if (!Number.isFinite(d.getTime())) {
+    return utc || "Unknown time";
+  }
+
+  const months = [
+    "January", "February", "March", "April",
+    "May", "June", "July", "August",
+    "September", "October", "November", "December"
+  ];
+
+  const hh = String(d.getUTCHours()).padStart(2, "0");
+
+  return `${hh}:00 UTC ${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+}
+
+  
 function escapeHtml(s) {
   return s.replace(
     /[&<>]/g,
@@ -1231,10 +1250,10 @@ L.polyline(
   }
 )
       .bindPopup(
-        `${r.valid_time_utc}<br>` +
-        `${r.tc_intensity_category || "Unknown"}<br>` +
-        `${r.central_pressure || "—"} hPa`
-      )
+  `Analysis at ${formatPopupUtc(r.valid_time_utc)}:<br>` +
+  `${r.tc_intensity_category || "Unknown"}<br>` +
+  `${r.central_pressure || "—"} hPa, MSW ${r.msw_kt || "—"} kts`
+)
       .addTo(btLayer);
   });
 
@@ -1386,9 +1405,10 @@ function plotForecastOnMap(forecast, specifications) {
   }
 )
       .bindPopup(
-        `${(e.part && e.part.en) || "forecast"}<br>` +
-        `${intensityCategory || "Unknown"}`
-      )
+  `${(e.part && e.part.en) || "Forecast"} (${formatPopupUtc(validTime)}):<br>` +
+  `${intensitySentenceCase(intensityCategory)}<br>` +
+  `${spec?.central_pressure ?? "—"} hPa, MSW ${spec?.msw_kt ?? "—"} kts`
+)
       .addTo(fcLayer);
   });
 
