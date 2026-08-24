@@ -1,0 +1,195 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-24T18:50:00+09:00",
+      "UTC": "2026-08-24T09:50:00Z"
+    },
+    "typhoonNumber": "2619",
+    "name": {
+      "jp": "ナーラ",
+      "en": "Narra"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "20",
+        "kt": "40",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "30",
+        "kt": "60"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "南西",
+        "range": {
+          "km": 220,
+          "nm": 120
+        }
+      },
+      {
+        "area": "北東",
+        "range": {
+          "km": 165,
+          "nm": 90
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        20.1,
+        107.2
+      ],
+      "dm": [
+        [
+          20,
+          5
+        ],
+        [
+          107,
+          10
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "トンキン湾",
+    "course": "西南西",
+    "speed": {
+      "km/h": "10",
+      "kt": "6"
+    },
+    "pressure": "992",
+    "validtime": {
+      "JST": "2026-08-24T18:00:00+09:00",
+      "UTC": "2026-08-24T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        19.8,
+        108.5
+      ],
+      "dm": [
+        [
+          19,
+          50
+        ],
+        [
+          108,
+          30
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 120,
+      "nm": 65
+    },
+    "location": "トンキン湾",
+    "course": "東",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "994",
+    "validtime": {
+      "JST": "2026-08-25T18:00:00+09:00",
+      "UTC": "2026-08-25T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 45,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        21.5,
+        109.7
+      ],
+      "dm": [
+        [
+          21,
+          30
+        ],
+        [
+          109,
+          40
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 210,
+      "nm": 115
+    },
+    "location": "華南",
+    "course": "北東",
+    "speed": {
+      "km/h": "10",
+      "kt": "6"
+    },
+    "pressure": "996",
+    "validtime": {
+      "JST": "2026-08-26T15:00:00+09:00",
+      "UTC": "2026-08-26T06:00:00Z"
+    }
+  }
+]
