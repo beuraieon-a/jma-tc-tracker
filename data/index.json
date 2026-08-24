@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-24T10:05:25Z",
+  "generated_utc": "2026-08-24T10:10:31Z",
   "active": [
     "TC2621",
     "TC2622",
@@ -130,8 +130,8 @@
       "tc_name": "GAENARI",
       "status": "active",
       "first_analysis_utc": "2026-08-22T00:00:00Z",
-      "last_analysis_utc": "2026-08-24T06:00:00Z",
-      "last_issue_utc": "2026-08-24T07:10:00Z",
+      "last_analysis_utc": "2026-08-24T09:00:00Z",
+      "last_issue_utc": "2026-08-24T10:10:00Z",
       "forecast_files": [
         "T2620_GAENARI/forecast/T2620_GAENARI_20260822T0130Z_forecast.json",
         "T2620_GAENARI/forecast/T2620_GAENARI_20260822T0430Z_forecast.json",
@@ -151,7 +151,8 @@
         "T2620_GAENARI/forecast/T2620_GAENARI_20260823T2210Z_forecast.json",
         "T2620_GAENARI/forecast/T2620_GAENARI_20260824T0115Z_forecast.json",
         "T2620_GAENARI/forecast/T2620_GAENARI_20260824T0415Z_forecast.json",
-        "T2620_GAENARI/forecast/T2620_GAENARI_20260824T0710Z_forecast.json"
+        "T2620_GAENARI/forecast/T2620_GAENARI_20260824T0710Z_forecast.json",
+        "T2620_GAENARI/forecast/T2620_GAENARI_20260824T1010Z_forecast.json"
       ],
       "specifications_files": [
         "T2620_GAENARI/specifications/T2620_GAENARI_20260822T0130Z_specifications.json",
@@ -172,7 +173,8 @@
         "T2620_GAENARI/specifications/T2620_GAENARI_20260823T2210Z_specifications.json",
         "T2620_GAENARI/specifications/T2620_GAENARI_20260824T0115Z_specifications.json",
         "T2620_GAENARI/specifications/T2620_GAENARI_20260824T0415Z_specifications.json",
-        "T2620_GAENARI/specifications/T2620_GAENARI_20260824T0710Z_specifications.json"
+        "T2620_GAENARI/specifications/T2620_GAENARI_20260824T0710Z_specifications.json",
+        "T2620_GAENARI/specifications/T2620_GAENARI_20260824T1010Z_specifications.json"
       ],
       "besttrack": "T2620_GAENARI/besttrack.csv"
     },
