@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-24T04:00:49Z",
+  "generated_utc": "2026-08-24T04:05:26Z",
   "active": [
     "TC2621",
     "TC2622",
@@ -67,8 +67,8 @@
       "tc_name": "NARRA",
       "status": "active",
       "first_analysis_utc": "2026-08-21T18:00:00Z",
-      "last_analysis_utc": "2026-08-24T00:00:00Z",
-      "last_issue_utc": "2026-08-24T01:00:00Z",
+      "last_analysis_utc": "2026-08-24T03:00:00Z",
+      "last_issue_utc": "2026-08-24T04:05:00Z",
       "forecast_files": [
         "T2619_NARRA/forecast/T2619_NARRA_20260821T1925Z_forecast.json",
         "T2619_NARRA/forecast/T2619_NARRA_20260821T2215Z_forecast.json",
@@ -88,7 +88,8 @@
         "T2619_NARRA/forecast/T2619_NARRA_20260823T1555Z_forecast.json",
         "T2619_NARRA/forecast/T2619_NARRA_20260823T1855Z_forecast.json",
         "T2619_NARRA/forecast/T2619_NARRA_20260823T2155Z_forecast.json",
-        "T2619_NARRA/forecast/T2619_NARRA_20260824T0100Z_forecast.json"
+        "T2619_NARRA/forecast/T2619_NARRA_20260824T0100Z_forecast.json",
+        "T2619_NARRA/forecast/T2619_NARRA_20260824T0405Z_forecast.json"
       ],
       "specifications_files": [
         "T2619_NARRA/specifications/T2619_NARRA_20260821T1925Z_specifications.json",
@@ -109,7 +110,8 @@
         "T2619_NARRA/specifications/T2619_NARRA_20260823T1555Z_specifications.json",
         "T2619_NARRA/specifications/T2619_NARRA_20260823T1855Z_specifications.json",
         "T2619_NARRA/specifications/T2619_NARRA_20260823T2155Z_specifications.json",
-        "T2619_NARRA/specifications/T2619_NARRA_20260824T0100Z_specifications.json"
+        "T2619_NARRA/specifications/T2619_NARRA_20260824T0100Z_specifications.json",
+        "T2619_NARRA/specifications/T2619_NARRA_20260824T0405Z_specifications.json"
       ],
       "besttrack": "T2619_NARRA/besttrack.csv"
     },
