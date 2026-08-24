@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-24T14:40:34Z",
+  "generated_utc": "2026-08-24T14:45:31Z",
   "active": [
     "TC2621",
     "TC2622",
@@ -14,8 +14,8 @@
       "tc_name": "SAUDEL",
       "status": "active",
       "first_analysis_utc": "2026-08-21T21:00:00Z",
-      "last_analysis_utc": "2026-08-24T13:00:00Z",
-      "last_issue_utc": "2026-08-24T13:45:00Z",
+      "last_analysis_utc": "2026-08-24T14:00:00Z",
+      "last_issue_utc": "2026-08-24T14:45:00Z",
       "forecast_files": [
         "T2618_SAUDEL/forecast/T2618_SAUDEL_20260821T2145Z_forecast.json",
         "T2618_SAUDEL/forecast/T2618_SAUDEL_20260822T0045Z_forecast.json",
@@ -39,7 +39,8 @@
         "T2618_SAUDEL/forecast/T2618_SAUDEL_20260824T0650Z_forecast.json",
         "T2618_SAUDEL/forecast/T2618_SAUDEL_20260824T0945Z_forecast.json",
         "T2618_SAUDEL/forecast/T2618_SAUDEL_20260824T1250Z_forecast.json",
-        "T2618_SAUDEL/forecast/T2618_SAUDEL_20260824T1345Z_forecast.json"
+        "T2618_SAUDEL/forecast/T2618_SAUDEL_20260824T1345Z_forecast.json",
+        "T2618_SAUDEL/forecast/T2618_SAUDEL_20260824T1445Z_forecast.json"
       ],
       "specifications_files": [
         "T2618_SAUDEL/specifications/T2618_SAUDEL_20260821T2145Z_specifications.json",
@@ -64,7 +65,8 @@
         "T2618_SAUDEL/specifications/T2618_SAUDEL_20260824T0650Z_specifications.json",
         "T2618_SAUDEL/specifications/T2618_SAUDEL_20260824T0945Z_specifications.json",
         "T2618_SAUDEL/specifications/T2618_SAUDEL_20260824T1250Z_specifications.json",
-        "T2618_SAUDEL/specifications/T2618_SAUDEL_20260824T1345Z_specifications.json"
+        "T2618_SAUDEL/specifications/T2618_SAUDEL_20260824T1345Z_specifications.json",
+        "T2618_SAUDEL/specifications/T2618_SAUDEL_20260824T1445Z_specifications.json"
       ],
       "besttrack": "T2618_SAUDEL/besttrack.csv"
     },
