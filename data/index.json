@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-24T22:25:22Z",
+  "generated_utc": "2026-08-24T22:30:36Z",
   "active": [
     "TC2621",
     "TC2622",
@@ -219,8 +219,8 @@
       "tc_name": "ATSANI",
       "status": "active",
       "first_analysis_utc": "2026-08-22T12:00:00Z",
-      "last_analysis_utc": "2026-08-24T18:00:00Z",
-      "last_issue_utc": "2026-08-24T19:25:00Z",
+      "last_analysis_utc": "2026-08-24T21:00:00Z",
+      "last_issue_utc": "2026-08-24T22:30:00Z",
       "forecast_files": [
         "T2621_ATSANI/forecast/T2621_ATSANI_20260822T1325Z_forecast.json",
         "T2621_ATSANI/forecast/T2621_ATSANI_20260822T1620Z_forecast.json",
@@ -240,7 +240,8 @@
         "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1020Z_forecast.json",
         "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1330Z_forecast.json",
         "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1620Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1925Z_forecast.json"
+        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1925Z_forecast.json",
+        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T2230Z_forecast.json"
       ],
       "specifications_files": [
         "T2621_ATSANI/specifications/T2621_ATSANI_20260822T1325Z_specifications.json",
@@ -261,7 +262,8 @@
         "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1020Z_specifications.json",
         "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1330Z_specifications.json",
         "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1620Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1925Z_specifications.json"
+        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1925Z_specifications.json",
+        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T2230Z_specifications.json"
       ],
       "besttrack": "T2621_ATSANI/besttrack.csv"
     }
