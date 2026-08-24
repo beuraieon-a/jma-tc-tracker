@@ -1,0 +1,192 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-24T19:20:00+09:00",
+      "UTC": "2026-08-24T10:20:00Z"
+    },
+    "typhoonNumber": "2621",
+    "name": {
+      "jp": "アッサニー",
+      "en": "Atsani"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "南",
+        "range": {
+          "km": 280,
+          "nm": 150
+        }
+      },
+      {
+        "area": "北",
+        "range": {
+          "km": 220,
+          "nm": 120
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        16.4,
+        138.2
+      ],
+      "dm": [
+        [
+          16,
+          25
+        ],
+        [
+          138,
+          10
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "フィリピンの東",
+    "course": "北北東",
+    "speed": {
+      "km/h": "20",
+      "kt": "11"
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-08-24T18:00:00+09:00",
+      "UTC": "2026-08-24T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 12,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        18.7,
+        138.2
+      ],
+      "dm": [
+        [
+          18,
+          40
+        ],
+        [
+          138,
+          10
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 65,
+      "nm": 35
+    },
+    "location": "フィリピンの東",
+    "course": "北",
+    "speed": {
+      "km/h": "20",
+      "kt": "12"
+    },
+    "pressure": "1002",
+    "validtime": {
+      "JST": "2026-08-25T06:00:00+09:00",
+      "UTC": "2026-08-24T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        20.5,
+        137.5
+      ],
+      "dm": [
+        [
+          20,
+          30
+        ],
+        [
+          137,
+          30
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 95,
+      "nm": 50
+    },
+    "location": "日本の南",
+    "course": "北北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "1004",
+    "validtime": {
+      "JST": "2026-08-25T18:00:00+09:00",
+      "UTC": "2026-08-25T09:00:00Z"
+    }
+  }
+]
