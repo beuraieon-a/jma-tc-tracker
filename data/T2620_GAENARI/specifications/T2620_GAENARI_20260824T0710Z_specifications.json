@@ -1,0 +1,195 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-24T16:10:00+09:00",
+      "UTC": "2026-08-24T07:10:00Z"
+    },
+    "typhoonNumber": "2620",
+    "name": {
+      "jp": "ケナリ",
+      "en": "Gaenari"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "南",
+        "range": {
+          "km": 440,
+          "nm": 240
+        }
+      },
+      {
+        "area": "北",
+        "range": {
+          "km": 330,
+          "nm": 180
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        24.9,
+        118.6
+      ],
+      "dm": [
+        [
+          24,
+          55
+        ],
+        [
+          118,
+          35
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "華南",
+    "course": "西北西",
+    "speed": {
+      "km/h": "10",
+      "kt": "6"
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-08-24T15:00:00+09:00",
+      "UTC": "2026-08-24T06:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 12,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        25.3,
+        118.9
+      ],
+      "dm": [
+        [
+          25,
+          20
+        ],
+        [
+          118,
+          55
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 85,
+      "nm": 45
+    },
+    "location": "華南",
+    "course": "不定",
+    "speed": {
+      "note": {
+        "jp": "ほとんど停滞",
+        "en": "Almost stationary"
+      }
+    },
+    "pressure": "1000",
+    "validtime": {
+      "JST": "2026-08-25T03:00:00+09:00",
+      "UTC": "2026-08-24T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        25.9,
+        119.1
+      ],
+      "dm": [
+        [
+          25,
+          55
+        ],
+        [
+          119,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 120,
+      "nm": 65
+    },
+    "location": "華南",
+    "course": "北北東",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "1002",
+    "validtime": {
+      "JST": "2026-08-25T15:00:00+09:00",
+      "UTC": "2026-08-25T06:00:00Z"
+    }
+  }
+]
