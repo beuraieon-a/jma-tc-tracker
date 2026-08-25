@@ -1,0 +1,137 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-25T16:05:00+09:00",
+      "UTC": "2026-08-25T07:05:00Z"
+    },
+    "typhoonNumber": "2619",
+    "name": {
+      "jp": "ナーラ",
+      "en": "Narra"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 110,
+          "nm": 60
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        19.3,
+        108.2
+      ],
+      "dm": [
+        [
+          19,
+          20
+        ],
+        [
+          108,
+          10
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "トンキン湾",
+    "course": "東",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "994",
+    "validtime": {
+      "JST": "2026-08-25T15:00:00+09:00",
+      "UTC": "2026-08-25T06:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        21.5,
+        110.1
+      ],
+      "dm": [
+        [
+          21,
+          30
+        ],
+        [
+          110,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 120,
+      "nm": 65
+    },
+    "location": "華南",
+    "course": "北東",
+    "speed": {
+      "km/h": "15",
+      "kt": "7"
+    },
+    "pressure": "996",
+    "validtime": {
+      "JST": "2026-08-26T15:00:00+09:00",
+      "UTC": "2026-08-26T06:00:00Z"
+    }
+  }
+]
