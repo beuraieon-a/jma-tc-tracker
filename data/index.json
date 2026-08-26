@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-26T09:10:30Z",
+  "generated_utc": "2026-08-26T09:13:14Z",
   "active": [
     "TC2621",
     "TC2622"
@@ -232,63 +232,6 @@
         "T2619_NARRA/specifications/T2619_NARRA_20260826T0705Z_specifications.json"
       ],
       "besttrack": "T2619_NARRA/besttrack.csv"
-    },
-    {
-      "base": "T2621_ATSANI",
-      "tc_id_monitoring": "TC2624",
-      "tc_id_official": "T2621",
-      "tc_name": "ATSANI",
-      "status": "terminated",
-      "first_analysis_utc": "2026-08-22T12:00:00Z",
-      "last_analysis_utc": "2026-08-25T00:00:00Z",
-      "last_issue_utc": "2026-08-25T01:15:00Z",
-      "forecast_files": [
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260822T1325Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260822T1620Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260822T1915Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260822T2215Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T0125Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T0425Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T0725Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T1025Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T1320Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T1625Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T1920Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260823T2220Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T0125Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T0430Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T0715Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1020Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1330Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1620Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T1925Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260824T2230Z_forecast.json",
-        "T2621_ATSANI/forecast/T2621_ATSANI_20260825T0115Z_forecast.json"
-      ],
-      "specifications_files": [
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260822T1325Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260822T1620Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260822T1915Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260822T2215Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T0125Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T0425Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T0725Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T1025Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T1320Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T1625Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T1920Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260823T2220Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T0125Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T0430Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T0715Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1020Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1330Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1620Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T1925Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260824T2230Z_specifications.json",
-        "T2621_ATSANI/specifications/T2621_ATSANI_20260825T0115Z_specifications.json"
-      ],
-      "besttrack": "T2621_ATSANI/besttrack.csv"
     }
   ]
 }
