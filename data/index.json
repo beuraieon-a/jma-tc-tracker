@@ -1,8 +1,9 @@
 {
-  "generated_utc": "2026-08-26T13:30:41Z",
+  "generated_utc": "2026-08-26T13:35:28Z",
   "active": [
     "TC2621",
-    "TC2622"
+    "TC2622",
+    "TC2625"
   ],
   "systems": [
     {
@@ -236,6 +237,23 @@
         "T2619_NARRA/specifications/T2619_NARRA_20260826T0705Z_specifications.json"
       ],
       "besttrack": "T2619_NARRA/besttrack.csv"
+    },
+    {
+      "base": "TC2625_TD_b",
+      "tc_id_monitoring": "TC2625",
+      "tc_id_official": "",
+      "tc_name": "b",
+      "status": "active",
+      "first_analysis_utc": "2026-08-26T12:00:00Z",
+      "last_analysis_utc": "2026-08-26T12:00:00Z",
+      "last_issue_utc": "2026-08-26T13:30:00Z",
+      "forecast_files": [
+        "TC2625_TD_b/forecast/TC2625_TD_b_20260826T1330Z_forecast.json"
+      ],
+      "specifications_files": [
+        "TC2625_TD_b/specifications/TC2625_TD_b_20260826T1330Z_specifications.json"
+      ],
+      "besttrack": "TC2625_TD_b/besttrack.csv"
     }
   ]
 }
