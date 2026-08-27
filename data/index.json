@@ -1,8 +1,7 @@
 {
-  "generated_utc": "2026-08-27T06:00:48Z",
+  "generated_utc": "2026-08-27T06:05:25Z",
   "active": [
     "TC2621",
-    "TC2622",
     "TC2625"
   ],
   "systems": [
@@ -164,7 +163,7 @@
       "tc_id_monitoring": "TC2622",
       "tc_id_official": "T2619",
       "tc_name": "NARRA",
-      "status": "active",
+      "status": "terminated",
       "first_analysis_utc": "2026-08-21T18:00:00Z",
       "last_analysis_utc": "2026-08-26T06:00:00Z",
       "last_issue_utc": "2026-08-26T07:05:00Z",
