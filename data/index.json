@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-27T07:10:31Z",
+  "generated_utc": "2026-08-27T07:15:31Z",
   "active": [
     "TC2621",
     "TC2625"
@@ -250,31 +250,33 @@
       "besttrack": "T2619_NARRA/besttrack.csv"
     },
     {
-      "base": "TC2625_TD_b",
+      "base": "T2622_ETAU",
       "tc_id_monitoring": "TC2625",
-      "tc_id_official": "",
-      "tc_name": "b",
+      "tc_id_official": "T2622",
+      "tc_name": "ETAU",
       "status": "active",
       "first_analysis_utc": "2026-08-26T12:00:00Z",
-      "last_analysis_utc": "2026-08-27T03:00:00Z",
-      "last_issue_utc": "2026-08-27T04:20:00Z",
+      "last_analysis_utc": "2026-08-27T06:00:00Z",
+      "last_issue_utc": "2026-08-27T07:15:00Z",
       "forecast_files": [
-        "TC2625_TD_b/forecast/TC2625_TD_b_20260826T1330Z_forecast.json",
-        "TC2625_TD_b/forecast/TC2625_TD_b_20260826T1615Z_forecast.json",
-        "TC2625_TD_b/forecast/TC2625_TD_b_20260826T1915Z_forecast.json",
-        "TC2625_TD_b/forecast/TC2625_TD_b_20260826T2215Z_forecast.json",
-        "TC2625_TD_b/forecast/TC2625_TD_b_20260827T0115Z_forecast.json",
-        "TC2625_TD_b/forecast/TC2625_TD_b_20260827T0420Z_forecast.json"
+        "T2622_ETAU/forecast/T2622_ETAU_20260826T1330Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260826T1615Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260826T1915Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260826T2215Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260827T0115Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260827T0420Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260827T0715Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2625_TD_b/specifications/TC2625_TD_b_20260826T1330Z_specifications.json",
-        "TC2625_TD_b/specifications/TC2625_TD_b_20260826T1615Z_specifications.json",
-        "TC2625_TD_b/specifications/TC2625_TD_b_20260826T1915Z_specifications.json",
-        "TC2625_TD_b/specifications/TC2625_TD_b_20260826T2215Z_specifications.json",
-        "TC2625_TD_b/specifications/TC2625_TD_b_20260827T0115Z_specifications.json",
-        "TC2625_TD_b/specifications/TC2625_TD_b_20260827T0420Z_specifications.json"
+        "T2622_ETAU/specifications/T2622_ETAU_20260826T1330Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260826T1615Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260826T1915Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260826T2215Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260827T0115Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260827T0420Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260827T0715Z_specifications.json"
       ],
-      "besttrack": "TC2625_TD_b/besttrack.csv"
+      "besttrack": "T2622_ETAU/besttrack.csv"
     }
   ]
 }

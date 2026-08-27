@@ -1,0 +1,10 @@
+{
+  "base": "T2622_ETAU",
+  "tc_id_monitoring": "TC2625",
+  "tc_id_official": "T2622",
+  "tc_name": "ETAU",
+  "status": "active",
+  "first_analysis_utc": "2026-08-26T12:00:00Z",
+  "last_analysis_utc": "2026-08-27T06:00:00Z",
+  "last_issue_utc": "2026-08-27T07:15:00Z"
+}
