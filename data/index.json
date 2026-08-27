@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-27T22:10:29Z",
+  "generated_utc": "2026-08-27T22:15:31Z",
   "active": [
     "TC2621",
     "TC2625",
@@ -217,13 +217,15 @@
       "tc_name": "c",
       "status": "active",
       "first_analysis_utc": "2026-08-27T18:00:00Z",
-      "last_analysis_utc": "2026-08-27T18:00:00Z",
-      "last_issue_utc": "2026-08-27T19:15:00Z",
+      "last_analysis_utc": "2026-08-27T21:00:00Z",
+      "last_issue_utc": "2026-08-27T22:15:00Z",
       "forecast_files": [
-        "TC2626_TD_c/forecast/TC2626_TD_c_20260827T1915Z_forecast.json"
+        "TC2626_TD_c/forecast/TC2626_TD_c_20260827T1915Z_forecast.json",
+        "TC2626_TD_c/forecast/TC2626_TD_c_20260827T2215Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2626_TD_c/specifications/TC2626_TD_c_20260827T1915Z_specifications.json"
+        "TC2626_TD_c/specifications/TC2626_TD_c_20260827T1915Z_specifications.json",
+        "TC2626_TD_c/specifications/TC2626_TD_c_20260827T2215Z_specifications.json"
       ],
       "besttrack": "TC2626_TD_c/besttrack.csv"
     }
