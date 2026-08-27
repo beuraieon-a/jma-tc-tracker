@@ -1,8 +1,9 @@
 {
-  "generated_utc": "2026-08-27T19:10:32Z",
+  "generated_utc": "2026-08-27T19:15:30Z",
   "active": [
     "TC2621",
-    "TC2625"
+    "TC2625",
+    "TC2626"
   ],
   "systems": [
     {
@@ -204,6 +205,23 @@
         "T2622_ETAU/specifications/T2622_ETAU_20260827T1905Z_specifications.json"
       ],
       "besttrack": "T2622_ETAU/besttrack.csv"
+    },
+    {
+      "base": "TC2626_TD_c",
+      "tc_id_monitoring": "TC2626",
+      "tc_id_official": "",
+      "tc_name": "c",
+      "status": "active",
+      "first_analysis_utc": "2026-08-27T18:00:00Z",
+      "last_analysis_utc": "2026-08-27T18:00:00Z",
+      "last_issue_utc": "2026-08-27T19:15:00Z",
+      "forecast_files": [
+        "TC2626_TD_c/forecast/TC2626_TD_c_20260827T1915Z_forecast.json"
+      ],
+      "specifications_files": [
+        "TC2626_TD_c/specifications/TC2626_TD_c_20260827T1915Z_specifications.json"
+      ],
+      "besttrack": "TC2626_TD_c/besttrack.csv"
     }
   ]
 }
