@@ -1,0 +1,208 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-28T09:45:00+09:00",
+      "UTC": "2026-08-28T00:45:00Z"
+    },
+    "typhoonNumber": "2618",
+    "name": {
+      "jp": "ソウデル",
+      "en": "Saudel"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "60",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "45",
+        "kt": "85"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "北東",
+        "range": {
+          "km": 280,
+          "nm": 150
+        }
+      },
+      {
+        "area": "南西",
+        "range": {
+          "km": 220,
+          "nm": 120
+        }
+      }
+    ],
+    "stormWarning": [
+      {
+        "area": "東",
+        "range": {
+          "km": 110,
+          "nm": 60
+        }
+      },
+      {
+        "area": "西",
+        "range": {
+          "km": 75,
+          "nm": 40
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        28.0,
+        121.4
+      ],
+      "dm": [
+        [
+          28,
+          0
+        ],
+        [
+          121,
+          25
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "東シナ海",
+    "course": "西",
+    "speed": {
+      "km/h": "25",
+      "kt": "13"
+    },
+    "pressure": "975",
+    "validtime": {
+      "JST": "2026-08-28T09:00:00+09:00",
+      "UTC": "2026-08-28T00:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 12,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        27.5,
+        118.0
+      ],
+      "dm": [
+        [
+          27,
+          30
+        ],
+        [
+          118,
+          0
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 65,
+      "nm": 35
+    },
+    "location": "華中",
+    "course": "西",
+    "speed": {
+      "km/h": "30",
+      "kt": "15"
+    },
+    "pressure": "994",
+    "validtime": {
+      "JST": "2026-08-28T21:00:00+09:00",
+      "UTC": "2026-08-28T12:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        27.3,
+        116.1
+      ],
+      "dm": [
+        [
+          27,
+          20
+        ],
+        [
+          116,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 95,
+      "nm": 50
+    },
+    "location": "華中",
+    "course": "西",
+    "speed": {
+      "km/h": "15",
+      "kt": "8"
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-08-29T09:00:00+09:00",
+      "UTC": "2026-08-29T00:00:00Z"
+    }
+  }
+]
