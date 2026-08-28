@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-28T01:00:48Z",
+  "generated_utc": "2026-08-28T01:05:27Z",
   "active": [
     "TC2621",
     "TC2625",
@@ -180,8 +180,8 @@
       "tc_name": "ETAU",
       "status": "active",
       "first_analysis_utc": "2026-08-26T12:00:00Z",
-      "last_analysis_utc": "2026-08-27T21:00:00Z",
-      "last_issue_utc": "2026-08-27T22:05:00Z",
+      "last_analysis_utc": "2026-08-28T00:00:00Z",
+      "last_issue_utc": "2026-08-28T01:05:00Z",
       "forecast_files": [
         "T2622_ETAU/forecast/T2622_ETAU_20260826T1330Z_forecast.json",
         "T2622_ETAU/forecast/T2622_ETAU_20260826T1615Z_forecast.json",
@@ -194,7 +194,8 @@
         "T2622_ETAU/forecast/T2622_ETAU_20260827T1310Z_forecast.json",
         "T2622_ETAU/forecast/T2622_ETAU_20260827T1605Z_forecast.json",
         "T2622_ETAU/forecast/T2622_ETAU_20260827T1905Z_forecast.json",
-        "T2622_ETAU/forecast/T2622_ETAU_20260827T2205Z_forecast.json"
+        "T2622_ETAU/forecast/T2622_ETAU_20260827T2205Z_forecast.json",
+        "T2622_ETAU/forecast/T2622_ETAU_20260828T0105Z_forecast.json"
       ],
       "specifications_files": [
         "T2622_ETAU/specifications/T2622_ETAU_20260826T1330Z_specifications.json",
@@ -208,7 +209,8 @@
         "T2622_ETAU/specifications/T2622_ETAU_20260827T1310Z_specifications.json",
         "T2622_ETAU/specifications/T2622_ETAU_20260827T1605Z_specifications.json",
         "T2622_ETAU/specifications/T2622_ETAU_20260827T1905Z_specifications.json",
-        "T2622_ETAU/specifications/T2622_ETAU_20260827T2205Z_specifications.json"
+        "T2622_ETAU/specifications/T2622_ETAU_20260827T2205Z_specifications.json",
+        "T2622_ETAU/specifications/T2622_ETAU_20260828T0105Z_specifications.json"
       ],
       "besttrack": "T2622_ETAU/besttrack.csv"
     },
