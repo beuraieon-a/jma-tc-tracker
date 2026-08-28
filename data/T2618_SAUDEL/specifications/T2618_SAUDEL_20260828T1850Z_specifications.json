@@ -1,0 +1,58 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-29T03:50:00+09:00",
+      "UTC": "2026-08-28T18:50:00Z"
+    },
+    "typhoonNumber": "2618",
+    "name": {
+      "jp": "ソウデル",
+      "en": "Saudel"
+    },
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "advancedHours": 0,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        27.0,
+        116.0
+      ],
+      "dm": [
+        [
+          27,
+          0
+        ],
+        [
+          116,
+          0
+        ]
+      ]
+    },
+    "location": "華中",
+    "course": "西",
+    "speed": {
+      "km/h": "30",
+      "kt": "15"
+    },
+    "pressure": "996",
+    "validtime": {
+      "JST": "2026-08-29T03:00:00+09:00",
+      "UTC": "2026-08-28T18:00:00Z"
+    }
+  }
+]
