@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-28T16:25:25Z",
+  "generated_utc": "2026-08-28T16:30:41Z",
   "active": [
     "TC2621",
     "TC2625",
@@ -241,8 +241,8 @@
       "tc_name": "BANG-LANG",
       "status": "active",
       "first_analysis_utc": "2026-08-27T18:00:00Z",
-      "last_analysis_utc": "2026-08-28T12:00:00Z",
-      "last_issue_utc": "2026-08-28T13:15:00Z",
+      "last_analysis_utc": "2026-08-28T15:00:00Z",
+      "last_issue_utc": "2026-08-28T16:30:00Z",
       "forecast_files": [
         "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260827T1915Z_forecast.json",
         "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260827T2215Z_forecast.json",
@@ -250,7 +250,8 @@
         "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260828T0420Z_forecast.json",
         "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260828T0715Z_forecast.json",
         "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260828T1015Z_forecast.json",
-        "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260828T1315Z_forecast.json"
+        "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260828T1315Z_forecast.json",
+        "T2623_BANG-LANG/forecast/T2623_BANG-LANG_20260828T1630Z_forecast.json"
       ],
       "specifications_files": [
         "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260827T1915Z_specifications.json",
@@ -259,7 +260,8 @@
         "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260828T0420Z_specifications.json",
         "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260828T0715Z_specifications.json",
         "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260828T1015Z_specifications.json",
-        "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260828T1315Z_specifications.json"
+        "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260828T1315Z_specifications.json",
+        "T2623_BANG-LANG/specifications/T2623_BANG-LANG_20260828T1630Z_specifications.json"
       ],
       "besttrack": "T2623_BANG-LANG/besttrack.csv"
     }
