@@ -1,0 +1,251 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-29T22:05:00+09:00",
+      "UTC": "2026-08-29T13:05:00Z"
+    },
+    "typhoonNumber": "2622",
+    "name": {
+      "jp": "アータウ",
+      "en": "Etau"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "20",
+        "kt": "40",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "30",
+        "kt": "60"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "東",
+        "range": {
+          "km": 390,
+          "nm": 210
+        }
+      },
+      {
+        "area": "西",
+        "range": {
+          "km": 165,
+          "nm": 90
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        29.9,
+        165.5
+      ],
+      "dm": [
+        [
+          29,
+          55
+        ],
+        [
+          165,
+          30
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "ウェーク島近海",
+    "course": "北",
+    "speed": {
+      "km/h": "30",
+      "kt": "17"
+    },
+    "pressure": "994",
+    "validtime": {
+      "JST": "2026-08-29T21:00:00+09:00",
+      "UTC": "2026-08-29T12:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        30.2,
+        165.5
+      ],
+      "dm": [
+        [
+          30,
+          10
+        ],
+        [
+          165,
+          30
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 120,
+      "nm": 65
+    },
+    "location": "日本のはるか東",
+    "course": "不定",
+    "speed": {
+      "note": {
+        "jp": "ほとんど停滞",
+        "en": "Almost stationary"
+      }
+    },
+    "pressure": "996",
+    "validtime": {
+      "JST": "2026-08-30T21:00:00+09:00",
+      "UTC": "2026-08-30T12:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　４８時間後",
+      "en": "Forecast for 48 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 48,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        31.3,
+        166.4
+      ],
+      "dm": [
+        [
+          31,
+          20
+        ],
+        [
+          166,
+          25
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 210,
+      "nm": 115
+    },
+    "location": "日本のはるか東",
+    "course": "北北東",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-08-31T21:00:00+09:00",
+      "UTC": "2026-08-31T12:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　７２時間後",
+      "en": "Forecast for 72 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 72,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        32.9,
+        168.2
+      ],
+      "dm": [
+        [
+          32,
+          55
+        ],
+        [
+          168,
+          10
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 300,
+      "nm": 160
+    },
+    "location": "日本のはるか東",
+    "course": "北東",
+    "speed": {
+      "km/h": "10",
+      "kt": "6"
+    },
+    "pressure": "1004",
+    "validtime": {
+      "JST": "2026-09-01T21:00:00+09:00",
+      "UTC": "2026-09-01T12:00:00Z"
+    }
+  }
+]
