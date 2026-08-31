@@ -1,8 +1,7 @@
 {
-  "generated_utc": "2026-08-31T18:00:48Z",
+  "generated_utc": "2026-08-31T18:05:26Z",
   "active": [
     "TC2621",
-    "TC2625",
     "TC2626",
     "TC2628"
   ],
@@ -12,7 +11,7 @@
       "tc_id_monitoring": "TC2625",
       "tc_id_official": "T2622",
       "tc_name": "ETAU",
-      "status": "active",
+      "status": "terminated",
       "first_analysis_utc": "2026-08-26T12:00:00Z",
       "last_analysis_utc": "2026-08-30T18:00:00Z",
       "last_issue_utc": "2026-08-30T19:05:00Z",
