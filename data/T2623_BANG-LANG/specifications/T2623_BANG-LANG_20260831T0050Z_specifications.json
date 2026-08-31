@@ -1,0 +1,58 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-31T09:50:00+09:00",
+      "UTC": "2026-08-31T00:50:00Z"
+    },
+    "typhoonNumber": "2623",
+    "name": {
+      "jp": "バンラン",
+      "en": "Bang-lang"
+    },
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "advancedHours": 0,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        37.0,
+        166.0
+      ],
+      "dm": [
+        [
+          37,
+          0
+        ],
+        [
+          166,
+          0
+        ]
+      ]
+    },
+    "location": "日本のはるか東",
+    "course": "北",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "1002",
+    "validtime": {
+      "JST": "2026-08-31T09:00:00+09:00",
+      "UTC": "2026-08-31T00:00:00Z"
+    }
+  }
+]
