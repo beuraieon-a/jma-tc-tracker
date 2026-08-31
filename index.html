@@ -34,13 +34,13 @@
 
   /* Intensity badges */
   .badge.intensity { color:#fff; }
-  .badge.intensity-tropical-depression { background:#2e7d32; }
+  .badge.intensity-tropical-depression { background:#008000; }
   .badge.intensity-tropical-storm { background:#f1c40f; color:#111; }
   .badge.intensity-severe-tropical-storm { background:#f39c12; color:#111; }
   .badge.intensity-typhoon { background:#e53935; }
   .badge.intensity-very-strong-typhoon { background:#750227; }
   .badge.intensity-violent-typhoon { background:#3B005C; }
-  .badge.intensity-extratropical { background:#87CEEB; color:#111; }
+  .badge.intensity-extratropical { background:#0000FF; color:#111; }
 
   main { flex:1; overflow:auto; padding:16px; }
   .banner { background:#3a0d12; border:1px solid var(--term); color:#ffd7d7;
@@ -350,13 +350,13 @@ function intensityColor(category) {
   const key = String(category || "").trim().toLowerCase();
 
   const colors = {
-    "tropical depression": "#2e7d32",
+    "tropical depression": "#008000",
     "tropical storm": "#f1c40f",
     "severe tropical storm": "#f39c12",
     "typhoon": "#e53935",
     "very strong typhoon": "#750227",
     "violent typhoon": "#3B005C",
-    "extratropical": "#87CEEB"
+    "extratropical": "#0000FF"
   };
 
   return colors[key] || "#666666";
