@@ -1,0 +1,202 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-08-31T19:05:00+09:00",
+      "UTC": "2026-08-31T10:05:00Z"
+    },
+    "typhoonNumber": "b"
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "advancedHours": 0,
+    "validtime": {
+      "JST": "2026-08-31T18:00:00+09:00",
+      "UTC": "2026-08-31T09:00:00Z"
+    },
+    "track": {
+      "preTyphoon": [
+        [
+          21.5,
+          132.2
+        ],
+        [
+          21.6,
+          132.0
+        ],
+        [
+          21.9,
+          131.6
+        ],
+        [
+          22.3,
+          131.1
+        ]
+      ],
+      "typhoon": []
+    },
+    "center": [
+      22.3,
+      131.1
+    ]
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "advancedHours": 24,
+    "validtime": {
+      "JST": "2026-09-01T18:00:00+09:00",
+      "UTC": "2026-09-01T09:00:00Z"
+    },
+    "probabilityCircle": {
+      "radius": 111120
+    },
+    "center": [
+      22.1,
+      131.9
+    ]
+  },
+  {
+    "part": {
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
+    },
+    "advancedHours": 45,
+    "validtime": {
+      "JST": "2026-09-02T15:00:00+09:00",
+      "UTC": "2026-09-02T06:00:00Z"
+    },
+    "probabilityCircle": {
+      "radius": 166680,
+      "tangent": [
+        [
+          [
+            23.31,
+            130.42
+          ],
+          [
+            21.84,
+            130.86
+          ]
+        ],
+        [
+          [
+            21.73,
+            132.9
+          ],
+          [
+            23.15,
+            133.52
+          ]
+        ]
+      ]
+    },
+    "center": [
+      23.7,
+      132.0
+    ]
+  },
+  {
+    "part": {
+      "jp": "予報　６９時間後",
+      "en": "Forecast for 69 hours ahead"
+    },
+    "advancedHours": 69,
+    "validtime": {
+      "JST": "2026-09-03T15:00:00+09:00",
+      "UTC": "2026-09-03T06:00:00Z"
+    },
+    "probabilityCircle": {
+      "radius": 212980,
+      "tangent": [
+        [
+          [
+            26.11,
+            128.14
+          ],
+          [
+            22.84,
+            130.66
+          ]
+        ],
+        [
+          [
+            24.26,
+            133.52
+          ],
+          [
+            27.92,
+            131.9
+          ]
+        ]
+      ]
+    },
+    "center": [
+      27.2,
+      129.9
+    ]
+  },
+  {
+    "part": {
+      "jp": "予報　９３時間後",
+      "en": "Forecast for 93 hours ahead"
+    },
+    "advancedHours": 93,
+    "validtime": {
+      "JST": "2026-09-04T15:00:00+09:00",
+      "UTC": "2026-09-04T06:00:00Z"
+    },
+    "probabilityCircle": {
+      "radius": 333360,
+      "tangent": [
+        [
+          [
+            26.04,
+            127.74
+          ],
+          [
+            25.5,
+            128.92
+          ]
+        ],
+        [
+          [
+            26.41,
+            131.86
+          ],
+          [
+            27.48,
+            132.41
+          ]
+        ]
+      ]
+    },
+    "center": [
+      28.7,
+      129.3
+    ]
+  },
+  {
+    "part": {
+      "jp": "予報　１１７時間後",
+      "en": "Forecast for 117 hours ahead"
+    },
+    "advancedHours": 117,
+    "validtime": {
+      "JST": "2026-09-05T15:00:00+09:00",
+      "UTC": "2026-09-05T06:00:00Z"
+    },
+    "probabilityCircle": {
+      "radius": 518560
+    },
+    "center": [
+      28.3,
+      130.4
+    ]
+  }
+]
