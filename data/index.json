@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-01T18:40:28Z",
+  "generated_utc": "2026-09-01T18:45:31Z",
   "active": [
     "TC2621",
     "TC2628"
@@ -292,8 +292,8 @@
       "tc_name": "KROVANH",
       "status": "active",
       "first_analysis_utc": "2026-08-31T00:00:00Z",
-      "last_analysis_utc": "2026-09-01T15:00:00Z",
-      "last_issue_utc": "2026-09-01T15:45:00Z",
+      "last_analysis_utc": "2026-09-01T18:00:00Z",
+      "last_issue_utc": "2026-09-01T18:45:00Z",
       "forecast_files": [
         "T2624_KROVANH/forecast/T2624_KROVANH_20260831T0130Z_forecast.json",
         "T2624_KROVANH/forecast/T2624_KROVANH_20260831T0405Z_forecast.json",
@@ -308,7 +308,8 @@
         "T2624_KROVANH/forecast/T2624_KROVANH_20260901T0645Z_forecast.json",
         "T2624_KROVANH/forecast/T2624_KROVANH_20260901T0945Z_forecast.json",
         "T2624_KROVANH/forecast/T2624_KROVANH_20260901T1245Z_forecast.json",
-        "T2624_KROVANH/forecast/T2624_KROVANH_20260901T1545Z_forecast.json"
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260901T1545Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260901T1845Z_forecast.json"
       ],
       "specifications_files": [
         "T2624_KROVANH/specifications/T2624_KROVANH_20260831T0130Z_specifications.json",
@@ -324,7 +325,8 @@
         "T2624_KROVANH/specifications/T2624_KROVANH_20260901T0645Z_specifications.json",
         "T2624_KROVANH/specifications/T2624_KROVANH_20260901T0945Z_specifications.json",
         "T2624_KROVANH/specifications/T2624_KROVANH_20260901T1245Z_specifications.json",
-        "T2624_KROVANH/specifications/T2624_KROVANH_20260901T1545Z_specifications.json"
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260901T1545Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260901T1845Z_specifications.json"
       ],
       "besttrack": "T2624_KROVANH/besttrack.csv"
     }
