@@ -1,8 +1,7 @@
 {
-  "generated_utc": "2026-09-01T00:00:50Z",
+  "generated_utc": "2026-09-01T00:05:24Z",
   "active": [
     "TC2621",
-    "TC2626",
     "TC2628"
   ],
   "systems": [
@@ -210,7 +209,7 @@
       "tc_id_monitoring": "TC2626",
       "tc_id_official": "T2623",
       "tc_name": "BANG-LANG",
-      "status": "active",
+      "status": "terminated",
       "first_analysis_utc": "2026-08-27T18:00:00Z",
       "last_analysis_utc": "2026-08-31T00:00:00Z",
       "last_issue_utc": "2026-08-31T00:50:00Z",
