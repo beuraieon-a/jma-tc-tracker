@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-01T01:10:27Z",
+  "generated_utc": "2026-09-01T01:20:31Z",
   "active": [
     "TC2621",
     "TC2628"
@@ -276,35 +276,37 @@
       "besttrack": "T2623_BANG-LANG/besttrack.csv"
     },
     {
-      "base": "TC2628_TD_b",
+      "base": "T2624_KROVANH",
       "tc_id_monitoring": "TC2628",
-      "tc_id_official": "",
-      "tc_name": "b",
+      "tc_id_official": "T2624",
+      "tc_name": "KROVANH",
       "status": "active",
       "first_analysis_utc": "2026-08-31T00:00:00Z",
-      "last_analysis_utc": "2026-08-31T21:00:00Z",
-      "last_issue_utc": "2026-08-31T22:05:00Z",
+      "last_analysis_utc": "2026-09-01T00:00:00Z",
+      "last_issue_utc": "2026-09-01T01:20:00Z",
       "forecast_files": [
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T0130Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T0405Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T0725Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T1005Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T1315Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T1610Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T1920Z_forecast.json",
-        "TC2628_TD_b/forecast/TC2628_TD_b_20260831T2205Z_forecast.json"
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T0130Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T0405Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T0725Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T1005Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T1315Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T1610Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T1920Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260831T2205Z_forecast.json",
+        "T2624_KROVANH/forecast/T2624_KROVANH_20260901T0120Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T0130Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T0405Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T0725Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T1005Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T1315Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T1610Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T1920Z_specifications.json",
-        "TC2628_TD_b/specifications/TC2628_TD_b_20260831T2205Z_specifications.json"
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T0130Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T0405Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T0725Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T1005Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T1315Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T1610Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T1920Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260831T2205Z_specifications.json",
+        "T2624_KROVANH/specifications/T2624_KROVANH_20260901T0120Z_specifications.json"
       ],
-      "besttrack": "TC2628_TD_b/besttrack.csv"
+      "besttrack": "T2624_KROVANH/besttrack.csv"
     }
   ]
 }
