@@ -1,0 +1,139 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-09-03T07:05:00+09:00",
+      "UTC": "2026-09-02T22:05:00Z"
+    },
+    "typhoonNumber": "2618",
+    "name": {
+      "jp": "ソウデル",
+      "en": "Saudel"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 390,
+          "nm": 210
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        23.6,
+        117.8
+      ],
+      "dm": [
+        [
+          23,
+          35
+        ],
+        [
+          117,
+          50
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "南シナ海",
+    "course": "北北西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "992",
+    "validtime": {
+      "JST": "2026-09-03T06:00:00+09:00",
+      "UTC": "2026-09-02T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        23.3,
+        115.9
+      ],
+      "dm": [
+        [
+          23,
+          20
+        ],
+        [
+          115,
+          55
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 105,
+      "nm": 57
+    },
+    "location": "華南",
+    "course": "西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-09-04T06:00:00+09:00",
+      "UTC": "2026-09-03T21:00:00Z"
+    }
+  }
+]
