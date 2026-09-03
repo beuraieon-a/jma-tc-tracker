@@ -1,0 +1,359 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-09-04T06:45:00+09:00",
+      "UTC": "2026-09-03T21:45:00Z"
+    },
+    "typhoonNumber": "2624",
+    "name": {
+      "jp": "クロヴァン",
+      "en": "Krovanh"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "20",
+        "kt": "40",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "30",
+        "kt": "60"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "北",
+        "range": {
+          "km": 390,
+          "nm": 210
+        }
+      },
+      {
+        "area": "南",
+        "range": {
+          "km": 280,
+          "nm": 150
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        29.3,
+        128.1
+      ],
+      "dm": [
+        [
+          29,
+          20
+        ],
+        [
+          128,
+          5
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "奄美市の北西約170km",
+    "course": "北北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "11"
+    },
+    "pressure": "990",
+    "validtime": {
+      "JST": "2026-09-04T06:00:00+09:00",
+      "UTC": "2026-09-03T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        28.4,
+        127.1
+      ],
+      "dm": [
+        [
+          28,
+          25
+        ],
+        [
+          127,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 105,
+      "nm": 57
+    },
+    "location": "奄美市の西約240km",
+    "course": "南西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "992",
+    "validtime": {
+      "JST": "2026-09-05T06:00:00+09:00",
+      "UTC": "2026-09-04T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 45,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        26.0,
+        127.1
+      ],
+      "dm": [
+        [
+          26,
+          0
+        ],
+        [
+          127,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 185,
+      "nm": 100
+    },
+    "location": "那覇市の西南西約60km",
+    "course": "南",
+    "speed": {
+      "km/h": "15",
+      "kt": "7"
+    },
+    "pressure": "992",
+    "validtime": {
+      "JST": "2026-09-06T03:00:00+09:00",
+      "UTC": "2026-09-05T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　６９時間後",
+      "en": "Forecast for 69 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 69,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        25.1,
+        130.6
+      ],
+      "dm": [
+        [
+          25,
+          5
+        ],
+        [
+          130,
+          35
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 260,
+      "nm": 140
+    },
+    "location": "南大東島近海",
+    "course": "東南東",
+    "speed": {
+      "km/h": "15",
+      "kt": "8"
+    },
+    "pressure": "992",
+    "validtime": {
+      "JST": "2026-09-07T03:00:00+09:00",
+      "UTC": "2026-09-06T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　９３時間後",
+      "en": "Forecast for 93 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 93,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        26.7,
+        132.2
+      ],
+      "dm": [
+        [
+          26,
+          40
+        ],
+        [
+          132,
+          10
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 320,
+      "nm": 175
+    },
+    "location": "南大東島近海",
+    "course": "北東",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "994",
+    "validtime": {
+      "JST": "2026-09-08T03:00:00+09:00",
+      "UTC": "2026-09-07T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１１７時間後",
+      "en": "Forecast for 117 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "0",
+        "kt": "0"
+      },
+      "gust": {
+        "m/s": "0",
+        "kt": "0"
+      }
+    },
+    "advancedHours": 117,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        28.9,
+        131.8
+      ],
+      "dm": [
+        [
+          28,
+          55
+        ],
+        [
+          131,
+          50
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 400,
+      "nm": 215
+    },
+    "location": "九州の南",
+    "course": "北",
+    "speed": {
+      "km/h": "10",
+      "kt": "6"
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-09-09T03:00:00+09:00",
+      "UTC": "2026-09-08T18:00:00Z"
+    }
+  }
+]
