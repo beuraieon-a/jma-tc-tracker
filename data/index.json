@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-09-08T00:00:49Z",
+  "generated_utc": "2026-09-14T01:35:23Z",
   "active": [
-    "TC2628"
+    "TC2630"
   ],
   "systems": [
     {
@@ -9,7 +9,7 @@
       "tc_id_monitoring": "TC2628",
       "tc_id_official": "T2624",
       "tc_name": "KROVANH",
-      "status": "active",
+      "status": "terminated",
       "first_analysis_utc": "2026-08-31T00:00:00Z",
       "last_analysis_utc": "2026-09-07T00:00:00Z",
       "last_issue_utc": "2026-09-07T00:45:00Z",
@@ -132,6 +132,23 @@
         "T2624_KROVANH/specifications/T2624_KROVANH_20260907T0045Z_specifications.json"
       ],
       "besttrack": "T2624_KROVANH/besttrack.csv"
+    },
+    {
+      "base": "TC2630_TD_a",
+      "tc_id_monitoring": "TC2630",
+      "tc_id_official": "",
+      "tc_name": "a",
+      "status": "active",
+      "first_analysis_utc": "2026-09-14T00:00:00Z",
+      "last_analysis_utc": "2026-09-14T00:00:00Z",
+      "last_issue_utc": "2026-09-14T01:30:00Z",
+      "forecast_files": [
+        "TC2630_TD_a/forecast/TC2630_TD_a_20260914T0130Z_forecast.json"
+      ],
+      "specifications_files": [
+        "TC2630_TD_a/specifications/TC2630_TD_a_20260914T0130Z_specifications.json"
+      ],
+      "besttrack": "TC2630_TD_a/besttrack.csv"
     }
   ]
 }
