@@ -1,0 +1,10 @@
+{
+  "base": "T2625_DUJUAN",
+  "tc_id_monitoring": "TC2630",
+  "tc_id_official": "T2625",
+  "tc_name": "DUJUAN",
+  "status": "active",
+  "first_analysis_utc": "2026-09-14T00:00:00Z",
+  "last_analysis_utc": "2026-09-16T12:00:00Z",
+  "last_issue_utc": "2026-09-16T13:10:00Z"
+}
