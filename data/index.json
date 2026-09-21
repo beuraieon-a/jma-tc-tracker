@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-21T11:40:35Z",
+  "generated_utc": "2026-09-21T11:45:29Z",
   "active": [
     "TC2630"
   ],
@@ -11,8 +11,8 @@
       "tc_name": "DUJUAN",
       "status": "active",
       "first_analysis_utc": "2026-09-14T00:00:00Z",
-      "last_analysis_utc": "2026-09-21T10:00:00Z",
-      "last_issue_utc": "2026-09-21T10:45:00Z",
+      "last_analysis_utc": "2026-09-21T11:00:00Z",
+      "last_issue_utc": "2026-09-21T11:45:00Z",
       "forecast_files": [
         "T2625_DUJUAN/forecast/T2625_DUJUAN_20260914T0130Z_forecast.json",
         "T2625_DUJUAN/forecast/T2625_DUJUAN_20260914T0420Z_forecast.json",
@@ -84,7 +84,8 @@
         "T2625_DUJUAN/forecast/T2625_DUJUAN_20260921T0745Z_forecast.json",
         "T2625_DUJUAN/forecast/T2625_DUJUAN_20260921T0845Z_forecast.json",
         "T2625_DUJUAN/forecast/T2625_DUJUAN_20260921T0945Z_forecast.json",
-        "T2625_DUJUAN/forecast/T2625_DUJUAN_20260921T1045Z_forecast.json"
+        "T2625_DUJUAN/forecast/T2625_DUJUAN_20260921T1045Z_forecast.json",
+        "T2625_DUJUAN/forecast/T2625_DUJUAN_20260921T1145Z_forecast.json"
       ],
       "specifications_files": [
         "T2625_DUJUAN/specifications/T2625_DUJUAN_20260914T0130Z_specifications.json",
@@ -157,7 +158,8 @@
         "T2625_DUJUAN/specifications/T2625_DUJUAN_20260921T0745Z_specifications.json",
         "T2625_DUJUAN/specifications/T2625_DUJUAN_20260921T0845Z_specifications.json",
         "T2625_DUJUAN/specifications/T2625_DUJUAN_20260921T0945Z_specifications.json",
-        "T2625_DUJUAN/specifications/T2625_DUJUAN_20260921T1045Z_specifications.json"
+        "T2625_DUJUAN/specifications/T2625_DUJUAN_20260921T1045Z_specifications.json",
+        "T2625_DUJUAN/specifications/T2625_DUJUAN_20260921T1145Z_specifications.json"
       ],
       "besttrack": "T2625_DUJUAN/besttrack.csv"
     }
