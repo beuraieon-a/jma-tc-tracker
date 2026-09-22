@@ -1,3 +1,4 @@
 ﻿tc_id_monitoring,tc_id_official,tc_name,valid_time_utc,center_latitude,center_longitude,tc_intensity_category,tc_size_category,central_pressure,msw_ms,msw_kt,gustiness_ms,gustiness_kt,movement_direction,movement_speed_kmh,movement_speed_kt,30kt_wind_longrad_dir,30kt_wind_longrad_length_km,30kt_wind_longrad_length_nm,30kt_wind_shortrad_dir,30kt_wind_shortrad_length_km,30kt_wind_shortrad_length_nm,50kt_wind_longrad_dir,50kt_wind_longrad_length_km,50kt_wind_longrad_length_nm,50kt_wind_shortrad_dir,50kt_wind_shortrad_length_km,50kt_wind_shortrad_length_nm
 TC2632,,b,2026-09-22T12:00:00Z,14.3,140.7,tropical depression,,1008,15,30,23,45,NW,20,10,,,,,,,,,,,,
 TC2632,,b,2026-09-22T15:00:00Z,14.8,140.2,tropical depression,,1008,15,30,23,45,NW,20,10,,,,,,,,,,,,
+TC2632,,b,2026-09-22T18:00:00Z,14.8,140.1,tropical depression,,1006,15,30,23,45,NW,20,10,,,,,,,,,,,,
