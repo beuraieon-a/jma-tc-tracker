@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-22T16:10:32Z",
+  "generated_utc": "2026-09-22T16:15:32Z",
   "active": [
     "TC2630",
     "TC2632"
@@ -197,13 +197,15 @@
       "tc_name": "b",
       "status": "active",
       "first_analysis_utc": "2026-09-22T12:00:00Z",
-      "last_analysis_utc": "2026-09-22T12:00:00Z",
-      "last_issue_utc": "2026-09-22T13:20:00Z",
+      "last_analysis_utc": "2026-09-22T15:00:00Z",
+      "last_issue_utc": "2026-09-22T16:15:00Z",
       "forecast_files": [
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T1320Z_forecast.json"
+        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T1320Z_forecast.json",
+        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T1615Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T1320Z_specifications.json"
+        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T1320Z_specifications.json",
+        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T1615Z_specifications.json"
       ],
       "besttrack": "TC2632_TD_b/besttrack.csv"
     }
