@@ -3,7 +3,7 @@
   "tc_id_monitoring": "TC2630",
   "tc_id_official": "T2625",
   "tc_name": "DUJUAN",
-  "status": "active",
+  "status": "terminated",
   "first_analysis_utc": "2026-09-14T00:00:00Z",
   "last_analysis_utc": "2026-09-22T12:00:00Z",
   "last_issue_utc": "2026-09-22T12:45:00Z"
