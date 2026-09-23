@@ -1,0 +1,418 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-09-23T19:10:00+09:00",
+      "UTC": "2026-09-23T10:10:00Z"
+    },
+    "typhoonNumber": "b",
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "15",
+        "kt": "30",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "23",
+        "kt": "45"
+      }
+    },
+    "advancedHours": 0,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        16.5,
+        137.8
+      ],
+      "dm": [
+        [
+          16,
+          30
+        ],
+        [
+          137,
+          50
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "フィリピンの東",
+    "course": "西北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "1006",
+    "validtime": {
+      "JST": "2026-09-23T18:00:00+09:00",
+      "UTC": "2026-09-23T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "15",
+        "kt": "30",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "23",
+        "kt": "45"
+      }
+    },
+    "advancedHours": 12,
+    "category": {
+      "jp": "熱帯低気圧",
+      "en": "TD"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        16.7,
+        135.3
+      ],
+      "dm": [
+        [
+          16,
+          40
+        ],
+        [
+          135,
+          20
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 100,
+      "nm": 55
+    },
+    "location": "フィリピンの東",
+    "course": "西",
+    "speed": {
+      "km/h": "20",
+      "kt": "12"
+    },
+    "pressure": "1004",
+    "validtime": {
+      "JST": "2026-09-24T06:00:00+09:00",
+      "UTC": "2026-09-23T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        17.3,
+        133.2
+      ],
+      "dm": [
+        [
+          17,
+          20
+        ],
+        [
+          133,
+          10
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 130,
+      "nm": 70
+    },
+    "location": "フィリピンの東",
+    "course": "西北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "1002",
+    "validtime": {
+      "JST": "2026-09-24T18:00:00+09:00",
+      "UTC": "2026-09-24T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "20",
+        "kt": "40",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "30",
+        "kt": "60"
+      }
+    },
+    "advancedHours": 45,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        18.6,
+        130.0
+      ],
+      "dm": [
+        [
+          18,
+          35
+        ],
+        [
+          130,
+          0
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 200,
+      "nm": 110
+    },
+    "location": "フィリピンの東",
+    "course": "西北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-09-25T15:00:00+09:00",
+      "UTC": "2026-09-25T06:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　６９時間後",
+      "en": "Forecast for 69 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "25",
+        "kt": "50",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "35",
+        "kt": "70"
+      }
+    },
+    "advancedHours": 69,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        20.2,
+        127.1
+      ],
+      "dm": [
+        [
+          20,
+          10
+        ],
+        [
+          127,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 260,
+      "nm": 140
+    },
+    "location": "沖縄の南",
+    "course": "西北西",
+    "speed": {
+      "km/h": "15",
+      "kt": "8"
+    },
+    "pressure": "990",
+    "validtime": {
+      "JST": "2026-09-26T15:00:00+09:00",
+      "UTC": "2026-09-26T06:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　９３時間後",
+      "en": "Forecast for 93 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "60",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "45",
+        "kt": "85"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 410,
+          "nm": 220
+        }
+      }
+    ],
+    "advancedHours": 93,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        21.5,
+        126.0
+      ],
+      "dm": [
+        [
+          21,
+          30
+        ],
+        [
+          126,
+          0
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 330,
+      "nm": 180
+    },
+    "location": "沖縄の南",
+    "course": "北西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "980",
+    "validtime": {
+      "JST": "2026-09-27T15:00:00+09:00",
+      "UTC": "2026-09-27T06:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１１７時間後",
+      "en": "Forecast for 117 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "35",
+        "kt": "70",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "50",
+        "kt": "100"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 540,
+          "nm": 290
+        }
+      }
+    ],
+    "advancedHours": 117,
+    "category": {
+      "jp": "台風",
+      "en": "TY"
+    },
+    "intensity": "強い",
+    "position": {
+      "deg": [
+        22.6,
+        124.7
+      ],
+      "dm": [
+        [
+          22,
+          35
+        ],
+        [
+          124,
+          40
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 440,
+      "nm": 240
+    },
+    "location": "沖縄の南",
+    "course": "北西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "970",
+    "validtime": {
+      "JST": "2026-09-28T15:00:00+09:00",
+      "UTC": "2026-09-28T06:00:00Z"
+    }
+  }
+]
