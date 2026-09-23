@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-23T13:00:48Z",
+  "generated_utc": "2026-09-23T13:05:23Z",
   "active": [
     "TC2632"
   ],
@@ -190,35 +190,37 @@
       "besttrack": "T2625_DUJUAN/besttrack.csv"
     },
     {
-      "base": "TC2632_TD_b",
+      "base": "T2626_SURIGAE",
       "tc_id_monitoring": "TC2632",
-      "tc_id_official": "",
-      "tc_name": "b",
+      "tc_id_official": "T2626",
+      "tc_name": "SURIGAE",
       "status": "active",
       "first_analysis_utc": "2026-09-22T12:00:00Z",
-      "last_analysis_utc": "2026-09-23T09:00:00Z",
-      "last_issue_utc": "2026-09-23T10:10:00Z",
+      "last_analysis_utc": "2026-09-23T12:00:00Z",
+      "last_issue_utc": "2026-09-23T13:05:00Z",
       "forecast_files": [
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T1320Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T1615Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T1925Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260922T2215Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260923T0105Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260923T0410Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260923T0705Z_forecast.json",
-        "TC2632_TD_b/forecast/TC2632_TD_b_20260923T1010Z_forecast.json"
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260922T1320Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260922T1615Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260922T1925Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260922T2215Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260923T0105Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260923T0410Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260923T0705Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260923T1010Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260923T1305Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T1320Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T1615Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T1925Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260922T2215Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260923T0105Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260923T0410Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260923T0705Z_specifications.json",
-        "TC2632_TD_b/specifications/TC2632_TD_b_20260923T1010Z_specifications.json"
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260922T1320Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260922T1615Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260922T1925Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260922T2215Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260923T0105Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260923T0410Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260923T0705Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260923T1010Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260923T1305Z_specifications.json"
       ],
-      "besttrack": "TC2632_TD_b/besttrack.csv"
+      "besttrack": "T2626_SURIGAE/besttrack.csv"
     }
   ]
 }
