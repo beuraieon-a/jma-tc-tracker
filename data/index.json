@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-25T03:40:29Z",
+  "generated_utc": "2026-09-25T03:45:27Z",
   "active": [
     "TC2632"
   ],
@@ -11,8 +11,8 @@
       "tc_name": "SURIGAE",
       "status": "active",
       "first_analysis_utc": "2026-09-22T12:00:00Z",
-      "last_analysis_utc": "2026-09-25T00:00:00Z",
-      "last_issue_utc": "2026-09-25T00:45:00Z",
+      "last_analysis_utc": "2026-09-25T03:00:00Z",
+      "last_issue_utc": "2026-09-25T03:45:00Z",
       "forecast_files": [
         "T2626_SURIGAE/forecast/T2626_SURIGAE_20260922T1320Z_forecast.json",
         "T2626_SURIGAE/forecast/T2626_SURIGAE_20260922T1615Z_forecast.json",
@@ -34,7 +34,8 @@
         "T2626_SURIGAE/forecast/T2626_SURIGAE_20260924T1545Z_forecast.json",
         "T2626_SURIGAE/forecast/T2626_SURIGAE_20260924T1845Z_forecast.json",
         "T2626_SURIGAE/forecast/T2626_SURIGAE_20260924T2145Z_forecast.json",
-        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260925T0045Z_forecast.json"
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260925T0045Z_forecast.json",
+        "T2626_SURIGAE/forecast/T2626_SURIGAE_20260925T0345Z_forecast.json"
       ],
       "specifications_files": [
         "T2626_SURIGAE/specifications/T2626_SURIGAE_20260922T1320Z_specifications.json",
@@ -57,7 +58,8 @@
         "T2626_SURIGAE/specifications/T2626_SURIGAE_20260924T1545Z_specifications.json",
         "T2626_SURIGAE/specifications/T2626_SURIGAE_20260924T1845Z_specifications.json",
         "T2626_SURIGAE/specifications/T2626_SURIGAE_20260924T2145Z_specifications.json",
-        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260925T0045Z_specifications.json"
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260925T0045Z_specifications.json",
+        "T2626_SURIGAE/specifications/T2626_SURIGAE_20260925T0345Z_specifications.json"
       ],
       "besttrack": "T2626_SURIGAE/besttrack.csv"
     }
