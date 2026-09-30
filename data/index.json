@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-30T19:25:25Z",
+  "generated_utc": "2026-09-30T19:30:39Z",
   "active": [
     "TC2632",
     "TC2633"
@@ -195,23 +195,25 @@
       "besttrack": "T2626_SURIGAE/besttrack.csv"
     },
     {
-      "base": "TC2633_TD_a",
+      "base": "T2627_CHOI-WAN",
       "tc_id_monitoring": "TC2633",
-      "tc_id_official": "",
-      "tc_name": "a",
+      "tc_id_official": "T2627",
+      "tc_name": "CHOI-WAN",
       "status": "active",
       "first_analysis_utc": "2026-09-30T12:00:00Z",
-      "last_analysis_utc": "2026-09-30T15:00:00Z",
-      "last_issue_utc": "2026-09-30T16:20:00Z",
+      "last_analysis_utc": "2026-09-30T18:00:00Z",
+      "last_issue_utc": "2026-09-30T19:30:00Z",
       "forecast_files": [
-        "TC2633_TD_a/forecast/TC2633_TD_a_20260930T1330Z_forecast.json",
-        "TC2633_TD_a/forecast/TC2633_TD_a_20260930T1620Z_forecast.json"
+        "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20260930T1330Z_forecast.json",
+        "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20260930T1620Z_forecast.json",
+        "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20260930T1930Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2633_TD_a/specifications/TC2633_TD_a_20260930T1330Z_specifications.json",
-        "TC2633_TD_a/specifications/TC2633_TD_a_20260930T1620Z_specifications.json"
+        "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20260930T1330Z_specifications.json",
+        "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20260930T1620Z_specifications.json",
+        "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20260930T1930Z_specifications.json"
       ],
-      "besttrack": "TC2633_TD_a/besttrack.csv"
+      "besttrack": "T2627_CHOI-WAN/besttrack.csv"
     }
   ]
 }

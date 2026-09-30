@@ -1,3 +1,4 @@
 ﻿tc_id_monitoring,tc_id_official,tc_name,valid_time_utc,center_latitude,center_longitude,tc_intensity_category,tc_size_category,central_pressure,msw_ms,msw_kt,gustiness_ms,gustiness_kt,movement_direction,movement_speed_kmh,movement_speed_kt,30kt_wind_longrad_dir,30kt_wind_longrad_length_km,30kt_wind_longrad_length_nm,30kt_wind_shortrad_dir,30kt_wind_shortrad_length_km,30kt_wind_shortrad_length_nm,50kt_wind_longrad_dir,50kt_wind_longrad_length_km,50kt_wind_longrad_length_nm,50kt_wind_shortrad_dir,50kt_wind_shortrad_length_km,50kt_wind_shortrad_length_nm
 TC2633,,a,2026-09-30T12:00:00Z,16.0,150.8,tropical depression,,1002,15,30,23,45,WNW,slowly,slowly,,,,,,,,,,,,
 TC2633,,a,2026-09-30T15:00:00Z,16.5,150.2,tropical depression,,1002,15,30,23,45,WNW,slowly,slowly,,,,,,,,,,,,
+TC2633,T2627,CHOI-WAN,2026-09-30T18:00:00Z,16.4,149.5,tropical storm,,998,18,35,25,50,WNW,15,7,symmetric,220,120,symmetric,220,120,,,,,,
