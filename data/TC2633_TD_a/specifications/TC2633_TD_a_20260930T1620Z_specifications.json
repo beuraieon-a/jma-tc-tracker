@@ -2,8 +2,8 @@
   {
     "part": "title",
     "issue": {
-      "JST": "2026-09-30T22:30:00+09:00",
-      "UTC": "2026-09-30T13:30:00Z"
+      "JST": "2026-10-01T01:20:00+09:00",
+      "UTC": "2026-09-30T16:20:00Z"
     },
     "typhoonNumber": "a",
     "category": {
@@ -36,17 +36,17 @@
     "intensity": "-",
     "position": {
       "deg": [
-        16.0,
-        150.8
+        16.5,
+        150.2
       ],
       "dm": [
         [
           16,
-          0
+          30
         ],
         [
           150,
-          50
+          10
         ]
       ],
       "accuracy": "ほぼ正確"
@@ -61,8 +61,8 @@
     },
     "pressure": "1002",
     "validtime": {
-      "JST": "2026-09-30T21:00:00+09:00",
-      "UTC": "2026-09-30T12:00:00Z"
+      "JST": "2026-10-01T00:00:00+09:00",
+      "UTC": "2026-09-30T15:00:00Z"
     }
   },
   {
@@ -90,7 +90,7 @@
     "position": {
       "deg": [
         17.0,
-        147.0
+        146.8
       ],
       "dm": [
         [
@@ -98,8 +98,8 @@
           0
         ],
         [
-          147,
-          0
+          146,
+          50
         ]
       ]
     },
@@ -108,21 +108,21 @@
       "nm": 70
     },
     "location": "マリアナ諸島",
-    "course": "西北西",
+    "course": "西",
     "speed": {
       "km/h": "15",
-      "kt": "9"
+      "kt": "8"
     },
     "pressure": "998",
     "validtime": {
-      "JST": "2026-10-01T21:00:00+09:00",
-      "UTC": "2026-10-01T12:00:00Z"
+      "JST": "2026-10-02T00:00:00+09:00",
+      "UTC": "2026-10-01T15:00:00Z"
     }
   },
   {
     "part": {
-      "jp": "予報　４８時間後",
-      "en": "Forecast for 48 hours ahead"
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
     },
     "maximumWind": {
       "sustained": {
@@ -135,7 +135,7 @@
         "kt": "65"
       }
     },
-    "advancedHours": 48,
+    "advancedHours": 45,
     "category": {
       "jp": "台風",
       "en": "TS"
@@ -177,8 +177,8 @@
   },
   {
     "part": {
-      "jp": "予報　７２時間後",
-      "en": "Forecast for 72 hours ahead"
+      "jp": "予報　６９時間後",
+      "en": "Forecast for 69 hours ahead"
     },
     "maximumWind": {
       "sustained": {
@@ -203,7 +203,7 @@
         }
       }
     ],
-    "advancedHours": 72,
+    "advancedHours": 69,
     "category": {
       "jp": "台風",
       "en": "STS"
@@ -243,8 +243,8 @@
   },
   {
     "part": {
-      "jp": "予報　９６時間後",
-      "en": "Forecast for 96 hours ahead"
+      "jp": "予報　９３時間後",
+      "en": "Forecast for 93 hours ahead"
     },
     "maximumWind": {
       "sustained": {
@@ -269,7 +269,7 @@
         }
       }
     ],
-    "advancedHours": 96,
+    "advancedHours": 93,
     "category": {
       "jp": "台風",
       "en": "TY"
@@ -309,8 +309,8 @@
   },
   {
     "part": {
-      "jp": "予報　１２０時間後",
-      "en": "Forecast for 120 hours ahead"
+      "jp": "予報　１１７時間後",
+      "en": "Forecast for 117 hours ahead"
     },
     "maximumWind": {
       "sustained": {
@@ -335,7 +335,7 @@
         }
       }
     ],
-    "advancedHours": 120,
+    "advancedHours": 117,
     "category": {
       "jp": "台風",
       "en": "TY"
