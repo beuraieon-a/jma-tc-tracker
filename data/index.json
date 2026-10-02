@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-02T03:45:29Z",
+  "generated_utc": "2026-10-02T03:50:27Z",
   "active": [
     "TC2632",
     "TC2633"
@@ -217,8 +217,8 @@
       "tc_name": "CHOI-WAN",
       "status": "active",
       "first_analysis_utc": "2026-09-30T12:00:00Z",
-      "last_analysis_utc": "2026-10-02T00:00:00Z",
-      "last_issue_utc": "2026-10-02T00:45:00Z",
+      "last_analysis_utc": "2026-10-02T03:00:00Z",
+      "last_issue_utc": "2026-10-02T03:45:00Z",
       "forecast_files": [
         "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20260930T1330Z_forecast.json",
         "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20260930T1620Z_forecast.json",
@@ -232,7 +232,8 @@
         "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20261001T1605Z_forecast.json",
         "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20261001T1910Z_forecast.json",
         "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20261001T2145Z_forecast.json",
-        "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20261002T0045Z_forecast.json"
+        "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20261002T0045Z_forecast.json",
+        "T2627_CHOI-WAN/forecast/T2627_CHOI-WAN_20261002T0345Z_forecast.json"
       ],
       "specifications_files": [
         "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20260930T1330Z_specifications.json",
@@ -247,7 +248,8 @@
         "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261001T1605Z_specifications.json",
         "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261001T1910Z_specifications.json",
         "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261001T2145Z_specifications.json",
-        "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261002T0045Z_specifications.json"
+        "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261002T0045Z_specifications.json",
+        "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261002T0345Z_specifications.json"
       ],
       "besttrack": "T2627_CHOI-WAN/besttrack.csv"
     }
