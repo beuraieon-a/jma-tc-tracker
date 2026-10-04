@@ -1,7 +1,8 @@
 {
-  "generated_utc": "2026-10-04T13:15:31Z",
+  "generated_utc": "2026-10-04T13:20:33Z",
   "active": [
-    "TC2633"
+    "TC2633",
+    "TC2634"
   ],
   "systems": [
     {
@@ -84,6 +85,23 @@
         "T2627_CHOI-WAN/specifications/T2627_CHOI-WAN_20261004T1250Z_specifications.json"
       ],
       "besttrack": "T2627_CHOI-WAN/besttrack.csv"
+    },
+    {
+      "base": "TC2634_TD_b",
+      "tc_id_monitoring": "TC2634",
+      "tc_id_official": "",
+      "tc_name": "b",
+      "status": "active",
+      "first_analysis_utc": "2026-10-04T12:00:00Z",
+      "last_analysis_utc": "2026-10-04T12:00:00Z",
+      "last_issue_utc": "2026-10-04T13:15:00Z",
+      "forecast_files": [
+        "TC2634_TD_b/forecast/TC2634_TD_b_20261004T1315Z_forecast.json"
+      ],
+      "specifications_files": [
+        "TC2634_TD_b/specifications/TC2634_TD_b_20261004T1315Z_specifications.json"
+      ],
+      "besttrack": "TC2634_TD_b/besttrack.csv"
     }
   ]
 }
