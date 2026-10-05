@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-05T01:10:29Z",
+  "generated_utc": "2026-10-05T01:15:27Z",
   "active": [
     "TC2633",
     "TC2634",
@@ -113,27 +113,29 @@
       "besttrack": "T2628_NOLO/besttrack.csv"
     },
     {
-      "base": "TC2634_TD_b",
+      "base": "T2629_KOGUMA",
       "tc_id_monitoring": "TC2634",
-      "tc_id_official": "",
-      "tc_name": "b",
+      "tc_id_official": "T2629",
+      "tc_name": "KOGUMA",
       "status": "active",
       "first_analysis_utc": "2026-10-04T12:00:00Z",
-      "last_analysis_utc": "2026-10-04T21:00:00Z",
-      "last_issue_utc": "2026-10-04T22:05:00Z",
+      "last_analysis_utc": "2026-10-05T00:00:00Z",
+      "last_issue_utc": "2026-10-05T01:15:00Z",
       "forecast_files": [
-        "TC2634_TD_b/forecast/TC2634_TD_b_20261004T1315Z_forecast.json",
-        "TC2634_TD_b/forecast/TC2634_TD_b_20261004T1615Z_forecast.json",
-        "TC2634_TD_b/forecast/TC2634_TD_b_20261004T1905Z_forecast.json",
-        "TC2634_TD_b/forecast/TC2634_TD_b_20261004T2205Z_forecast.json"
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261004T1315Z_forecast.json",
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261004T1615Z_forecast.json",
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261004T1905Z_forecast.json",
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261004T2205Z_forecast.json",
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261005T0115Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2634_TD_b/specifications/TC2634_TD_b_20261004T1315Z_specifications.json",
-        "TC2634_TD_b/specifications/TC2634_TD_b_20261004T1615Z_specifications.json",
-        "TC2634_TD_b/specifications/TC2634_TD_b_20261004T1905Z_specifications.json",
-        "TC2634_TD_b/specifications/TC2634_TD_b_20261004T2205Z_specifications.json"
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261004T1315Z_specifications.json",
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261004T1615Z_specifications.json",
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261004T1905Z_specifications.json",
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261004T2205Z_specifications.json",
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261005T0115Z_specifications.json"
       ],
-      "besttrack": "TC2634_TD_b/besttrack.csv"
+      "besttrack": "T2629_KOGUMA/besttrack.csv"
     }
   ]
 }
