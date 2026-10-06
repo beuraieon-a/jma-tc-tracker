@@ -1,0 +1,484 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-10-07T07:15:00+09:00",
+      "UTC": "2026-10-06T22:15:00Z"
+    },
+    "typhoonNumber": "2629",
+    "name": {
+      "jp": "コグマ",
+      "en": "Koguma"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "25",
+        "kt": "50",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "35",
+        "kt": "70"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "北西",
+        "range": {
+          "km": 330,
+          "nm": 180
+        }
+      },
+      {
+        "area": "南東",
+        "range": {
+          "km": 280,
+          "nm": 150
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        14.9,
+        163.9
+      ],
+      "dm": [
+        [
+          14,
+          55
+        ],
+        [
+          163,
+          55
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "マーシャル諸島",
+    "course": "西",
+    "speed": {
+      "km/h": "15",
+      "kt": "8"
+    },
+    "pressure": "992",
+    "validtime": {
+      "JST": "2026-10-07T06:00:00+09:00",
+      "UTC": "2026-10-06T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "55",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "40",
+        "kt": "80"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 130,
+          "nm": 70
+        }
+      }
+    ],
+    "advancedHours": 12,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        15.8,
+        163.6
+      ],
+      "dm": [
+        [
+          15,
+          50
+        ],
+        [
+          163,
+          35
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 75,
+      "nm": 40
+    },
+    "location": "ウェーク島近海",
+    "course": "北北西",
+    "speed": {
+      "note": {
+        "jp": "ゆっくり",
+        "en": "Slow"
+      }
+    },
+    "pressure": "985",
+    "validtime": {
+      "JST": "2026-10-07T18:00:00+09:00",
+      "UTC": "2026-10-07T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "35",
+        "kt": "65",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "50",
+        "kt": "95"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 180,
+          "nm": 97
+        }
+      }
+    ],
+    "advancedHours": 24,
+    "category": {
+      "jp": "台風",
+      "en": "TY"
+    },
+    "intensity": "強い",
+    "position": {
+      "deg": [
+        16.4,
+        162.0
+      ],
+      "dm": [
+        [
+          16,
+          25
+        ],
+        [
+          162,
+          0
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 105,
+      "nm": 57
+    },
+    "location": "ウェーク島近海",
+    "course": "西北西",
+    "speed": {
+      "km/h": "15",
+      "kt": "8"
+    },
+    "pressure": "975",
+    "validtime": {
+      "JST": "2026-10-08T06:00:00+09:00",
+      "UTC": "2026-10-07T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　４５時間後",
+      "en": "Forecast for 45 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "40",
+        "kt": "75",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "55",
+        "kt": "105"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 280,
+          "nm": 150
+        }
+      }
+    ],
+    "advancedHours": 45,
+    "category": {
+      "jp": "台風",
+      "en": "TY"
+    },
+    "intensity": "強い",
+    "position": {
+      "deg": [
+        18.1,
+        158.0
+      ],
+      "dm": [
+        [
+          18,
+          5
+        ],
+        [
+          158,
+          0
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 185,
+      "nm": 100
+    },
+    "location": "南鳥島近海",
+    "course": "西北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "11"
+    },
+    "pressure": "965",
+    "validtime": {
+      "JST": "2026-10-09T03:00:00+09:00",
+      "UTC": "2026-10-08T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　６９時間後",
+      "en": "Forecast for 69 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "45",
+        "kt": "85",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "60",
+        "kt": "120"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 370,
+          "nm": 200
+        }
+      }
+    ],
+    "advancedHours": 69,
+    "category": {
+      "jp": "台風",
+      "en": "TY"
+    },
+    "intensity": "非常に強い",
+    "position": {
+      "deg": [
+        20.1,
+        153.1
+      ],
+      "dm": [
+        [
+          20,
+          5
+        ],
+        [
+          153,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 260,
+      "nm": 140
+    },
+    "location": "南鳥島近海",
+    "course": "西北西",
+    "speed": {
+      "km/h": "25",
+      "kt": "13"
+    },
+    "pressure": "950",
+    "validtime": {
+      "JST": "2026-10-10T03:00:00+09:00",
+      "UTC": "2026-10-09T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　９３時間後",
+      "en": "Forecast for 93 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "45",
+        "kt": "85",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "60",
+        "kt": "120"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 440,
+          "nm": 235
+        }
+      }
+    ],
+    "advancedHours": 93,
+    "category": {
+      "jp": "台風",
+      "en": "TY"
+    },
+    "intensity": "非常に強い",
+    "position": {
+      "deg": [
+        22.7,
+        149.6
+      ],
+      "dm": [
+        [
+          22,
+          40
+        ],
+        [
+          149,
+          35
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 320,
+      "nm": 175
+    },
+    "location": "南鳥島近海",
+    "course": "北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "950",
+    "validtime": {
+      "JST": "2026-10-11T03:00:00+09:00",
+      "UTC": "2026-10-10T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１１７時間後",
+      "en": "Forecast for 117 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "45",
+        "kt": "85",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "60",
+        "kt": "120"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 570,
+          "nm": 310
+        }
+      }
+    ],
+    "advancedHours": 117,
+    "category": {
+      "jp": "台風",
+      "en": "TY"
+    },
+    "intensity": "非常に強い",
+    "position": {
+      "deg": [
+        26.5,
+        147.7
+      ],
+      "dm": [
+        [
+          26,
+          30
+        ],
+        [
+          147,
+          40
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 460,
+      "nm": 250
+    },
+    "location": "小笠原近海",
+    "course": "北北西",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "950",
+    "validtime": {
+      "JST": "2026-10-12T03:00:00+09:00",
+      "UTC": "2026-10-11T18:00:00Z"
+    }
+  }
+]
