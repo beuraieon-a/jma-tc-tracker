@@ -1,0 +1,58 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-10-07T21:45:00+09:00",
+      "UTC": "2026-10-07T12:45:00Z"
+    },
+    "typhoonNumber": "2627",
+    "name": {
+      "jp": "チョーイワン",
+      "en": "Choi-wan"
+    },
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "advancedHours": 0,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        46.0,
+        162.0
+      ],
+      "dm": [
+        [
+          46,
+          0
+        ],
+        [
+          162,
+          0
+        ]
+      ]
+    },
+    "location": "千島の東",
+    "course": "北東",
+    "speed": {
+      "km/h": "85",
+      "kt": "45"
+    },
+    "pressure": "970",
+    "validtime": {
+      "JST": "2026-10-07T21:00:00+09:00",
+      "UTC": "2026-10-07T12:00:00Z"
+    }
+  }
+]
