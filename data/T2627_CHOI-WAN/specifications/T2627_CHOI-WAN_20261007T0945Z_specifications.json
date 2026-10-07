@@ -1,0 +1,239 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-10-07T18:45:00+09:00",
+      "UTC": "2026-10-07T09:45:00Z"
+    },
+    "typhoonNumber": "2627",
+    "name": {
+      "jp": "チョーイワン",
+      "en": "Choi-wan"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "60"
+      },
+      "gust": {
+        "m/s": "45",
+        "kt": "85"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "南東",
+        "range": {
+          "km": 900,
+          "nm": 475
+        }
+      },
+      {
+        "area": "北西",
+        "range": {
+          "km": 650,
+          "nm": 350
+        }
+      }
+    ],
+    "stormWarning": [
+      {
+        "area": "南東",
+        "range": {
+          "km": 390,
+          "nm": 210
+        }
+      },
+      {
+        "area": "北西",
+        "range": {
+          "km": 220,
+          "nm": 120
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "scale": "大型",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        44.0,
+        160.5
+      ],
+      "dm": [
+        [
+          44,
+          0
+        ],
+        [
+          160,
+          30
+        ]
+      ],
+      "accuracy": "ほぼ正確"
+    },
+    "location": "日本のはるか東",
+    "course": "北東",
+    "speed": {
+      "km/h": "85",
+      "kt": "46"
+    },
+    "pressure": "965",
+    "validtime": {
+      "JST": "2026-10-07T18:00:00+09:00",
+      "UTC": "2026-10-07T09:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "55"
+      },
+      "gust": {
+        "m/s": "40",
+        "kt": "80"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": "南東",
+        "range": {
+          "km": 650,
+          "nm": 340
+        }
+      },
+      {
+        "area": "北西",
+        "range": {
+          "km": 220,
+          "nm": 120
+        }
+      }
+    ],
+    "advancedHours": 12,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        52.2,
+        170.1
+      ],
+      "dm": [
+        [
+          52,
+          10
+        ],
+        [
+          170,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 75,
+      "nm": 40
+    },
+    "location": "アリューシャン近海",
+    "course": "北東",
+    "speed": {
+      "km/h": "95",
+      "kt": "50"
+    },
+    "pressure": "964",
+    "validtime": {
+      "JST": "2026-10-08T06:00:00+09:00",
+      "UTC": "2026-10-07T21:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "55"
+      },
+      "gust": {
+        "m/s": "40",
+        "kt": "80"
+      }
+    },
+    "stormWarning": [
+      {
+        "area": "南東",
+        "range": {
+          "km": 650,
+          "nm": 360
+        }
+      },
+      {
+        "area": "北西",
+        "range": {
+          "km": 270,
+          "nm": 145
+        }
+      }
+    ],
+    "advancedHours": 24,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        59.2,
+        176.2
+      ],
+      "dm": [
+        [
+          59,
+          10
+        ],
+        [
+          176,
+          10
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 120,
+      "nm": 65
+    },
+    "location": "ベーリング海",
+    "course": "北北東",
+    "speed": {
+      "km/h": "70",
+      "kt": "39"
+    },
+    "pressure": "962",
+    "validtime": {
+      "JST": "2026-10-08T18:00:00+09:00",
+      "UTC": "2026-10-08T09:00:00Z"
+    }
+  }
+]
