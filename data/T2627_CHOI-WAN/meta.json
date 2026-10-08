@@ -3,7 +3,7 @@
   "tc_id_monitoring": "TC2633",
   "tc_id_official": "T2627",
   "tc_name": "CHOI-WAN",
-  "status": "active",
+  "status": "terminated",
   "first_analysis_utc": "2026-09-30T12:00:00Z",
   "last_analysis_utc": "2026-10-07T12:00:00Z",
   "last_issue_utc": "2026-10-07T12:45:00Z"
