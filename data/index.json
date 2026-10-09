@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-09T07:05:20Z",
+  "generated_utc": "2026-10-09T07:10:25Z",
   "active": [
     "TC2634",
     "TC2635"
@@ -226,8 +226,8 @@
       "tc_name": "KOGUMA",
       "status": "active",
       "first_analysis_utc": "2026-10-04T12:00:00Z",
-      "last_analysis_utc": "2026-10-09T03:00:00Z",
-      "last_issue_utc": "2026-10-09T04:05:00Z",
+      "last_analysis_utc": "2026-10-09T06:00:00Z",
+      "last_issue_utc": "2026-10-09T07:05:00Z",
       "forecast_files": [
         "T2629_KOGUMA/forecast/T2629_KOGUMA_20261004T1315Z_forecast.json",
         "T2629_KOGUMA/forecast/T2629_KOGUMA_20261004T1615Z_forecast.json",
@@ -266,7 +266,8 @@
         "T2629_KOGUMA/forecast/T2629_KOGUMA_20261008T1910Z_forecast.json",
         "T2629_KOGUMA/forecast/T2629_KOGUMA_20261008T2205Z_forecast.json",
         "T2629_KOGUMA/forecast/T2629_KOGUMA_20261009T0110Z_forecast.json",
-        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261009T0405Z_forecast.json"
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261009T0405Z_forecast.json",
+        "T2629_KOGUMA/forecast/T2629_KOGUMA_20261009T0705Z_forecast.json"
       ],
       "specifications_files": [
         "T2629_KOGUMA/specifications/T2629_KOGUMA_20261004T1315Z_specifications.json",
@@ -306,7 +307,8 @@
         "T2629_KOGUMA/specifications/T2629_KOGUMA_20261008T1910Z_specifications.json",
         "T2629_KOGUMA/specifications/T2629_KOGUMA_20261008T2205Z_specifications.json",
         "T2629_KOGUMA/specifications/T2629_KOGUMA_20261009T0110Z_specifications.json",
-        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261009T0405Z_specifications.json"
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261009T0405Z_specifications.json",
+        "T2629_KOGUMA/specifications/T2629_KOGUMA_20261009T0705Z_specifications.json"
       ],
       "besttrack": "T2629_KOGUMA/besttrack.csv"
     }
