@@ -1,0 +1,200 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-10-14T03:45:00+09:00",
+      "UTC": "2026-10-13T18:45:00Z"
+    },
+    "typhoonNumber": "2629",
+    "name": {
+      "jp": "コグマ",
+      "en": "Koguma"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "30",
+        "kt": "55",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "40",
+        "kt": "80"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 390,
+          "nm": 210
+        }
+      }
+    ],
+    "stormWarning": [
+      {
+        "area": {
+          "jp": "全域",
+          "en": "All"
+        },
+        "range": {
+          "km": 165,
+          "nm": 90
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "STS"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        38.0,
+        157.2
+      ],
+      "dm": [
+        [
+          38,
+          0
+        ],
+        [
+          157,
+          10
+        ]
+      ],
+      "accuracy": "正確"
+    },
+    "location": "日本のはるか東",
+    "course": "北東",
+    "speed": {
+      "km/h": "35",
+      "kt": "19"
+    },
+    "pressure": "985",
+    "validtime": {
+      "JST": "2026-10-14T03:00:00+09:00",
+      "UTC": "2026-10-13T18:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "25",
+        "kt": "50"
+      },
+      "gust": {
+        "m/s": "35",
+        "kt": "70"
+      }
+    },
+    "advancedHours": 12,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        40.6,
+        160.2
+      ],
+      "dm": [
+        [
+          40,
+          35
+        ],
+        [
+          160,
+          10
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 55,
+      "nm": 30
+    },
+    "location": "日本のはるか東",
+    "course": "北東",
+    "speed": {
+      "km/h": "30",
+      "kt": "17"
+    },
+    "pressure": "986",
+    "validtime": {
+      "JST": "2026-10-14T15:00:00+09:00",
+      "UTC": "2026-10-14T06:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "23",
+        "kt": "45"
+      },
+      "gust": {
+        "m/s": "35",
+        "kt": "65"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        42.0,
+        164.8
+      ],
+      "dm": [
+        [
+          42,
+          0
+        ],
+        [
+          164,
+          50
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 80,
+      "nm": 42
+    },
+    "location": "日本のはるか東",
+    "course": "東北東",
+    "speed": {
+      "km/h": "35",
+      "kt": "19"
+    },
+    "pressure": "988",
+    "validtime": {
+      "JST": "2026-10-15T03:00:00+09:00",
+      "UTC": "2026-10-14T18:00:00Z"
+    }
+  }
+]
