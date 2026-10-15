@@ -1,0 +1,10 @@
+{
+  "base": "T2630_CHAMPI",
+  "tc_id_monitoring": "TC2636",
+  "tc_id_official": "T2630",
+  "tc_name": "CHAMPI",
+  "status": "active",
+  "first_analysis_utc": "2026-10-14T00:00:00Z",
+  "last_analysis_utc": "2026-10-15T06:00:00Z",
+  "last_issue_utc": "2026-10-15T07:15:00Z"
+}
