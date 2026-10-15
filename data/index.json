@@ -1,7 +1,6 @@
 {
-  "generated_utc": "2026-10-15T00:00:47Z",
+  "generated_utc": "2026-10-15T00:05:23Z",
   "active": [
-    "TC2634",
     "TC2636"
   ],
   "systems": [
@@ -10,7 +9,7 @@
       "tc_id_monitoring": "TC2634",
       "tc_id_official": "T2629",
       "tc_name": "KOGUMA",
-      "status": "active",
+      "status": "terminated",
       "first_analysis_utc": "2026-10-04T12:00:00Z",
       "last_analysis_utc": "2026-10-14T00:00:00Z",
       "last_issue_utc": "2026-10-14T00:50:00Z",
