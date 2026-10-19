@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-19T00:40:27Z",
+  "generated_utc": "2026-10-19T00:45:26Z",
   "active": [
     "TC2636"
   ],
@@ -11,8 +11,8 @@
       "tc_name": "CHAMPI",
       "status": "active",
       "first_analysis_utc": "2026-10-14T00:00:00Z",
-      "last_analysis_utc": "2026-10-18T21:00:00Z",
-      "last_issue_utc": "2026-10-18T21:45:00Z",
+      "last_analysis_utc": "2026-10-19T00:00:00Z",
+      "last_issue_utc": "2026-10-19T00:45:00Z",
       "forecast_files": [
         "T2630_CHAMPI/forecast/T2630_CHAMPI_20261014T0130Z_forecast.json",
         "T2630_CHAMPI/forecast/T2630_CHAMPI_20261014T0405Z_forecast.json",
@@ -53,7 +53,8 @@
         "T2630_CHAMPI/forecast/T2630_CHAMPI_20261018T1245Z_forecast.json",
         "T2630_CHAMPI/forecast/T2630_CHAMPI_20261018T1545Z_forecast.json",
         "T2630_CHAMPI/forecast/T2630_CHAMPI_20261018T1845Z_forecast.json",
-        "T2630_CHAMPI/forecast/T2630_CHAMPI_20261018T2145Z_forecast.json"
+        "T2630_CHAMPI/forecast/T2630_CHAMPI_20261018T2145Z_forecast.json",
+        "T2630_CHAMPI/forecast/T2630_CHAMPI_20261019T0045Z_forecast.json"
       ],
       "specifications_files": [
         "T2630_CHAMPI/specifications/T2630_CHAMPI_20261014T0130Z_specifications.json",
@@ -95,7 +96,8 @@
         "T2630_CHAMPI/specifications/T2630_CHAMPI_20261018T1245Z_specifications.json",
         "T2630_CHAMPI/specifications/T2630_CHAMPI_20261018T1545Z_specifications.json",
         "T2630_CHAMPI/specifications/T2630_CHAMPI_20261018T1845Z_specifications.json",
-        "T2630_CHAMPI/specifications/T2630_CHAMPI_20261018T2145Z_specifications.json"
+        "T2630_CHAMPI/specifications/T2630_CHAMPI_20261018T2145Z_specifications.json",
+        "T2630_CHAMPI/specifications/T2630_CHAMPI_20261019T0045Z_specifications.json"
       ],
       "besttrack": "T2630_CHAMPI/besttrack.csv"
     }
