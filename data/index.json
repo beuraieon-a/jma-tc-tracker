@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-23T19:00:42Z",
+  "generated_utc": "2026-10-23T19:05:20Z",
   "active": [
     "TC2636",
     "TC2637"
@@ -219,31 +219,33 @@
       "besttrack": "T2630_CHAMPI/besttrack.csv"
     },
     {
-      "base": "TC2637_TD_b",
+      "base": "T2631_IN-FA",
       "tc_id_monitoring": "TC2637",
-      "tc_id_official": "",
-      "tc_name": "b",
+      "tc_id_official": "T2631",
+      "tc_name": "IN-FA",
       "status": "active",
       "first_analysis_utc": "2026-10-23T00:00:00Z",
-      "last_analysis_utc": "2026-10-23T15:00:00Z",
-      "last_issue_utc": "2026-10-23T16:05:00Z",
+      "last_analysis_utc": "2026-10-23T18:00:00Z",
+      "last_issue_utc": "2026-10-23T19:05:00Z",
       "forecast_files": [
-        "TC2637_TD_b/forecast/TC2637_TD_b_20261023T0130Z_forecast.json",
-        "TC2637_TD_b/forecast/TC2637_TD_b_20261023T0405Z_forecast.json",
-        "TC2637_TD_b/forecast/TC2637_TD_b_20261023T0725Z_forecast.json",
-        "TC2637_TD_b/forecast/TC2637_TD_b_20261023T1005Z_forecast.json",
-        "TC2637_TD_b/forecast/TC2637_TD_b_20261023T1305Z_forecast.json",
-        "TC2637_TD_b/forecast/TC2637_TD_b_20261023T1605Z_forecast.json"
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T0130Z_forecast.json",
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T0405Z_forecast.json",
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T0725Z_forecast.json",
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T1005Z_forecast.json",
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T1305Z_forecast.json",
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T1605Z_forecast.json",
+        "T2631_IN-FA/forecast/T2631_IN-FA_20261023T1905Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2637_TD_b/specifications/TC2637_TD_b_20261023T0130Z_specifications.json",
-        "TC2637_TD_b/specifications/TC2637_TD_b_20261023T0405Z_specifications.json",
-        "TC2637_TD_b/specifications/TC2637_TD_b_20261023T0725Z_specifications.json",
-        "TC2637_TD_b/specifications/TC2637_TD_b_20261023T1005Z_specifications.json",
-        "TC2637_TD_b/specifications/TC2637_TD_b_20261023T1305Z_specifications.json",
-        "TC2637_TD_b/specifications/TC2637_TD_b_20261023T1605Z_specifications.json"
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T0130Z_specifications.json",
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T0405Z_specifications.json",
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T0725Z_specifications.json",
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T1005Z_specifications.json",
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T1305Z_specifications.json",
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T1605Z_specifications.json",
+        "T2631_IN-FA/specifications/T2631_IN-FA_20261023T1905Z_specifications.json"
       ],
-      "besttrack": "TC2637_TD_b/besttrack.csv"
+      "besttrack": "T2631_IN-FA/besttrack.csv"
     }
   ]
 }
