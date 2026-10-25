@@ -1,0 +1,58 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-10-25T21:45:00+09:00",
+      "UTC": "2026-10-25T12:45:00Z"
+    },
+    "typhoonNumber": "2630",
+    "name": {
+      "jp": "チャンパー",
+      "en": "Champi"
+    },
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "advancedHours": 0,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "scale": "-",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        31.0,
+        126.0
+      ],
+      "dm": [
+        [
+          31,
+          0
+        ],
+        [
+          126,
+          0
+        ]
+      ]
+    },
+    "location": "東シナ海",
+    "course": "北北東",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "1000",
+    "validtime": {
+      "JST": "2026-10-25T21:00:00+09:00",
+      "UTC": "2026-10-25T12:00:00Z"
+    }
+  }
+]
