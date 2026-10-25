@@ -1,0 +1,193 @@
+[
+  {
+    "part": "title",
+    "issue": {
+      "JST": "2026-10-25T09:45:00+09:00",
+      "UTC": "2026-10-25T00:45:00Z"
+    },
+    "typhoonNumber": "2630",
+    "name": {
+      "jp": "チャンパー",
+      "en": "Champi"
+    },
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    }
+  },
+  {
+    "part": {
+      "jp": "実況",
+      "en": "Analysis"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "20",
+        "kt": "40",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "30",
+        "kt": "60"
+      }
+    },
+    "galeWarning": [
+      {
+        "area": "北東",
+        "range": {
+          "km": 560,
+          "nm": 300
+        }
+      },
+      {
+        "area": "南西",
+        "range": {
+          "km": 500,
+          "nm": 270
+        }
+      }
+    ],
+    "advancedHours": 0,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "scale": "大型",
+    "intensity": "-",
+    "position": {
+      "deg": [
+        29.0,
+        124.5
+      ],
+      "dm": [
+        [
+          29,
+          0
+        ],
+        [
+          124,
+          30
+        ]
+      ],
+      "accuracy": "正確"
+    },
+    "location": "東シナ海",
+    "course": "北東",
+    "speed": {
+      "km/h": "20",
+      "kt": "11"
+    },
+    "pressure": "996",
+    "validtime": {
+      "JST": "2026-10-25T09:00:00+09:00",
+      "UTC": "2026-10-25T00:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　１２時間後",
+      "en": "Forecast for 12 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "20",
+        "kt": "40",
+        "note": "中心付近"
+      },
+      "gust": {
+        "m/s": "30",
+        "kt": "60"
+      }
+    },
+    "advancedHours": 12,
+    "category": {
+      "jp": "台風",
+      "en": "TS"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        30.5,
+        126.1
+      ],
+      "dm": [
+        [
+          30,
+          30
+        ],
+        [
+          126,
+          5
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 55,
+      "nm": 30
+    },
+    "location": "東シナ海",
+    "course": "北東",
+    "speed": {
+      "km/h": "20",
+      "kt": "10"
+    },
+    "pressure": "998",
+    "validtime": {
+      "JST": "2026-10-25T21:00:00+09:00",
+      "UTC": "2026-10-25T12:00:00Z"
+    }
+  },
+  {
+    "part": {
+      "jp": "予報　２４時間後",
+      "en": "Forecast for 24 hours ahead"
+    },
+    "maximumWind": {
+      "sustained": {
+        "m/s": "18",
+        "kt": "35"
+      },
+      "gust": {
+        "m/s": "25",
+        "kt": "50"
+      }
+    },
+    "advancedHours": 24,
+    "category": {
+      "jp": "温帯低気圧",
+      "en": "LOW"
+    },
+    "intensity": "-",
+    "position": {
+      "deg": [
+        31.6,
+        128.7
+      ],
+      "dm": [
+        [
+          31,
+          35
+        ],
+        [
+          128,
+          40
+        ]
+      ]
+    },
+    "probabilityCircleRadius": {
+      "km": 80,
+      "nm": 42
+    },
+    "location": "五島市の南約120km",
+    "course": "東北東",
+    "speed": {
+      "km/h": "20",
+      "kt": "12"
+    },
+    "pressure": "1002",
+    "validtime": {
+      "JST": "2026-10-26T09:00:00+09:00",
+      "UTC": "2026-10-26T00:00:00Z"
+    }
+  }
+]
