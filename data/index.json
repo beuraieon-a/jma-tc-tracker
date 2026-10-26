@@ -1,7 +1,6 @@
 {
-  "generated_utc": "2026-10-26T12:00:47Z",
+  "generated_utc": "2026-10-26T12:09:24Z",
   "active": [
-    "TC2636",
     "TC2637"
   ],
   "systems": [
@@ -10,7 +9,7 @@
       "tc_id_monitoring": "TC2636",
       "tc_id_official": "T2630",
       "tc_name": "CHAMPI",
-      "status": "active",
+      "status": "terminated",
       "first_analysis_utc": "2026-10-14T00:00:00Z",
       "last_analysis_utc": "2026-10-25T12:00:00Z",
       "last_issue_utc": "2026-10-25T12:45:00Z",
