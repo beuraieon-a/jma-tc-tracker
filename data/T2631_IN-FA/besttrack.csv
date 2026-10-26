@@ -28,3 +28,4 @@ TC2637,T2631,IN-FA,2026-10-26T03:00:00Z,13.9,163.1,typhoon,,980,35,70,50,100,W,2
 TC2637,T2631,IN-FA,2026-10-26T06:00:00Z,14.0,163.0,typhoon,,970,40,80,60,115,WNW,slowly,slowly,N,330,180,S,220,120,symmetric,75,40,symmetric,75,40
 TC2637,T2631,IN-FA,2026-10-26T09:00:00Z,14.1,162.8,very strong typhoon,,965,45,85,60,120,WNW,slowly,slowly,N,330,180,S,220,120,symmetric,75,40,symmetric,75,40
 TC2637,T2631,IN-FA,2026-10-26T12:00:00Z,14.1,162.7,very strong typhoon,,965,45,85,60,120,WNW,slowly,slowly,N,330,180,S,220,120,symmetric,75,40,symmetric,75,40
+TC2637,T2631,IN-FA,2026-10-26T15:00:00Z,14.2,162.6,very strong typhoon,,965,45,85,60,120,almost stationary,,,N,330,180,S,220,120,symmetric,75,40,symmetric,75,40
