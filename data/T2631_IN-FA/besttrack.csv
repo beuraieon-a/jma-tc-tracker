@@ -93,3 +93,4 @@ TC2637,T2631,IN-FA,2026-11-03T06:00:00Z,23.1,138.9,severe tropical storm,,975,30
 TC2637,T2631,IN-FA,2026-11-03T09:00:00Z,23.2,139.0,severe tropical storm,,975,30,60,45,85,NNW,slowly,slowly,NW,330,180,SE,280,150,symmetric,95,50,symmetric,95,50
 TC2637,T2631,IN-FA,2026-11-03T12:00:00Z,23.2,138.8,typhoon,,970,35,65,50,95,NW,slowly,slowly,NW,390,210,SE,280,150,symmetric,95,50,symmetric,95,50
 TC2637,T2631,IN-FA,2026-11-03T15:00:00Z,23.5,138.8,typhoon,,970,35,65,50,95,NNW,slowly,slowly,NW,390,210,SE,330,180,symmetric,120,65,symmetric,120,65
+TC2637,T2631,IN-FA,2026-11-03T18:00:00Z,23.8,138.7,typhoon,,970,35,65,50,95,N,10,6,symmetric,330,180,symmetric,330,180,symmetric,120,65,symmetric,120,65
