@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-07T04:15:24Z",
+  "generated_utc": "2026-11-07T04:19:28Z",
   "active": [
     "TC2638"
   ],
@@ -246,37 +246,39 @@
       "besttrack": "T2631_IN-FA/besttrack.csv"
     },
     {
-      "base": "TC2638_TD_a",
+      "base": "T2632_CEMPAKA",
       "tc_id_monitoring": "TC2638",
-      "tc_id_official": "",
-      "tc_name": "a",
+      "tc_id_official": "T2632",
+      "tc_name": "CEMPAKA",
       "status": "active",
       "first_analysis_utc": "2026-11-06T00:00:00Z",
-      "last_analysis_utc": "2026-11-07T00:00:00Z",
-      "last_issue_utc": "2026-11-07T01:15:00Z",
+      "last_analysis_utc": "2026-11-07T03:00:00Z",
+      "last_issue_utc": "2026-11-07T04:15:00Z",
       "forecast_files": [
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T0130Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T0345Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T0650Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T1015Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T1315Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T1615Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T1915Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261106T2215Z_forecast.json",
-        "TC2638_TD_a/forecast/TC2638_TD_a_20261107T0115Z_forecast.json"
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T0130Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T0345Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T0650Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T1015Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T1315Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T1615Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T1915Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T2215Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261107T0115Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261107T0415Z_forecast.json"
       ],
       "specifications_files": [
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T0130Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T0345Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T0650Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T1015Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T1315Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T1615Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T1915Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261106T2215Z_specifications.json",
-        "TC2638_TD_a/specifications/TC2638_TD_a_20261107T0115Z_specifications.json"
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T0130Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T0345Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T0650Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T1015Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T1315Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T1615Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T1915Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T2215Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261107T0115Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261107T0415Z_specifications.json"
       ],
-      "besttrack": "TC2638_TD_a/besttrack.csv"
+      "besttrack": "T2632_CEMPAKA/besttrack.csv"
     }
   ]
 }

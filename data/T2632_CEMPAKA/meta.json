@@ -1,0 +1,10 @@
+{
+  "base": "T2632_CEMPAKA",
+  "tc_id_monitoring": "TC2638",
+  "tc_id_official": "T2632",
+  "tc_name": "CEMPAKA",
+  "status": "active",
+  "first_analysis_utc": "2026-11-06T00:00:00Z",
+  "last_analysis_utc": "2026-11-07T03:00:00Z",
+  "last_issue_utc": "2026-11-07T04:15:00Z"
+}
