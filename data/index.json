@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-08T18:40:25Z",
+  "generated_utc": "2026-11-08T18:45:24Z",
   "active": [
     "TC2638"
   ],
@@ -11,8 +11,8 @@
       "tc_name": "CEMPAKA",
       "status": "active",
       "first_analysis_utc": "2026-11-06T00:00:00Z",
-      "last_analysis_utc": "2026-11-08T15:00:00Z",
-      "last_issue_utc": "2026-11-08T15:45:00Z",
+      "last_analysis_utc": "2026-11-08T18:00:00Z",
+      "last_issue_utc": "2026-11-08T18:45:00Z",
       "forecast_files": [
         "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T0130Z_forecast.json",
         "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261106T0345Z_forecast.json",
@@ -35,7 +35,8 @@
         "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261108T0650Z_forecast.json",
         "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261108T0945Z_forecast.json",
         "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261108T1245Z_forecast.json",
-        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261108T1545Z_forecast.json"
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261108T1545Z_forecast.json",
+        "T2632_CEMPAKA/forecast/T2632_CEMPAKA_20261108T1845Z_forecast.json"
       ],
       "specifications_files": [
         "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261106T0130Z_specifications.json",
@@ -59,7 +60,8 @@
         "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261108T0650Z_specifications.json",
         "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261108T0945Z_specifications.json",
         "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261108T1245Z_specifications.json",
-        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261108T1545Z_specifications.json"
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261108T1545Z_specifications.json",
+        "T2632_CEMPAKA/specifications/T2632_CEMPAKA_20261108T1845Z_specifications.json"
       ],
       "besttrack": "T2632_CEMPAKA/besttrack.csv"
     }
